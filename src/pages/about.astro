@@ -1,0 +1,283 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tools = [
+  { icon: '🔢', title: 'Name Numerology Number', desc: 'Calculate your Expression/Destiny number using the authentic Chaldean letter-to-number mapping.', href: '/name-analysis' },
+  { icon: '💞', title: 'Name Compatibility Score', desc: 'Measure the harmonic resonance between two names to assess relationship compatibility.', href: '/name-analysis' },
+  { icon: '🎭', title: 'Name Personality Traits', desc: 'Discover the outer personality archetype your name projects to the world.', href: '/name-analysis' },
+  { icon: '🛤️', title: 'Life Path Calculator', desc: 'Decode your date of birth to reveal your life path purpose, opportunities, and challenges.', href: '/life-path-calculator' },
+  { icon: '💫', title: 'Soul Urge Calculator', desc: 'Uncover your innermost desires and hidden motivations through the vowels in your name.', href: '/soul-urge-calculator' },
+  { icon: '🍀', title: 'Lucky Number Finder', desc: 'Identify the numbers that align with your personal vibration for auspicious decisions.', href: '/lucky-number-finder' },
+  { icon: '👶', title: 'Baby Name Numerology Guide', desc: 'Choose a numerologically auspicious name for your child with our comprehensive guide.', href: '/articles/baby-name-meaning-finder' },
+  { icon: '⭐', title: 'Astrological Name Analysis', desc: 'Explore the intersection of Vedic astrology and Chaldean numerology for deeper insight.', href: '/articles/astrological-name-analysis' },
+];
+
+const chaldeanMap = [
+  { num: 1, letters: 'A, I, J, Q, Y', planet: 'Sun ☀️',     nature: 'Leadership, individuality, ambition, originality' },
+  { num: 2, letters: 'B, K, R',       planet: 'Moon 🌙',     nature: 'Sensitivity, diplomacy, intuition, partnerships' },
+  { num: 3, letters: 'C, G, L, S',    planet: 'Jupiter 🪐',  nature: 'Creativity, expression, optimism, growth' },
+  { num: 4, letters: 'D, M, T',       planet: 'Rahu 🌑',     nature: 'Stability, discipline, unconventionality, hard work' },
+  { num: 5, letters: 'E, H, N, X',    planet: 'Mercury ☿️',  nature: 'Communication, adaptability, travel, freedom' },
+  { num: 6, letters: 'U, V, W',       planet: 'Venus 💎',     nature: 'Love, harmony, beauty, domestic responsibility' },
+  { num: 7, letters: 'O, Z',          planet: 'Ketu 🔮',     nature: 'Spirituality, introspection, mystery, wisdom' },
+  { num: 8, letters: 'F, P',          planet: 'Saturn 🪨',    nature: 'Power, authority, karma, material mastery' },
+];
+
+const team = [
+  { initials: 'P.G.', role: 'Lead Numerologist & Content Creator', color: 'from-purple-500 to-indigo-500', bio: 'Researcher and practitioner of Chaldean numerology with years of study in ancient number systems, planetary correspondences, and Vedic traditions.' },
+  { initials: 'A.S.', role: 'UI/UX Designer & Developer', color: 'from-cyan-500 to-blue-500', bio: 'Full-stack developer focused on building fast, accessible, and privacy-first web tools that make complex calculations feel effortless.' },
+  { initials: 'R.K.', role: 'SEO & Marketing Specialist', color: 'from-pink-500 to-rose-500', bio: 'Digital marketing professional dedicated to helping people discover the power of numerology through authentic, high-quality educational content.' },
+];
+---
+
+<Layout
+  title="About Us — Our Mission, Methodology & Team"
+  description="Learn about Name Numerology Hub — our mission to make ancient Chaldean numerology accessible to everyone. Discover our methodology, free tools, and the team behind the platform."
+>
+  <!-- JSON-LD Organization -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Name Numerology Hub",
+      "url": "https://namenumerologyhub.com",
+      "description": "A free platform making ancient Chaldean numerology accessible to everyone through privacy-first, client-side tools.",
+      "foundingDate": "2025",
+      "sameAs": []
+    }
+  })} />
+
+  <div class="relative overflow-hidden">
+    <!-- Background Glows -->
+    <div class="absolute -top-40 -z-10 left-1/2 -translate-x-1/2 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="aspect-[1155/678] w-[36.125rem] bg-gradient-to-tr from-purple-500 to-cyan-400 opacity-15 sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+
+    <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+    <section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-20 pb-12 text-center">
+      <span class="inline-block themed-card text-purple-400 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
+        Our Story
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight themed-text mb-6">
+        About <span class="gradient-text">Name Numerology Hub</span>
+      </h1>
+      <p class="themed-text-2 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+        We built this platform with one purpose — to make the ancient wisdom of Chaldean numerology accessible, accurate, and completely free for everyone around the world.
+      </p>
+    </section>
+
+    <!-- ═══════════════════════════ STATS BAR ═══════════════════════════ -->
+    <section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {[
+          { value: '8+', label: 'Free Tools', icon: '🔢' },
+          { value: '100%', label: 'Privacy-First', icon: '🔒' },
+          { value: 'Chaldean', label: 'Authentic System', icon: '📜' },
+        ].map(({ value, label, icon }) => (
+          <div class="themed-card rounded-2xl p-6 text-center">
+            <div class="text-3xl mb-2">{icon}</div>
+            <div class="text-2xl md:text-3xl font-extrabold gradient-text">{value}</div>
+            <div class="themed-text-2 text-sm font-medium mt-1">{label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ OUR MISSION ═══════════════════════════ -->
+    <section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="themed-card rounded-2xl p-8 md:p-12">
+        <h2 class="text-2xl md:text-3xl font-bold themed-text mb-6 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-xl">🎯</span>
+          Our Mission
+        </h2>
+        <div class="space-y-5 themed-text-2 text-base md:text-lg leading-relaxed">
+          <p>
+            Name Numerology Hub was founded on the belief that everyone deserves access to deep self-knowledge. The ancient Chaldeans — the astronomers, mystics, and mathematicians of ancient Babylon — developed a system of correspondence between letters, numbers, and planetary energies that has survived for millennia for one reason: <strong class="themed-text">it resonates with lived experience</strong>.
+          </p>
+          <p>
+            For centuries, this knowledge was gatekept by practitioners who charged substantial fees for basic name calculations. We believe that should change. Every tool on Name Numerology Hub is <strong class="themed-text">completely free</strong>, with no hidden paywalls, no mandatory sign-ups, and no subscription tiers. Whether you're exploring numerology for the first time or seeking confirmation of years of personal study, our tools are here for you — no strings attached.
+          </p>
+          <p>
+            Equally important is your privacy. <strong class="themed-text">All calculations run entirely in your browser</strong> using client-side JavaScript. Your name, birth date, and personal information are never transmitted to our servers, never stored in any database, and never shared with third parties. We don't track what you type — period. You can verify this yourself by using our tools with your internet connection disabled after the page loads.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ OUR METHODOLOGY ═══════════════════════════ -->
+    <section class="themed-bg-2 py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-2xl md:text-3xl font-bold themed-text mb-4">
+            Our Methodology: The <span class="gradient-text">Chaldean System</span>
+          </h2>
+          <p class="themed-text-2 text-lg max-w-2xl mx-auto leading-relaxed">
+            We exclusively use the Chaldean numerology system — widely regarded as the oldest and most accurate numerological framework in existence.
+          </p>
+        </div>
+
+        <!-- Explanation -->
+        <div class="themed-card rounded-2xl p-8 md:p-12 mb-10">
+          <h3 class="text-xl font-bold themed-text mb-4">Babylonian Origins</h3>
+          <div class="space-y-4 themed-text-2 leading-relaxed">
+            <p>
+              The Chaldean system originated in ancient Babylon (modern-day Iraq) over 4,000 years ago. The Chaldeans were renowned throughout the ancient world as master astronomers, mathematicians, and mystics. They observed that the vibrations of spoken language carried metaphysical energy, and they mapped those vibrations to the celestial bodies they revered — the Sun, Moon, and five visible planets plus the lunar nodes Rahu and Ketu.
+            </p>
+            <p>
+              Unlike the later Pythagorean (Western) system, which assigns numbers 1–9 sequentially to the alphabet, the Chaldean system is <strong class="themed-text">phonetic</strong> — it maps numbers to the <em>sound</em> a letter makes, not its position in the alphabet. This is a critical distinction: the sound vibration of your spoken name is what carries the numerological energy, not the written order of letters.
+            </p>
+            <p>
+              Another defining feature of the Chaldean system is that it uses only numbers <strong class="themed-text">1 through 8</strong> for letter assignments. The number <strong class="themed-text">9 is considered sacred</strong> — it is the number of completion and divinity, appearing only as a final result, never assigned to an individual letter. This mirrors ancient Babylonian theology, where 9 represented the highest spiritual attainment.
+            </p>
+          </div>
+        </div>
+
+        <!-- Chaldean Mapping Table -->
+        <div class="themed-card rounded-2xl p-6 md:p-10 mb-10">
+          <h3 class="text-xl font-bold themed-text mb-6 text-center">Chaldean Letter-Number Mapping & Planetary Correspondences</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="themed-border border-b">
+                  <th class="py-3 px-4 text-sm font-semibold themed-text uppercase tracking-wider">Number</th>
+                  <th class="py-3 px-4 text-sm font-semibold themed-text uppercase tracking-wider">Letters</th>
+                  <th class="py-3 px-4 text-sm font-semibold themed-text uppercase tracking-wider">Planet</th>
+                  <th class="py-3 px-4 text-sm font-semibold themed-text uppercase tracking-wider hidden sm:table-cell">Key Qualities</th>
+                </tr>
+              </thead>
+              <tbody>
+                {chaldeanMap.map((row, i) => (
+                  <tr class:list={['themed-border border-b last:border-b-0', i % 2 === 0 ? 'bg-purple-500/5' : '']}>
+                    <td class="py-3.5 px-4">
+                      <span class:list={[`num-badge-${row.num}`, 'inline-flex items-center justify-center w-8 h-8 rounded-lg text-white font-bold text-sm']}>
+                        {row.num}
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 themed-text font-semibold tracking-wide">{row.letters}</td>
+                    <td class="py-3.5 px-4 themed-text-2">{row.planet}</td>
+                    <td class="py-3.5 px-4 themed-text-3 text-sm hidden sm:table-cell">{row.nature}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="themed-text-3 text-sm mt-6 text-center italic">
+            Number 9 (Mars ♂️) is sacred in the Chaldean system. It only appears as a compound result — never assigned to a letter directly.
+          </p>
+        </div>
+
+        <!-- How We Calculate -->
+        <div class="themed-card rounded-2xl p-8 md:p-12">
+          <h3 class="text-xl font-bold themed-text mb-4">How We Calculate Your Name Number</h3>
+          <div class="space-y-4 themed-text-2 leading-relaxed">
+            <p>
+              Using the Chaldean mapping above, each letter in your name is converted to its corresponding number. These numbers are then summed. If the total is two or more digits, the digits are added together repeatedly until a single-digit result (1–9) or a Master Number (11, 22, 33) is obtained. This final number is your <strong class="themed-text">Chaldean Name Number</strong>, also called your Expression or Destiny Number.
+            </p>
+            <p>
+              For example, the name <strong class="themed-text">"SARAH"</strong> would be calculated as: S(3) + A(1) + R(2) + A(1) + H(5) = 12 → 1+2 = <strong class="themed-text">3</strong> (Jupiter — creative, expressive, optimistic).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ WHAT WE OFFER ═══════════════════════════ -->
+    <section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold themed-text mb-4">
+          What We <span class="gradient-text">Offer</span>
+        </h2>
+        <p class="themed-text-2 text-lg max-w-2xl mx-auto">
+          A comprehensive suite of free numerology tools, each built with the authentic Chaldean system and designed for instant, private results.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {tools.map((tool) => (
+          <a href={tool.href} class="themed-card rounded-2xl p-6 flex items-start gap-4 group no-underline">
+            <span class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+              {tool.icon}
+            </span>
+            <div>
+              <h3 class="themed-text font-bold text-base mb-1 group-hover:text-purple-400 transition-colors">{tool.title}</h3>
+              <p class="themed-text-3 text-sm leading-relaxed">{tool.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ MEET THE TEAM ═══════════════════════════ -->
+    <section class="themed-bg-2 py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-2xl md:text-3xl font-bold themed-text mb-4">
+            Meet the <span class="gradient-text">Team</span>
+          </h2>
+          <p class="themed-text-2 text-lg max-w-2xl mx-auto">
+            A small, passionate team dedicated to preserving ancient numerological wisdom and making it accessible through modern technology.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {team.map((member) => (
+            <div class="themed-card rounded-2xl p-6 text-center">
+              <div class={`w-16 h-16 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center text-white text-xl font-bold mx-auto mb-4 shadow-lg`}>
+                {member.initials}
+              </div>
+              <h3 class="themed-text font-bold text-base mb-1">{member.initials}</h3>
+              <p class="text-purple-400 text-sm font-medium mb-3">{member.role}</p>
+              <p class="themed-text-3 text-sm leading-relaxed">{member.bio}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ ACCURACY & DISCLAIMER ═══════════════════════════ -->
+    <section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20">
+      <div class="themed-card rounded-2xl p-8 md:p-12">
+        <h2 class="text-2xl md:text-3xl font-bold themed-text mb-6 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-xl">⚖️</span>
+          Accuracy & Disclaimer
+        </h2>
+        <div class="space-y-5 themed-text-2 text-base md:text-lg leading-relaxed">
+          <p>
+            We use the <strong class="themed-text">Chaldean numerology system</strong> — considered by many scholars and practitioners to be the most accurate system due to its ancient origins, phonetic basis, and deep planetary correspondences. Every formula, reduction, and interpretation on this platform has been carefully researched and cross-referenced with established numerological literature.
+          </p>
+          <p>
+            <strong class="themed-text">All calculations are performed client-side</strong> in your web browser. Your personal data — names, birth dates, and any other information you enter — is processed locally on your device. It is never sent to our servers, never stored in a database, and never shared with any third party. Your privacy is absolute.
+          </p>
+          <p>
+            <strong class="themed-text">Important:</strong> Numerology is a spiritual and metaphysical practice, not an empirical science. The insights provided by our tools are intended for self-exploration, personal reflection, and entertainment purposes. They should not be used as a substitute for professional advice in medical, financial, legal, or psychological matters. We encourage you to use numerological insights as one lens among many for understanding yourself and your relationships.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ BOTTOM CTA ═══════════════════════════ -->
+    <section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-24">
+      <div class="relative rounded-2xl p-[2px] bg-gradient-to-r from-purple-500 via-cyan-400 to-purple-500">
+        <div class="themed-card rounded-[14px] p-8 md:p-12 text-center" style="border: none;">
+          <h2 class="text-2xl md:text-3xl font-bold themed-text mb-3">
+            Ready to <span class="gradient-text">Explore?</span>
+          </h2>
+          <p class="themed-text-2 text-lg mb-8 max-w-lg mx-auto">
+            Discover the hidden vibrations in your name with our free, instant Chaldean numerology tools. No sign-up required.
+          </p>
+          <a
+            href="/name-analysis"
+            class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-cyan-500 text-white px-8 py-3.5 rounded-full font-semibold text-base hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            Analyze My Name
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

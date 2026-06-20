@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Life Path Calculator" description="Calculate your life path number from your date of birth using Chaldean numerology. Get detailed traits, planetary ruler, and lucky information.">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <!-- Header -->
+    <div class="mb-10 text-center no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-purple-500/10 text-purple-400 border border-purple-500/20">Core Tool</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">Life Path <span class="gradient-text">Calculator</span></h1>
+      <p class="themed-text-2 text-lg max-w-xl mx-auto">Your Life Path Number reveals your life's core purpose, the opportunities you'll attract, and the challenges you'll overcome.</p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="themed-card rounded-2xl p-6 md:p-10 mb-8 no-print">
+      <form id="lifePathForm" class="space-y-6">
+        <div>
+          <label for="dob" class="block text-sm font-semibold themed-text mb-2">Date of Birth</label>
+          <input type="date" id="dob" required
+            class="themed-input w-full rounded-xl px-4 py-3 text-base"
+          />
+          <p class="mt-1.5 text-xs themed-text-3">Enter your exact birth date for an accurate reading.</p>
+        </div>
+        <button type="submit"
+          class="w-full bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-purple-500/25 hover:-translate-y-0.5"
+        >
+          Reveal My Life Path ✨
+        </button>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div id="resultContainer" class="hidden space-y-6">
+
+      <!-- Print + Action bar -->
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">Your life path is revealed 🌟</p>
+        <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Print
+        </button>
+      </div>
+
+      <!-- Hero result card -->
+      <div id="mainCard" class="result-card themed-card rounded-2xl overflow-hidden print-section">
+        <div id="cardBanner" class="h-1.5"></div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col sm:flex-row items-start gap-6">
+            <div id="numDisplay" class="w-20 h-20 md:w-28 md:h-28 rounded-2xl flex flex-col items-center justify-center text-white shrink-0 animate-pulse-glow shadow-2xl">
+              <span id="numEmoji" class="text-2xl"></span>
+              <span id="numVal" class="text-3xl md:text-4xl font-black leading-none"></span>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Life Path Number</span>
+                <span id="planetTag" class="text-xs themed-text-2 px-2.5 py-1 rounded-full border themed-border"></span>
+              </div>
+              <h2 id="resultTitle" class="text-2xl md:text-3xl font-extrabold themed-text mb-1"></h2>
+              <p id="resultDob" class="text-xs themed-text-3 mb-3"></p>
+              <p id="resultMeaning" class="themed-text-2 text-sm leading-relaxed"></p>
+            </div>
+          </div>
+
+          <!-- Strengths + Challenges grid -->
+          <div class="mt-6 pt-6 border-t themed-border grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h3 class="text-sm font-semibold themed-text mb-3 flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-green-500/20 text-green-400 flex items-center justify-center text-xs">↑</span>
+                Strengths
+              </h3>
+              <ul id="strengths" class="space-y-2"></ul>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold themed-text mb-3 flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-orange-500/20 text-orange-400 flex items-center justify-center text-xs">→</span>
+                Life Lessons
+              </h3>
+              <ul id="lessons" class="space-y-2"></ul>
+            </div>
+          </div>
+
+          <!-- Lucky info -->
+          <div class="mt-4 pt-4 border-t themed-border grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Lucky Colors</p>
+              <p id="lpColors" class="text-xs font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Lucky Days</p>
+              <p id="lpDays" class="text-xs font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Calculation</p>
+              <p id="lpCalc" class="text-xs font-medium themed-text font-mono"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Famous Life Paths -->
+      <div id="famousCard" class="result-card themed-card rounded-2xl p-6 print-section">
+        <h3 class="font-bold themed-text mb-4 flex items-center gap-2"><span>🌟</span> Famous People with Life Path <span id="famousNum"></span></h3>
+        <div id="famousList" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+      </div>
+
+      <!-- Next step CTA -->
+      <div class="result-card themed-card rounded-2xl p-6 no-print">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 class="font-bold themed-text mb-1">Want the complete picture?</h3>
+            <p class="text-sm themed-text-2">Combine your Life Path with your Name Number for a full numerology profile.</p>
+          </div>
+          <a href="/name-analysis" class="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold text-sm hover:scale-105 transition-all duration-200 shadow-lg shadow-purple-500/20">
+            Full Name Analysis →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const data: Record<number, any> = {
+      1: { emoji:"👑", planet:"☀️ Sun", title:"The Leader", colors:"Gold, Orange, Yellow", days:"Sunday, Monday",
+           meaning:"The number 1 Life Path places you on a journey of independence, innovation, and leadership. You are here to forge your own trail, to pioneer new territories, and to inspire others to step into their own power. The Sun governs your path, lending you natural authority and charisma.",
+           strengths:["Natural-born leader","Highly self-motivated","Creative problem-solver","Resilient & determined","Original thinker"],
+           lessons:["Embrace collaboration","Manage ego","Accept help from others","Practice patience","Share the spotlight"],
+           famous:["Martin Luther King Jr","Napoleon Bonaparte","Nikola Tesla","Cher","Steve Jobs"] },
+      2: { emoji:"🌙", planet:"🌙 Moon", title:"The Diplomat", colors:"Silver, White, Pearl", days:"Monday, Friday",
+           meaning:"The Life Path 2 is the path of the peacemaker and the partner. The Moon shapes your emotional depth and intuitive gifts. You thrive in harmonious environments and possess a rare ability to see beauty and truth in everyone you meet.",
+           strengths:["Highly empathetic","Natural mediator","Deeply intuitive","Loyal companion","Excellent listener"],
+           lessons:["Build self-confidence","Set healthy boundaries","Trust your own instincts","Speak your truth","Avoid people-pleasing"],
+           famous:["Barack Obama","Jennifer Aniston","Bill Clinton","Tony Blair","Diana Ross"] },
+      3: { emoji:"🎨", planet:"♃ Jupiter", title:"The Creative", colors:"Yellow, Purple, Orange", days:"Thursday, Wednesday",
+           meaning:"Your Life Path 3 is the path of the inspired creator and the joyful communicator. Jupiter, the planet of abundance and wisdom, expands everything you touch. You have a magnetic personality and an innate gift for bringing lightness and laughter wherever you go.",
+           strengths:["Naturally creative","Excellent communicator","Joyful & optimistic","Charming personality","Inspiring to others"],
+           lessons:["Focus your energy","Complete what you start","Develop emotional depth","Manage finances","Value solitude"],
+           famous:["Celine Dion","John Travolta","Snoop Dogg","Katy Perry","David Bowie"] },
+      4: { emoji:"🏛️", planet:"♄ Saturn / ♅ Uranus", title:"The Builder", colors:"Navy, Forest Green, Brown", days:"Saturday, Sunday",
+           meaning:"The Life Path 4 is the path of the master architect. Saturn demands discipline, structure, and hard work — and richly rewards those who persist. You are the backbone of every team, the one who turns ambitious dreams into concrete, lasting reality.",
+           strengths:["Exceptionally organized","Trustworthy & reliable","Detail-oriented","Excellent planner","Loyal to the core"],
+           lessons:["Embrace flexibility","Allow spontaneity","Release control","Trust the process","Open to new methods"],
+           famous:["Paul McCartney","Oprah Winfrey","Elton John","Bill Gates","Keanu Reeves"] },
+      5: { emoji:"🌍", planet:"☿ Mercury", title:"The Explorer", colors:"Turquoise, Silver, Light Green", days:"Wednesday, Friday",
+           meaning:"The Life Path 5 is the path of the eternal freedom-seeker. Mercury, the winged messenger, makes you sharp, quick, and perpetually curious. Change is not just something you accept — it is the very element in which you thrive.",
+           strengths:["Highly adaptable","Natural communicator","Adventurous spirit","Quick learner","Magnetic charisma"],
+           lessons:["Develop commitment","Create healthy routines","Look before you leap","Practice mindfulness","Build lasting relationships"],
+           famous:["Abraham Lincoln","Mick Jagger","Steven Spielberg","Vincent van Gogh","Angelina Jolie"] },
+      6: { emoji:"💗", planet:"♀ Venus", title:"The Nurturer", colors:"Rose, Soft Pink, Turquoise", days:"Friday, Wednesday",
+           meaning:"The Life Path 6 is the path of love, service, and beauty. Venus showers your journey with grace, aesthetic sensitivity, and a profound capacity to care. You are the heart of your family and community — the one others instinctively turn to for wisdom and comfort.",
+           strengths:["Deeply compassionate","Natural counselor","Protective & loving","Aesthetically gifted","Highly responsible"],
+           lessons:["Avoid martyrdom","Set healthy limits","Prioritize self-care","Release perfectionism","Accept imperfection in others"],
+           famous:["Albert Einstein","John Lennon","Michael Jackson","Jessica Simpson","Christopher Columbus"] },
+      7: { emoji:"🔮", planet:"♆ Neptune", title:"The Seeker", colors:"Deep Purple, Indigo, Silver-Grey", days:"Saturday, Sunday",
+           meaning:"The Life Path 7 is the path of the mystic philosopher. Neptune draws you toward the unseen, the profound, and the spiritual. You are the world's great questioner — never content with surface-level answers, always diving deeper into the nature of reality.",
+           strengths:["Exceptional analytical mind","Deep spiritual awareness","Independent thinker","Natural researcher","Powerful intuition"],
+           lessons:["Embrace human connection","Share your inner world","Trust others","Balance intellect with emotion","Come out of isolation"],
+           famous:["Princess Diana","Eric Clapton","Leonardo DiCaprio","Taylor Swift","Bruce Lee"] },
+      8: { emoji:"💎", planet:"♄ Saturn", title:"The Powerhouse", colors:"Black, Dark Navy, Dark Gold", days:"Saturday, Thursday",
+           meaning:"The Life Path 8 is the path of the material master. Saturn's karmic energy creates a life of extraordinary lessons and extraordinary rewards. You understand instinctively that power comes from discipline, that wealth comes from value created, and that leadership comes from earned respect.",
+           strengths:["Visionary leadership","Excellent business mind","Powerful manifestor","Incredibly resilient","Natural authority"],
+           lessons:["Balance work with life","Practice generosity","Release control","Embrace vulnerability","Use power ethically"],
+           famous:["Pablo Picasso","Richard Nixon","Edgar Allan Poe","Nelson Mandela","Michelangelo"] },
+      9: { emoji:"🌟", planet:"♂ Mars", title:"The Humanitarian", colors:"Gold, Crimson Red, Deep Purple", days:"Tuesday, Thursday",
+           meaning:"The Life Path 9 is the path of the old soul — the one who has gathered wisdom from countless experiences and now channels it into service. Mars gives you the courageous fire to act on your deepest convictions and fight for what you believe is right.",
+           strengths:["Deeply compassionate","Creative visionary","Generous to a fault","Strong moral compass","Inspiring to others"],
+           lessons:["Let go of the past","Release resentments","Avoid martyrdom","Accept impermanence","Create healthy boundaries"],
+           famous:["Mahatma Gandhi","Mother Teresa","Jim Carrey","Cher","Bob Marley"] },
+      11: { emoji:"✨", planet:"🌙 Moon + ☀️ Sun", title:"The Master Intuitive", colors:"Silver, White, Platinum", days:"Sunday, Monday",
+            meaning:"Life Path 11 is a Master Number — one of only three in numerology. You bridge the physical and spiritual worlds with extraordinary ease. Your intuition borders on the prophetic, and you are here to inspire, uplift, and illuminate the way for others.",
+            strengths:["Extraordinary intuition","Deeply inspirational","Visionary capacity","Highly empathetic","Spiritual awareness"],
+            lessons:["Ground your energy","Manage anxiety","Trust your gifts","Avoid self-doubt","Balance idealism with practicality"],
+            famous:["Barrack Obama (11/2)","Edgar Allan Poe","Harry Houdini","Robert Downey Jr","Prince William"] },
+      22: { emoji:"🏗️", planet:"♀ Venus + ♄ Saturn", title:"The Master Builder", colors:"Purple, Gold, Royal Blue", days:"Saturday, Friday",
+            meaning:"Life Path 22 is the Master Builder — the most powerful number in all of numerology. You possess a unique combination of idealistic vision and grounded practicality. You are here to build things that will outlast you and benefit humanity as a whole.",
+            strengths:["Grand vision","Exceptional organizational mind","Enormous personal power","Diplomatic and strategic","Legacy-builder"],
+            lessons:["Manage overwhelming pressure","Accept your extraordinary gifts","Delegate effectively","Avoid perfectionism","Rest and recharge"],
+            famous:["Bryan Adams","Tina Fey","Bill Gates (22/4)","The Dalai Lama","Oprah Winfrey (22/4)"] },
+      33: { emoji:"🕊️", planet:"♃ Jupiter + ♀ Venus", title:"The Master Teacher", colors:"Gold, Pure White, Emerald", days:"Thursday, Friday",
+            meaning:"Life Path 33 is the Master Teacher — carrying the most elevated spiritual responsibility in numerology. You are a living embodiment of unconditional love, and your purpose is to uplift the collective consciousness of humanity through teaching, healing, and creative expression.",
+            strengths:["Unconditional love","Master healer","Deeply inspiring teacher","Extraordinary creativity","Saintly compassion"],
+            lessons:["Avoid martyrdom","Enforce personal boundaries","Accept being human","Channel energy wisely","Allow yourself to receive love"],
+            famous:["Francis of Assisi","Healer Spirits","Mother Teresa (33/6)","Stephen King","John Lennon (33/6)"] },
+    };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33)
+        n = String(n).split('').reduce((s, d) => s + parseInt(d), 0);
+      return n;
+    }
+
+    document.getElementById('lifePathForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const dobInput = (document.getElementById('dob') as HTMLInputElement).value;
+      if (!dobInput) return;
+
+      const [year, month, day] = dobInput.split('-').map(Number);
+      const mRed = reduce(month), dRed = reduce(day), yRed = reduce(year);
+      const lifePath = reduce(mRed + dRed + yRed);
+      const d = data[lifePath] ?? data[9];
+
+      // Populate main card
+      const numDisplay = document.getElementById('numDisplay') as HTMLElement;
+      numDisplay.className = `w-20 h-20 md:w-28 md:h-28 rounded-2xl flex flex-col items-center justify-center text-white shrink-0 animate-pulse-glow shadow-2xl num-badge-${Math.min(lifePath,9)}`;
+      (document.getElementById('numEmoji') as HTMLElement).textContent = d.emoji;
+      (document.getElementById('numVal') as HTMLElement).textContent = lifePath.toString();
+      (document.getElementById('planetTag') as HTMLElement).textContent = d.planet;
+      (document.getElementById('resultTitle') as HTMLElement).textContent = `${lifePath} — ${d.title}`;
+      const dateStr = new Date(year, month-1, day).toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
+      (document.getElementById('resultDob') as HTMLElement).textContent = `Born: ${dateStr} · Calculation: ${dRed} + ${mRed} + ${yRed} = ${dRed+mRed+yRed} → ${lifePath}`;
+      (document.getElementById('resultMeaning') as HTMLElement).textContent = d.meaning;
+      (document.getElementById('lpColors') as HTMLElement).textContent = d.colors;
+      (document.getElementById('lpDays') as HTMLElement).textContent = d.days;
+      (document.getElementById('lpCalc') as HTMLElement).textContent = `${day}+${month}+${year} → ${lifePath}`;
+
+      // Card banner color
+      const banner = document.getElementById('cardBanner') as HTMLElement;
+      banner.style.background = `linear-gradient(90deg, #8b5cf6, #06b6d4)`;
+
+      // Strengths + Lessons
+      const strengthsEl = document.getElementById('strengths') as HTMLElement;
+      strengthsEl.innerHTML = d.strengths.map((s: string) =>
+        `<li class="flex items-center gap-2 text-sm themed-text-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0"></span>${s}
+        </li>`
+      ).join('');
+      const lessonsEl = document.getElementById('lessons') as HTMLElement;
+      lessonsEl.innerHTML = d.lessons.map((l: string) =>
+        `<li class="flex items-center gap-2 text-sm themed-text-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0"></span>${l}
+        </li>`
+      ).join('');
+
+      // Famous people
+      (document.getElementById('famousNum') as HTMLElement).textContent = lifePath.toString();
+      const famousList = document.getElementById('famousList') as HTMLElement;
+      famousList.innerHTML = d.famous.map((name: string) =>
+        `<div class="flex items-center gap-2.5 p-3 rounded-xl bg-[var(--bg-secondary)]">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-white text-xs font-bold shrink-0">
+            ${name.split(' ').map((n: string) => n[0]).join('').substring(0,2)}
+          </div>
+          <span class="text-xs themed-text font-medium">${name}</span>
+        </div>`
+      ).join('');
+
+      // Show results
+      const rc = document.getElementById('resultContainer') as HTMLElement;
+      rc.classList.remove('hidden');
+      setTimeout(() => rc.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+    });
+  </script>
+</Layout>

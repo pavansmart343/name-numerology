@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Soul Urge Number Calculator" description="Calculate your Soul Urge (Heart's Desire) number using Chaldean numerology. Discover your innermost motivations, desires, and what truly drives you.">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+    <div class="mb-10 text-center no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-pink-500/10 text-pink-400 border border-pink-500/20">Core Tool</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">Soul Urge <span class="gradient-text">Calculator</span></h1>
+      <p class="themed-text-2 text-lg max-w-xl mx-auto">The vowels in your name carry your innermost cravings and hidden motivations — the desires that quietly drive every decision you make.</p>
+    </div>
+
+    <div class="themed-card rounded-2xl p-6 md:p-10 mb-8 no-print">
+      <form id="soulUrgeForm" class="space-y-6">
+        <div>
+          <label for="fullName" class="block text-sm font-semibold themed-text mb-2">Full Birth Name <span class="text-red-400">*</span></label>
+          <input type="text" id="fullName" required placeholder="e.g. John David Smith"
+            class="themed-input w-full rounded-xl px-4 py-3 text-base"
+          />
+          <p class="mt-1.5 text-xs themed-text-3">Use your exact name from birth certificate. The vowels A, E, I, O, U (and sometimes Y) are extracted for this calculation.</p>
+        </div>
+
+        <!-- Vowel reference -->
+        <div class="grid grid-cols-6 gap-2">
+          {['A','E','I','O','U','Y'].map((v, i) => (
+            <div class="text-center p-2 rounded-lg bg-[var(--bg-secondary)] border themed-border">
+              <div class="text-lg font-black gradient-text">{v}</div>
+              <div class="text-xs themed-text-3">{[1,5,1,7,6,1][i]}</div>
+            </div>
+          ))}
+        </div>
+
+        <button type="submit"
+          class="w-full bg-gradient-to-r from-pink-600 to-orange-500 hover:from-pink-500 hover:to-orange-400 text-white font-bold px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-pink-500/25 hover:-translate-y-0.5"
+        >
+          Reveal My Soul Urge ❤️‍🔥
+        </button>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div id="resultContainer" class="hidden space-y-5">
+
+      <!-- Action bar -->
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">Your soul's deepest truth ✨</p>
+        <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Print
+        </button>
+      </div>
+
+      <!-- Hero result -->
+      <div class="result-card themed-card rounded-2xl overflow-hidden print-section">
+        <div id="cardBanner" class="h-1.5 bg-gradient-to-r from-pink-500 to-orange-500"></div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col sm:flex-row items-start gap-6">
+            <div id="numDisplay" class="w-20 h-20 md:w-28 md:h-28 rounded-2xl flex flex-col items-center justify-center text-white shrink-0 animate-pulse-glow shadow-2xl">
+              <span id="numEmoji" class="text-2xl"></span>
+              <span id="numVal" class="text-3xl md:text-4xl font-black leading-none"></span>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/20">Soul Urge Number</span>
+                <span id="planetTag" class="text-xs themed-text-2 px-2.5 py-1 rounded-full border themed-border"></span>
+              </div>
+              <h2 id="resultTitle" class="text-2xl md:text-3xl font-extrabold themed-text mb-1"></h2>
+              <p id="nameLabel" class="text-xs themed-text-3 mb-3"></p>
+              <p id="resultMeaning" class="themed-text-2 text-sm leading-relaxed"></p>
+            </div>
+          </div>
+
+          <!-- Vowels row -->
+          <div class="mt-6 pt-6 border-t themed-border">
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-3">Vowels extracted from your name</p>
+            <div id="vowelDisplay" class="flex flex-wrap gap-2 mb-4"></div>
+            <p id="vowelFormula" class="text-xs themed-text-3 font-mono"></p>
+          </div>
+
+          <!-- Desires + Needs grid -->
+          <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-[var(--bg-secondary)]">
+              <h3 class="text-sm font-semibold themed-text mb-3 flex items-center gap-2">
+                <span>💝</span> Deep Desires
+              </h3>
+              <ul id="desires" class="space-y-2"></ul>
+            </div>
+            <div class="p-4 rounded-xl bg-[var(--bg-secondary)]">
+              <h3 class="text-sm font-semibold themed-text mb-3 flex items-center gap-2">
+                <span>⚠️</span> Inner Conflicts
+              </h3>
+              <ul id="conflicts" class="space-y-2"></ul>
+            </div>
+          </div>
+
+          <!-- Lucky info -->
+          <div class="mt-4 pt-4 border-t themed-border grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Lucky Colors</p>
+              <p id="suColors" class="text-xs font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Affirmation</p>
+              <p id="suAffirm" class="text-xs font-medium themed-text italic"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Compatible</p>
+              <p id="suCompat" class="text-xs font-medium themed-text"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next step -->
+      <div class="result-card themed-card rounded-2xl p-6 no-print">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 class="font-bold themed-text mb-1">Combine with your Name Number</h3>
+            <p class="text-sm themed-text-2">Get the full picture — name number + compatibility + personality — all at once.</p>
+          </div>
+          <a href="/name-analysis" class="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold text-sm hover:scale-105 transition-all shadow-lg shadow-purple-500/20">
+            Full Name Analysis →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chaldeanVowels: Record<string, number> = { a:1, e:5, i:1, o:7, u:6, y:1 };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33)
+        n = String(n).split('').reduce((s,d) => s + parseInt(d), 0);
+      return n;
+    }
+
+    const data: Record<number, any> = {
+      1: { emoji:"👑", planet:"☀️ Sun", title:"The Self-Made Soul", colors:"Gold, Orange", compat:"Soul Urge 3, 5",
+           affirmation:'"I lead by being myself."',
+           meaning:"At the deepest level of your soul, you crave independence, recognition, and the freedom to lead. You desire above all else to be uniquely yourself — to stand on your own feet and be acknowledged for what you alone have created. You were not born to follow.",
+           desires:["To be #1 in your field","True independence","To be seen as original","To leave a lasting mark","Creative control over your life"],
+           conflicts:["Needing others while craving independence","Loneliness disguised as self-sufficiency","Difficulty receiving help","Pride that becomes isolation","The weight of self-imposed pressure"] },
+      2: { emoji:"🕊️", planet:"🌙 Moon", title:"The Love-Seeker", colors:"Silver, White", compat:"Soul Urge 6, 9",
+           affirmation:'"I am worthy of deep love."',
+           meaning:"Your soul's deepest hunger is for true, enduring partnership and emotional safety. More than anything, you crave to be genuinely understood, loved without condition, and to have a best friend you can also call your soulmate. Peace is your highest value.",
+           desires:["A soulmate relationship","Harmony in all relationships","To be truly understood","Emotional safety","Peaceful, beautiful environments"],
+           conflicts:["Fear of abandonment","Saying yes when you mean no","Losing yourself in relationships","Hidden resentments","Difficulty standing alone"] },
+      3: { emoji:"🎨", planet:"♃ Jupiter", title:"The Expression Seeker", colors:"Yellow, Purple", compat:"Soul Urge 1, 5",
+           affirmation:'"My creativity is my gift to the world."',
+           meaning:"Your soul burns with an insatiable desire to create, to express, and to be heard. You feel most alive when you are performing, writing, painting, speaking, or making people laugh. The deepest pain for a 3 Soul Urge is to be silenced or misunderstood.",
+           desires:["Creative self-expression","An appreciative audience","Joyful social connection","Beauty in all forms","To make people feel something"],
+           conflicts:["Scattering your creative energy","Performing while feeling invisible","Needing validation","Superficiality as a defense","Suppressing emotions with humor"] },
+      4: { emoji:"🏛️", planet:"♄ Saturn", title:"The Stability Seeker", colors:"Navy, Forest Green", compat:"Soul Urge 2, 8",
+           affirmation:'"I build my security with every step I take."',
+           meaning:"Your soul craves order, security, and the deep satisfaction of work that is done properly. You feel most at peace when your world is organized, your finances are stable, and your future is planned. Chaos and uncertainty are deeply unsettling to your inner being.",
+           desires:["Financial security","A well-ordered life","Work that lasts","Deep loyalty","Respect for your dedication"],
+           conflicts:["Rigidity that resists needed change","Fear of the unknown","Overworking as a control mechanism","Difficulty with spontaneity","Setting the bar impossibly high"] },
+      5: { emoji:"🌍", planet:"☿ Mercury", title:"The Freedom Seeker", colors:"Turquoise, Silver", compat:"Soul Urge 1, 3",
+           affirmation:'"I am free to explore and experience life fully."',
+           meaning:"Freedom is the oxygen your soul breathes. Your deepest craving is for variety, adventure, new experiences, and the absolute right to live life entirely on your own terms. Routine and restriction create a kind of slow soul-death for you.",
+           desires:["Complete personal freedom","New experiences & travel","Physical and mental variety","Sensory pleasure","To never stop growing"],
+           conflicts:["Commitment phobia","Running from depth","Overindulgence as escape","Fear of boredom leading to sabotage","Restlessness that prevents satisfaction"] },
+      6: { emoji:"💗", planet:"♀ Venus", title:"The Love Giver", colors:"Rose, Lavender", compat:"Soul Urge 2, 9",
+           affirmation:'"The love I give returns to me tenfold."',
+           meaning:"Your soul's deepest fulfillment comes from nurturing, protecting, and providing for those you love. You were born with a profound sense of responsibility toward your family and community. Nothing gives you deeper satisfaction than knowing those you love are safe, happy, and thriving.",
+           desires:["A loving, stable home","To be needed and appreciated","Harmony in the family","To create beauty","Meaningful service to others"],
+           conflicts:["Martyrdom and resentment","Giving too much and depleting yourself","Controlling through care","Difficulty receiving","Taking on others' problems as your own"] },
+      7: { emoji:"🔮", planet:"♆ Neptune", title:"The Truth Seeker", colors:"Deep Purple, Silver", compat:"Soul Urge 4, 9",
+           affirmation:'"I trust my inner wisdom completely."',
+           meaning:"Your soul hungers for truth above all else — the deep, hidden, cosmic truth beneath the surface of ordinary reality. You are driven by an insatiable need to understand: the universe, yourself, and the nature of consciousness. Spiritual knowledge is your ultimate prize.",
+           desires:["Deep spiritual understanding","Solitude for reflection","Intellectual mastery","Inner peace","The answer to life's biggest questions"],
+           conflicts:["Emotional isolation","Distrust of others' motives","Perfectionism and withdrawal","Overthinking as avoidance","Perceived coldness hiding deep sensitivity"] },
+      8: { emoji:"💎", planet:"♄ Saturn", title:"The Power Seeker", colors:"Black, Dark Gold", compat:"Soul Urge 4, 6",
+           affirmation:'"I create abundance through my dedication and vision."',
+           meaning:"Your soul is driven by an almost primal desire for mastery, wealth, and the power that comes with achievement. You are not content to merely dream — you need to see those dreams manifest in tangible, measurable, real-world success. Financial freedom is deeply important to your sense of self-worth.",
+           desires:["Financial abundance","Positions of authority","Recognition for your achievements","Long-term legacy","Material security for your family"],
+           conflicts:["Defining worth by net worth","Workaholic tendencies","Difficulty trusting others","Using power to control","Neglecting relationships for ambition"] },
+      9: { emoji:"🌟", planet:"♂ Mars", title:"The World Server", colors:"Red, Gold", compat:"Soul Urge 3, 6",
+           affirmation:'"My love is a force that changes the world."',
+           meaning:"Your soul's deepest purpose is to love and serve the whole of humanity. You feel most aligned when you are contributing to something larger than yourself — a cause, a movement, a community in need. The suffering of others feels personal to you, because at a soul level, you know we are all connected.",
+           desires:["To make the world better","Universal love & brotherhood","Artistic or creative contribution","Wisdom shared with others","Leaving a lasting legacy of service"],
+           conflicts:["Difficulty letting go of the past","Resentment when others don't share your ideals","Giving to others while neglecting yourself","Disappointment with human imperfection","Sacrificing personal happiness for a cause"] },
+      11: { emoji:"✨", planet:"🌙 Moon + ☀️ Sun", title:"The Illuminator", colors:"Silver, White, Gold", compat:"Soul Urge 2, 7",
+            affirmation:'"I trust my visions — they are here to guide the world."',
+            meaning:"As a Master Number, your soul urge 11 craves to inspire, illuminate, and awaken others. You carry an extraordinary sensitivity and an almost psychic intuition. Your deepest desire is to act as a bridge between the ordinary and the divine. (Master Number)",
+            desires:["To inspire spiritual growth in others","To be a channel for higher wisdom","True soulmate connection","To live authentically","Creative and spiritual expression"],
+            conflicts:["Crippling self-doubt undermining your mission","Extreme emotional sensitivity","Anxiety from carrying others' energy","Feeling different and misunderstood","The gap between your vision and reality"] },
+      22: { emoji:"🏗️", planet:"♀ Venus + ♄ Saturn", title:"The Grand Architect", colors:"Purple, Gold", compat:"Soul Urge 4, 8",
+            affirmation:'"I build with vision, love, and unshakeable discipline."',
+            meaning:"Your soul's ambition knows no ordinary bounds. At the core of your being, you desire to create something truly monumental — a contribution that transcends your own lifetime and benefits humanity. (Master Number 22)",
+            desires:["To build something that outlasts you","Mastery of your chosen domain","Global or large-scale impact","Recognition as a visionary","To make the impossible real"],
+            conflicts:["The crushing weight of your own ambitions","Perfectionism causing paralysis","Difficulty trusting others with your vision","Overwork and burnout","Fear that you will never be good enough"] },
+    };
+
+    document.getElementById('soulUrgeForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = (document.getElementById('fullName') as HTMLInputElement).value.trim();
+      if (!nameInput) return;
+
+      const clean = nameInput.toLowerCase();
+      let vowelSum = 0;
+      let vowels: { l: string; v: number }[] = [];
+      let parts: number[] = [];
+
+      for (const c of clean) {
+        if (chaldeanVowels[c]) {
+          vowelSum += chaldeanVowels[c];
+          vowels.push({ l: c.toUpperCase(), v: chaldeanVowels[c] });
+          parts.push(chaldeanVowels[c]);
+        }
+      }
+
+      if (vowelSum === 0) { alert("No vowels found. Please enter a valid name."); return; }
+
+      const soulUrge = reduce(vowelSum);
+      const d = data[soulUrge] ?? data[9];
+
+      // Populate
+      const numDisplay = document.getElementById('numDisplay') as HTMLElement;
+      numDisplay.className = `w-20 h-20 md:w-28 md:h-28 rounded-2xl flex flex-col items-center justify-center text-white shrink-0 animate-pulse-glow shadow-2xl num-badge-${Math.min(soulUrge,9)}`;
+      (document.getElementById('numEmoji') as HTMLElement).textContent = d.emoji;
+      (document.getElementById('numVal') as HTMLElement).textContent = soulUrge.toString();
+      (document.getElementById('planetTag') as HTMLElement).textContent = d.planet;
+      (document.getElementById('resultTitle') as HTMLElement).textContent = `${soulUrge} — ${d.title}`;
+      (document.getElementById('nameLabel') as HTMLElement).textContent = `Soul Urge for: ${nameInput}`;
+      (document.getElementById('resultMeaning') as HTMLElement).textContent = d.meaning;
+      (document.getElementById('suColors') as HTMLElement).textContent = d.colors;
+      (document.getElementById('suAffirm') as HTMLElement).textContent = d.affirmation;
+      (document.getElementById('suCompat') as HTMLElement).textContent = d.compat;
+
+      // Vowel display
+      const vowelEl = document.getElementById('vowelDisplay') as HTMLElement;
+      vowelEl.innerHTML = vowels.map(({ l, v }) =>
+        `<div class="flex flex-col items-center p-2 rounded-lg bg-[var(--bg-secondary)] min-w-[2.5rem] border border-pink-500/20">
+          <span class="text-sm font-bold text-pink-400">${l}</span>
+          <span class="text-xs themed-text-3">${v}</span>
+        </div>`
+      ).join('');
+      (document.getElementById('vowelFormula') as HTMLElement).textContent =
+        `${parts.join(' + ')} = ${vowelSum} → reduced to ${soulUrge}`;
+
+      // Desires + Conflicts
+      const desiresEl = document.getElementById('desires') as HTMLElement;
+      desiresEl.innerHTML = d.desires.map((item: string) =>
+        `<li class="flex items-start gap-2 text-xs themed-text-2"><span class="text-pink-400 shrink-0 mt-0.5">♥</span>${item}</li>`
+      ).join('');
+      const conflictsEl = document.getElementById('conflicts') as HTMLElement;
+      conflictsEl.innerHTML = d.conflicts.map((item: string) =>
+        `<li class="flex items-start gap-2 text-xs themed-text-2"><span class="text-orange-400 shrink-0 mt-0.5">→</span>${item}</li>`
+      ).join('');
+
+      const rc = document.getElementById('resultContainer') as HTMLElement;
+      rc.classList.remove('hidden');
+      setTimeout(() => rc.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+    });
+  </script>
+</Layout>

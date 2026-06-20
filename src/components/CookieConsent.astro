@@ -1,0 +1,173 @@
+---
+/**
+ * CookieConsent.astro
+ * GDPR-compliant cookie consent banner for Name Numerology Hub.
+ * Shows at bottom of page; stores preference in localStorage('nnh-cookie-consent').
+ * Values: 'all' | 'essential' — if either is set the banner stays hidden.
+ */
+---
+
+<div
+  id="cookie-consent-banner"
+  class="cookie-consent themed-card no-print"
+  role="dialog"
+  aria-label="Cookie consent"
+  style="display:none;"
+>
+  <div class="cookie-consent__inner">
+    <p class="cookie-consent__text themed-text">
+      We use cookies to improve your experience and analyse site traffic.
+      You can accept all cookies or choose only essential ones.
+    </p>
+
+    <div class="cookie-consent__actions">
+      <button id="cc-accept-all" class="cc-btn cc-btn--accept">Accept All</button>
+      <button id="cc-reject" class="cc-btn cc-btn--reject">Reject Non-Essential</button>
+      <a href="/privacy-policy" class="cc-btn cc-btn--learn">Learn More</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ── Banner container ─────────────────────────────────── */
+  .cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border, rgba(255,255,255,0.12));
+    padding: 1rem 1.5rem;
+    /* slide-up entrance */
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cookie-consent.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .cookie-consent__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .cookie-consent__text {
+    flex: 1 1 400px;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* ── Buttons ──────────────────────────────────────────── */
+  .cookie-consent__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .cc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.15rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+
+  .cc-btn--accept {
+    background: var(--accent, #7c3aed);
+    color: #fff;
+  }
+  .cc-btn--accept:hover {
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.35);
+  }
+
+  .cc-btn--reject {
+    background: transparent;
+    color: var(--text, #e2e8f0);
+    border: 1px solid var(--border, rgba(255,255,255,0.18));
+  }
+  .cc-btn--reject:hover {
+    background: var(--border, rgba(255,255,255,0.08));
+  }
+
+  .cc-btn--learn {
+    background: transparent;
+    color: var(--accent, #7c3aed);
+  }
+  .cc-btn--learn:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Responsive ───────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .cookie-consent__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .cookie-consent__actions {
+      justify-content: center;
+      width: 100%;
+    }
+    .cc-btn {
+      flex: 1 1 auto;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = 'nnh-cookie-consent';
+
+    // If consent already recorded, bail immediately.
+    try {
+      if (localStorage.getItem(STORAGE_KEY)) return;
+    } catch (e) {
+      return; // localStorage unavailable (e.g. private browsing)
+    }
+
+    var banner = document.getElementById('cookie-consent-banner');
+    if (!banner) return;
+
+    // Show banner with slide-up animation
+    banner.style.display = '';
+    // Force reflow so the transition fires
+    void banner.offsetHeight;
+    banner.classList.add('visible');
+
+    function hideBanner() {
+      banner.classList.remove('visible');
+      banner.addEventListener('transitionend', function handler() {
+        banner.style.display = 'none';
+        banner.removeEventListener('transitionend', handler);
+      });
+    }
+
+    document.getElementById('cc-accept-all').addEventListener('click', function () {
+      try { localStorage.setItem(STORAGE_KEY, 'all'); } catch (e) {}
+      hideBanner();
+    });
+
+    document.getElementById('cc-reject').addEventListener('click', function () {
+      try { localStorage.setItem(STORAGE_KEY, 'essential'); } catch (e) {}
+      hideBanner();
+    });
+  })();
+</script>

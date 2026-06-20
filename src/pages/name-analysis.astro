@@ -1,0 +1,464 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Comprehensive numerology data
+const numberData = {
+  1: { title: "The Leader", planet: "☀️ Sun", element: "Fire", color: "#f59e0b", emoji: "👑", keywords: ["Independent","Ambitious","Pioneering","Original","Courageous"], luckyColors: "Gold, Orange, Yellow", luckyDays: "Sunday, Monday", compatible: [1, 3, 5], description: "You carry the energy of the Sun — bright, authoritative, and magnetic. The number 1 is the primordial force of creation, and your name vibrates with pure leadership energy. You are destined to carve your own path and inspire others to follow." },
+  2: { title: "The Diplomat", planet: "🌙 Moon", element: "Water", color: "#06b6d4", emoji: "🕊️", keywords: ["Empathetic","Cooperative","Intuitive","Patient","Diplomatic"], luckyColors: "Silver, White, Cream", luckyDays: "Monday, Friday", compatible: [2, 4, 6], description: "Governed by the Moon, you feel everything deeply. Your name carries the vibration of harmony, partnership, and emotional intelligence. You are the bridge-builder, the peacemaker, the one who sees all sides of every story." },
+  3: { title: "The Creator", planet: "♃ Jupiter", element: "Air", color: "#f97316", emoji: "🎨", keywords: ["Creative","Expressive","Joyful","Social","Optimistic"], luckyColors: "Yellow, Purple, Pink", luckyDays: "Thursday, Wednesday", compatible: [1, 3, 9], description: "Jupiter blesses you with boundless creativity and an infectious zest for life. Your name number 3 vibrates with artistic genius, humor, and self-expression. You were born to create, communicate, and spread joy wherever you go." },
+  4: { title: "The Builder", planet: "♄ Saturn", element: "Earth", color: "#6366f1", emoji: "🏛️", keywords: ["Disciplined","Reliable","Methodical","Loyal","Practical"], luckyColors: "Navy Blue, Dark Green, Brown", luckyDays: "Saturday, Sunday", compatible: [2, 4, 8], description: "Saturn, the great taskmaster, governs your name. The number 4 is the foundation of all things — you build empires brick by brick. Your reliability is legendary, and your practical wisdom creates lasting structures in every area of life." },
+  5: { title: "The Explorer", planet: "☿ Mercury", element: "Air", color: "#10b981", emoji: "🌍", keywords: ["Adventurous","Adaptable","Charismatic","Curious","Free-spirited"], luckyColors: "Turquoise, Silver, Green", luckyDays: "Wednesday, Friday", compatible: [1, 3, 5], description: "Quick-witted Mercury rules your name, filling it with the energy of travel, communication, and perpetual curiosity. You resist all forms of restriction — your soul was built for freedom, new experiences, and the thrill of discovery." },
+  6: { title: "The Nurturer", planet: "♀ Venus", element: "Earth", color: "#ec4899", emoji: "💗", keywords: ["Compassionate","Protective","Artistic","Generous","Responsible"], luckyColors: "Rose, Turquoise, Lavender", luckyDays: "Friday, Wednesday", compatible: [2, 4, 6], description: "Venus, goddess of love and beauty, blesses your name. The number 6 carries the highest vibration of love — unconditional, nurturing, and all-encompassing. Your home is your sanctuary, and you pour healing energy into everyone you love." },
+  7: { title: "The Seeker", planet: "♆ Neptune", element: "Water", color: "#8b5cf6", emoji: "🔮", keywords: ["Analytical","Wise","Spiritual","Introspective","Mystical"], luckyColors: "Deep Purple, Indigo, Gray", luckyDays: "Saturday, Sunday", compatible: [2, 7, 9], description: "Mystical Neptune governs your name, drawing you toward the deeper mysteries of existence. Your number 7 vibrates with the energy of the scholar, the mystic, and the philosopher. You see beyond the surface of things and are never satisfied with superficial answers." },
+  8: { title: "The Executive", planet: "♄ Saturn", element: "Earth", color: "#64748b", emoji: "💎", keywords: ["Ambitious","Authoritative","Goal-oriented","Resilient","Strategic"], luckyColors: "Black, Dark Gray, Dark Blue", luckyDays: "Saturday, Thursday", compatible: [2, 4, 8], description: "Saturn's karmic energy infuses your name with immense power and ambition. The number 8 is the number of material mastery — you understand that success requires discipline, sacrifice, and an unwavering long-term vision. You are built to lead organizations and accumulate lasting wealth." },
+  9: { title: "The Humanitarian", planet: "♂ Mars", element: "Fire", color: "#ef4444", emoji: "🌟", keywords: ["Compassionate","Wise","Idealistic","Selfless","Creative"], luckyColors: "Red, Gold, Crimson", luckyDays: "Tuesday, Thursday", compatible: [3, 6, 9], description: "Dynamic Mars gives your name the fiery energy of compassion and universal love. The number 9 completes the cycle — you have lived many lifetimes and arrived at wisdom. Your deepest fulfillment comes from giving, healing, and leaving the world better than you found it." },
+  11: { title: "The Visionary", planet: "🌙 Moon + ☀️ Sun", element: "All", color: "#f59e0b", emoji: "✨", keywords: ["Inspirational","Intuitive","Idealistic","Sensitive","Illuminated"], luckyColors: "Silver, Gold, White", luckyDays: "Sunday, Monday", compatible: [2, 11, 22], description: "You carry a Master Number — a rare, powerful vibration that bridges the earthly and the divine. Your name resonates with extraordinary spiritual intuition and the ability to inspire masses. The challenge is managing your extreme sensitivity while fulfilling your role as an illuminator." },
+  22: { title: "The Master Builder", planet: "♀ Venus + ♄ Saturn", element: "Earth", color: "#8b5cf6", emoji: "🏗️", keywords: ["Visionary","Disciplined","Masterful","Ambitious","Practical"], luckyColors: "Purple, Gold, Earth Tones", luckyDays: "Saturday, Friday", compatible: [4, 8, 22], description: "The 22 is the most powerful number in numerology. Your name carries the vibration of the Master Builder — the ability to manifest the greatest visions in human history into concrete, lasting reality. You are here to make an extraordinary contribution to civilization." },
+  33: { title: "The Master Teacher", planet: "♃ Jupiter + ♀ Venus", element: "All", color: "#10b981", emoji: "🕊️", keywords: ["Nurturing","Loving","Inspiring","Healing","Sacrificing"], luckyColors: "Gold, Light Green, White", luckyDays: "Thursday, Friday", compatible: [6, 11, 33], description: "The rarest of all Master Numbers, 33 is the number of the Christ Consciousness — unconditional love elevated to its highest possible expression. Your name radiates pure healing energy. Your mission is to uplift humanity through compassion, creativity, and selfless service." },
+};
+---
+
+<Layout
+  title="Full Name Analysis"
+  description="Get your complete name numerology report: name number, compatibility score, and personality traits — all in one place."
+>
+  <!-- Print header (only visible when printing) -->
+  <div class="hidden print:block p-8 border-b border-gray-200 mb-6">
+    <h2 class="text-2xl font-bold text-black">Name Numerology Hub</h2>
+    <p class="text-gray-600 text-sm">namenumerologyhub.com · Complete Name Analysis Report</p>
+    <p class="text-gray-500 text-xs mt-1">Generated on {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+  </div>
+
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+    <!-- Page Header -->
+    <div class="mb-12 text-center no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-purple-500/10 text-purple-400 border border-purple-500/20">The Name Hub</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">Complete Name <span class="gradient-text">Analysis</span></h1>
+      <p class="themed-text-2 text-lg max-w-2xl mx-auto">Enter your full birth name once and receive a detailed numerological portrait — number, planetary ruler, personality, compatibility, and more.</p>
+    </div>
+
+    <!-- Input Form -->
+    <div class="themed-card rounded-2xl p-6 md:p-10 mb-10 no-print">
+      <form id="nameHubForm" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="primaryName" class="block text-sm font-semibold themed-text mb-2">Your Full Name <span class="text-red-400">*</span></label>
+            <input type="text" id="primaryName" required placeholder="e.g. John David Smith"
+              class="themed-input w-full rounded-xl px-4 py-3 text-base"
+            />
+            <p class="mt-1.5 text-xs themed-text-3">Use the name on your birth certificate for best accuracy.</p>
+          </div>
+          <div>
+            <label for="partnerName" class="block text-sm font-semibold themed-text mb-2">Partner's Name <span class="text-xs font-normal themed-text-3">(optional — for compatibility)</span></label>
+            <input type="text" id="partnerName" placeholder="e.g. Jane Emily Doe"
+              class="themed-input w-full rounded-xl px-4 py-3 text-base"
+            />
+          </div>
+        </div>
+        <button type="submit"
+          class="w-full bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-base font-bold px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5"
+        >
+          Generate Full Report ✨
+        </button>
+      </form>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsSection" class="hidden space-y-6">
+
+      <!-- Print + Share bar -->
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">Your numerology report is ready 🎉</p>
+        <button
+          onclick="window.print()"
+          class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all duration-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Print Report
+        </button>
+      </div>
+
+      <!-- Card 1: Main Name Number (full-width hero card) -->
+      <div id="mainNumberCard" class="result-card themed-card rounded-2xl overflow-hidden print-section">
+        <div id="numberCardBanner" class="h-2 w-full"></div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row md:items-start gap-6">
+            <!-- Big Number Display -->
+            <div id="bigNumberDisplay" class="shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-2xl flex items-center justify-center text-5xl md:text-6xl font-black text-white shadow-2xl animate-pulse-glow">
+            </div>
+            <!-- Info -->
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span id="numberBadge" class="text-xs font-bold px-2.5 py-1 rounded-full text-white">Expression Number</span>
+                <span id="planetBadge" class="text-xs themed-text-2 px-2.5 py-1 rounded-full border themed-border"></span>
+                <span id="elementBadge" class="text-xs themed-text-2 px-2.5 py-1 rounded-full border themed-border"></span>
+              </div>
+              <h2 id="numberTitle" class="text-2xl md:text-3xl font-extrabold themed-text mb-1"></h2>
+              <p id="nameLabel" class="text-sm themed-text-3 mb-4"></p>
+              <p id="numberDesc" class="themed-text-2 text-sm md:text-base leading-relaxed mb-4"></p>
+              <!-- Keyword pills -->
+              <div id="keywordPills" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+          <!-- Lucky info row -->
+          <div class="mt-6 pt-6 border-t themed-border grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Lucky Colors</p>
+              <p id="luckyColors" class="text-sm font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Lucky Days</p>
+              <p id="luckyDays" class="text-sm font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Compatible With</p>
+              <p id="compatible" class="text-sm font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Chaldean Sum</p>
+              <p id="chaldeanSum" class="text-sm font-medium themed-text font-mono"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Personality + Numerology Breakdown -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Personality Traits Card -->
+        <div class="result-card themed-card rounded-2xl p-6 print-section">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-xl">🪞</div>
+            <div>
+              <h3 class="font-bold themed-text">Personality Traits</h3>
+              <p class="text-xs themed-text-3">How others perceive you</p>
+            </div>
+          </div>
+          <ul id="personalityTraits" class="space-y-3"></ul>
+        </div>
+
+        <!-- Letter Breakdown Card -->
+        <div class="result-card themed-card rounded-2xl p-6 print-section">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-xl">🔢</div>
+            <div>
+              <h3 class="font-bold themed-text">Letter Breakdown</h3>
+              <p class="text-xs themed-text-3">Chaldean value per letter</p>
+            </div>
+          </div>
+          <div id="letterBreakdown" class="flex flex-wrap gap-2"></div>
+          <div class="mt-4 pt-4 border-t themed-border">
+            <p class="text-xs themed-text-3">Full calculation</p>
+            <p id="breakdownFormula" class="text-sm themed-text font-mono mt-1 break-all"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compatibility Card (shown only with partner name) -->
+      <div id="compatibilityCard" class="hidden result-card themed-card rounded-2xl p-6 md:p-8 print-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-xl">💞</div>
+          <div>
+            <h3 class="font-bold themed-text">Name Compatibility Score</h3>
+            <p class="text-xs themed-text-3">Numerological harmony between two names</p>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-8 mb-6">
+          <!-- Name 1 -->
+          <div class="text-center shrink-0">
+            <p id="name1Label" class="text-xs themed-text-3 uppercase tracking-wider mb-2"></p>
+            <div id="name1NumBadge" class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black text-white mx-auto shadow-xl"></div>
+          </div>
+          <!-- Progress bar -->
+          <div class="flex-1 w-full">
+            <div class="flex justify-between mb-2">
+              <span class="text-xs themed-text-3">Compatibility</span>
+              <span id="compatPercent" class="text-sm font-bold gradient-text"></span>
+            </div>
+            <div class="relative h-3 rounded-full overflow-hidden bg-[var(--bg-secondary)]">
+              <div id="compatBar" class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 transition-all duration-1000 ease-out" style="width:0%"></div>
+            </div>
+            <div class="mt-3 grid grid-cols-3 gap-1 text-center">
+              <div class="text-xs themed-text-3 py-1 rounded bg-red-500/10">0–50%<br/><span class="text-red-400">Challenging</span></div>
+              <div class="text-xs themed-text-3 py-1 rounded bg-yellow-500/10">51–75%<br/><span class="text-yellow-400">Moderate</span></div>
+              <div class="text-xs themed-text-3 py-1 rounded bg-green-500/10">76–100%<br/><span class="text-green-400">Excellent</span></div>
+            </div>
+          </div>
+          <!-- Name 2 -->
+          <div class="text-center shrink-0">
+            <p id="name2Label" class="text-xs themed-text-3 uppercase tracking-wider mb-2"></p>
+            <div id="name2NumBadge" class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black text-white mx-auto shadow-xl"></div>
+          </div>
+        </div>
+        <p id="compatibilityDesc" class="themed-text-2 text-sm leading-relaxed p-4 rounded-xl bg-[var(--bg-secondary)]"></p>
+      </div>
+
+      <!-- Soul Urge Teaser -->
+      <div class="result-card themed-card rounded-2xl p-6 print-section">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-xl">❤️‍🔥</div>
+            <div>
+              <h3 class="font-bold themed-text">Discover Your Soul Urge</h3>
+              <p class="text-xs themed-text-3">Find your heart's deepest motivations from the vowels in your name</p>
+            </div>
+          </div>
+          <a href="/soul-urge-calculator" class="no-print shrink-0 ml-4 px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-pink-500 text-white text-sm font-semibold hover:scale-105 transition-all duration-200">
+            Calculate →
+          </a>
+        </div>
+      </div>
+
+      <!-- Numerology wheel image -->
+      <div class="result-card themed-card rounded-2xl p-6 print-section">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <img src="/numerology-wheel.png" alt="Sacred numerology wheel" class="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover opacity-80 animate-spin-slow shrink-0" style="animation-duration: 30s;" />
+          <div>
+            <h3 class="text-lg font-bold themed-text mb-2">The Ancient Chaldean System</h3>
+            <p class="themed-text-2 text-sm leading-relaxed">Your reading uses the authentic Chaldean numerology system, originating in ancient Babylon over 4,000 years ago. Each letter resonates with a specific planetary frequency. The Chaldeans believed that names were not arbitrary — they were cosmic contracts, vibrating in harmony with the universe from the moment they were given.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {[
+                ["1–9 Only", "9 is sacred, excluded from letters"],
+                ["Phonetic basis", "Sound matters as much as spelling"],
+                ["Planetary rulers", "Each number has a governing planet"]
+              ].map(([title, desc]) => (
+                <div class="text-xs px-3 py-1.5 rounded-full bg-[var(--bg-secondary)] themed-border border">
+                  <span class="font-semibold themed-text">{title}</span>
+                  <span class="themed-text-3"> — {desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <section class="themed-bg-2 border-t themed-border">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 space-y-14">
+      <article class="themed-card rounded-2xl p-6 md:p-10">
+        <p class="text-xs font-semibold uppercase tracking-widest text-purple-400 mb-3">Numerology Guide</p>
+        <h2 class="text-2xl md:text-3xl font-bold themed-text mb-5">What Is the Pythagorean Numerology System?</h2>
+        <div class="space-y-4 themed-text-2 leading-relaxed">
+          <p>
+            The Pythagorean system, also called Western numerology, is one of the most widely used ways to convert names into numbers. It assigns the letters A through Z to numbers 1 through 9 in repeating order: A is 1, B is 2, C is 3, and so on until I is 9; then J begins again at 1. This makes the system easy to learn and simple to calculate manually.
+          </p>
+          <p>
+            Pythagorean numerology is different from the Chaldean method used by this calculator. Chaldean numerology is older and phonetic, meaning it focuses on the sound vibration of letters. Pythagorean numerology is alphabetical and orderly, making it especially useful for beginners who want a clear, repeatable method.
+          </p>
+          <p>
+            Both systems reduce a name to a core number, but they may produce different results. That does not automatically make one result wrong. Numerology is interpretive, so many readers compare both methods to understand how a name behaves through sound, spelling, personality expression, and long-term life patterns.
+          </p>
+        </div>
+      </article>
+
+      <article class="themed-card rounded-2xl p-6 md:p-10">
+        <p class="text-xs font-semibold uppercase tracking-widest text-cyan-400 mb-3">Manual Calculation</p>
+        <h2 class="text-2xl md:text-3xl font-bold themed-text mb-5">How the Name Numerology Math Works Manually</h2>
+        <div class="space-y-4 themed-text-2 leading-relaxed">
+          <p>
+            To calculate a name number by hand, first write the full name you want to analyze. Remove spaces, punctuation, and symbols, then convert each letter into its number using your chosen numerology chart. In the Chaldean chart, for example, A, I, J, Q, and Y equal 1; B, K, and R equal 2; C, G, L, and S equal 3.
+          </p>
+          <p>
+            Next, add every letter value together. If the total is a two-digit or three-digit number, reduce it by adding its digits. For example, if the total is 47, calculate 4 + 7 = 11. Because 11 is a Master Number, many numerologists keep it as 11 instead of reducing it further to 2. If the total were 46, you would calculate 4 + 6 = 10, then 1 + 0 = 1.
+          </p>
+          <p>
+            Most name readings preserve the Master Numbers 11, 22, and 33 because they carry intensified meanings. All other compound totals are reduced to a single digit from 1 to 9. The final number is often called the Expression Number, Destiny Number, or Name Number, depending on the tradition.
+          </p>
+        </div>
+      </article>
+
+      <article class="themed-card rounded-2xl p-6 md:p-10">
+        <p class="text-xs font-semibold uppercase tracking-widest text-pink-400 mb-3">Number Meanings</p>
+        <h2 class="text-2xl md:text-3xl font-bold themed-text mb-6">What Each Name Number Generally Signifies</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+          {[
+            ['1', 'The Leader', 'Independence, initiative, originality, ambition, and the courage to begin new paths.'],
+            ['2', 'The Diplomat', 'Sensitivity, cooperation, intuition, patience, emotional intelligence, and partnership.'],
+            ['3', 'The Creator', 'Expression, communication, art, optimism, social confidence, and joyful imagination.'],
+            ['4', 'The Builder', 'Discipline, order, reliability, planning, endurance, and practical long-term effort.'],
+            ['5', 'The Explorer', 'Freedom, movement, curiosity, adaptability, communication, travel, and change.'],
+            ['6', 'The Nurturer', 'Responsibility, beauty, love, family, service, harmony, and protective care.'],
+            ['7', 'The Seeker', 'Analysis, spirituality, research, privacy, wisdom, depth, and inner development.'],
+            ['8', 'The Executive', 'Power, management, money lessons, resilience, authority, and material achievement.'],
+            ['9', 'The Humanitarian', 'Compassion, completion, generosity, healing, broad vision, and service to others.'],
+            ['11', 'The Visionary', 'Heightened intuition, inspiration, sensitivity, spiritual insight, and public influence.'],
+            ['22', 'The Master Builder', 'Large-scale achievement, disciplined vision, practical leadership, and legacy creation.'],
+            ['33', 'The Master Teacher', 'Compassionate service, healing, teaching, selfless love, and creative guidance.'],
+          ].map(([num, title, meaning]) => (
+            <div class="rounded-xl border themed-border bg-[var(--bg-secondary)] p-4">
+              <div class="flex items-center gap-3 mb-2">
+                <span class:list={[`num-badge-${num}`, 'w-10 h-10 rounded-lg flex items-center justify-center text-white font-black']}>{num}</span>
+                <h3 class="font-bold themed-text">{title}</h3>
+              </div>
+              <p class="text-sm themed-text-2 leading-relaxed">{meaning}</p>
+            </div>
+          ))}
+        </div>
+      </article>
+
+      <article class="themed-card rounded-2xl p-6 md:p-10">
+        <p class="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">Reading Advice</p>
+        <h2 class="text-2xl md:text-3xl font-bold themed-text mb-5">How to Use a Name Number Responsibly</h2>
+        <div class="space-y-4 themed-text-2 leading-relaxed">
+          <p>
+            A name number is best treated as a symbolic profile, not a fixed destiny. It can highlight natural tendencies, strengths, friction points, and recurring patterns, but it should not replace practical judgment. Your habits, choices, education, relationships, and environment matter just as much as any numerological vibration.
+          </p>
+          <p>
+            If you are comparing baby names, business names, pen names, or potential spelling changes, look for a number that supports the purpose of the name. A public brand may benefit from 1, 3, 5, or 8 energy, while a care-focused project may feel better with 2, 6, 9, or 33 energy. The best choice is one that sounds natural, feels authentic, and supports the real-world identity you want to build.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <script>
+    const chaldean: Record<string, number> = {
+      a:1,b:2,c:3,d:4,e:5,f:8,g:3,h:5,i:1,j:1,k:2,l:3,m:4,
+      n:5,o:7,p:8,q:1,r:2,s:3,t:4,u:6,v:6,w:6,x:5,y:1,z:7
+    };
+
+    const numberData: Record<number, any> = {
+      1: { title:"The Leader",planet:"☀️ Sun",element:"Fire",color:"#f59e0b",emoji:"👑",keywords:["Independent","Ambitious","Pioneering","Original","Courageous"],luckyColors:"Gold, Orange, Yellow",luckyDays:"Sunday, Monday",compatible:[1,3,5],description:"You carry the energy of the Sun — bright, authoritative, and magnetic. The number 1 is the primordial force of creation, and your name vibrates with pure leadership energy. You are destined to carve your own path and inspire others to follow." },
+      2: { title:"The Diplomat",planet:"🌙 Moon",element:"Water",color:"#06b6d4",emoji:"🕊️",keywords:["Empathetic","Cooperative","Intuitive","Patient","Diplomatic"],luckyColors:"Silver, White, Cream",luckyDays:"Monday, Friday",compatible:[2,4,6],description:"Governed by the Moon, you feel everything deeply. Your name carries the vibration of harmony, partnership, and emotional intelligence. You are the bridge-builder, the peacemaker, the one who sees all sides of every story." },
+      3: { title:"The Creator",planet:"♃ Jupiter",element:"Air",color:"#f97316",emoji:"🎨",keywords:["Creative","Expressive","Joyful","Social","Optimistic"],luckyColors:"Yellow, Purple, Pink",luckyDays:"Thursday, Wednesday",compatible:[1,3,9],description:"Jupiter blesses you with boundless creativity and an infectious zest for life. Your name number 3 vibrates with artistic genius, humor, and self-expression. You were born to create, communicate, and spread joy." },
+      4: { title:"The Builder",planet:"♄ Saturn",element:"Earth",color:"#6366f1",emoji:"🏛️",keywords:["Disciplined","Reliable","Methodical","Loyal","Practical"],luckyColors:"Navy Blue, Dark Green, Brown",luckyDays:"Saturday, Sunday",compatible:[2,4,8],description:"Saturn, the great taskmaster, governs your name. The number 4 is the foundation of all things — you build empires brick by brick. Your reliability is legendary, and your practical wisdom creates lasting structures." },
+      5: { title:"The Explorer",planet:"☿ Mercury",element:"Air",color:"#10b981",emoji:"🌍",keywords:["Adventurous","Adaptable","Charismatic","Curious","Free-spirited"],luckyColors:"Turquoise, Silver, Green",luckyDays:"Wednesday, Friday",compatible:[1,3,5],description:"Quick-witted Mercury rules your name, filling it with the energy of travel, communication, and perpetual curiosity. You resist all forms of restriction — your soul was built for freedom and discovery." },
+      6: { title:"The Nurturer",planet:"♀ Venus",element:"Earth",color:"#ec4899",emoji:"💗",keywords:["Compassionate","Protective","Artistic","Generous","Responsible"],luckyColors:"Rose, Turquoise, Lavender",luckyDays:"Friday, Wednesday",compatible:[2,4,6],description:"Venus, goddess of love and beauty, blesses your name. The number 6 carries the highest vibration of love — unconditional, nurturing, and all-encompassing. Your home is your sanctuary." },
+      7: { title:"The Seeker",planet:"♆ Neptune",element:"Water",color:"#8b5cf6",emoji:"🔮",keywords:["Analytical","Wise","Spiritual","Introspective","Mystical"],luckyColors:"Deep Purple, Indigo, Gray",luckyDays:"Saturday, Sunday",compatible:[2,7,9],description:"Mystical Neptune governs your name. Your number 7 vibrates with the energy of the scholar, the mystic, and the philosopher. You see beyond the surface of things and are never satisfied with shallow answers." },
+      8: { title:"The Executive",planet:"♄ Saturn",element:"Earth",color:"#64748b",emoji:"💎",keywords:["Ambitious","Authoritative","Goal-oriented","Resilient","Strategic"],luckyColors:"Black, Dark Gray, Dark Blue",luckyDays:"Saturday, Thursday",compatible:[2,4,8],description:"Saturn's karmic energy infuses your name with immense power. The number 8 is the number of material mastery — you understand that success requires discipline and an unwavering long-term vision." },
+      9: { title:"The Humanitarian",planet:"♂ Mars",element:"Fire",color:"#ef4444",emoji:"🌟",keywords:["Compassionate","Wise","Idealistic","Selfless","Creative"],luckyColors:"Red, Gold, Crimson",luckyDays:"Tuesday, Thursday",compatible:[3,6,9],description:"Dynamic Mars gives your name the fiery energy of compassion. The number 9 completes the cycle — you have arrived at wisdom. Your deepest fulfillment comes from giving, healing, and leaving the world better than you found it." },
+      11: { title:"The Visionary",planet:"🌙 Moon + ☀️ Sun",element:"All",color:"#f59e0b",emoji:"✨",keywords:["Inspirational","Intuitive","Idealistic","Sensitive","Illuminated"],luckyColors:"Silver, Gold, White",luckyDays:"Sunday, Monday",compatible:[2,11,22],description:"You carry a Master Number — a rare, powerful vibration. Your name resonates with extraordinary spiritual intuition and the ability to inspire masses. (Master Number 11)" },
+      22: { title:"The Master Builder",planet:"♀ Venus + ♄ Saturn",element:"Earth",color:"#8b5cf6",emoji:"🏗️",keywords:["Visionary","Disciplined","Masterful","Ambitious","Practical"],luckyColors:"Purple, Gold, Earth Tones",luckyDays:"Saturday, Friday",compatible:[4,8,22],description:"The 22 is the most powerful number in numerology. Your name carries the vibration of the Master Builder — the ability to manifest the greatest visions into lasting reality. (Master Number 22)" },
+      33: { title:"The Master Teacher",planet:"♃ Jupiter + ♀ Venus",element:"All",color:"#10b981",emoji:"🕊️",keywords:["Nurturing","Loving","Inspiring","Healing","Sacrificing"],luckyColors:"Gold, Light Green, White",luckyDays:"Thursday, Friday",compatible:[6,11,33],description:"The rarest of all Master Numbers. Your name radiates pure healing energy — unconditional love elevated to its highest expression. Your mission is to uplift humanity. (Master Number 33)" },
+    };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33)
+        n = String(n).split('').reduce((s,d) => s + parseInt(d), 0);
+      return n;
+    }
+
+    function nameToNumber(name: string) {
+      const clean = name.toLowerCase().replace(/[^a-z]/g,'');
+      let total = 0; let parts: string[] = []; let letters: {l:string,v:number}[] = [];
+      for (const c of clean) {
+        const v = chaldean[c] ?? 0;
+        if (v) { total += v; parts.push(`${v}`); letters.push({l:c.toUpperCase(),v}); }
+      }
+      return { total: reduce(total), rawSum: total, parts, letters };
+    }
+
+    const compat: Record<string, number> = {
+      '1-1':70,'1-2':60,'1-3':80,'1-4':75,'1-5':65,'1-6':55,'1-7':70,'1-8':85,'1-9':60,
+      '2-3':65,'2-4':80,'2-5':50,'2-6':90,'2-7':75,'2-8':55,'2-9':70,
+      '3-4':60,'3-5':85,'3-6':70,'3-7':65,'3-8':60,'3-9':80,
+      '4-5':55,'4-6':85,'4-7':70,'4-8':75,'4-9':65,
+      '5-6':60,'5-7':70,'5-8':65,'5-9':75,
+      '6-7':65,'6-8':70,'6-9':90,'7-8':60,'7-9':70,'8-9':65,
+    };
+
+    function getCompat(n1: number, n2: number): { score: number; desc: string } {
+      const key = [n1,n2].sort().join('-');
+      const score = compat[key] ?? 65;
+      let desc = '';
+      if (score >= 85) desc = `🌟 Excellent compatibility! These name vibrations create a powerful, harmonious partnership. Your energies naturally amplify each other, creating a relationship greater than the sum of its parts.`;
+      else if (score >= 70) desc = `✨ Good compatibility. These names complement each other well. With mutual respect, this pairing grows stronger and more harmonious over time.`;
+      else if (score >= 55) desc = `⚡ Moderate compatibility. These vibrations create dynamic tension — challenging yet growth-promoting. Success requires conscious effort and open communication.`;
+      else desc = `🔥 Challenging compatibility. These energies may conflict in certain areas. However, opposites can attract, and this pairing often produces powerful transformative growth.`;
+      return { score, desc };
+    }
+
+    document.getElementById('nameHubForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const primaryInput = (document.getElementById('primaryName') as HTMLInputElement).value.trim();
+      const partnerInput = (document.getElementById('partnerName') as HTMLInputElement).value.trim();
+      if (!primaryInput) return;
+
+      const { total: num1, rawSum, parts, letters } = nameToNumber(primaryInput);
+      const data = numberData[num1] ?? numberData[9];
+
+      // --- Main Number Card ---
+      const bigDisplay = document.getElementById('bigNumberDisplay') as HTMLElement;
+      bigDisplay.textContent = `${data.emoji} ${num1}`;
+      bigDisplay.className = `shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-2xl flex items-center justify-center text-3xl md:text-4xl font-black text-white shadow-2xl animate-pulse-glow num-badge-${Math.min(num1, 9)}`;
+
+      const banner = document.getElementById('numberCardBanner') as HTMLElement;
+      banner.style.background = `linear-gradient(90deg, ${data.color}, transparent)`;
+
+      (document.getElementById('numberTitle') as HTMLElement).textContent = `${num1} · ${data.title}`;
+      (document.getElementById('nameLabel') as HTMLElement).textContent = `Analysis for: ${primaryInput}`;
+      (document.getElementById('numberDesc') as HTMLElement).textContent = data.description;
+
+      const planetBadge = document.getElementById('planetBadge') as HTMLElement;
+      planetBadge.textContent = data.planet;
+      const elementBadge = document.getElementById('elementBadge') as HTMLElement;
+      elementBadge.textContent = `${data.element} Element`;
+
+      const keywordPills = document.getElementById('keywordPills') as HTMLElement;
+      keywordPills.innerHTML = data.keywords.map((k: string) =>
+        `<span class="px-3 py-1 text-xs font-semibold rounded-full border themed-border themed-text-2">${k}</span>`
+      ).join('');
+
+      (document.getElementById('luckyColors') as HTMLElement).textContent = data.luckyColors;
+      (document.getElementById('luckyDays') as HTMLElement).textContent = data.luckyDays;
+      (document.getElementById('compatible') as HTMLElement).textContent = `Numbers ${data.compatible.join(', ')}`;
+      (document.getElementById('chaldeanSum') as HTMLElement).textContent = `${parts.join(' + ')} = ${rawSum} → ${num1}`;
+
+      // --- Personality Traits ---
+      const traitEmojis = ['💡','🎯','🧭','⚡','🌱'];
+      const traitsEl = document.getElementById('personalityTraits') as HTMLElement;
+      traitsEl.innerHTML = data.keywords.map((k: string, i: number) =>
+        `<li class="flex items-center gap-3 p-3 rounded-xl bg-[var(--bg-secondary)] themed-text text-sm font-medium">
+          <span class="text-lg">${traitEmojis[i % traitEmojis.length]}</span>
+          ${k}
+        </li>`
+      ).join('');
+
+      // --- Letter Breakdown ---
+      const letterEl = document.getElementById('letterBreakdown') as HTMLElement;
+      letterEl.innerHTML = letters.map(({ l, v }) =>
+        `<div class="flex flex-col items-center p-2 rounded-lg bg-[var(--bg-secondary)] min-w-[2.5rem]">
+          <span class="text-sm font-bold themed-text">${l}</span>
+          <span class="text-xs themed-text-3">${v}</span>
+        </div>`
+      ).join('');
+      (document.getElementById('breakdownFormula') as HTMLElement).textContent = `${parts.join(' + ')} = ${rawSum} → reduced to ${num1}`;
+
+      // --- Compatibility ---
+      const compatCard = document.getElementById('compatibilityCard') as HTMLElement;
+      if (partnerInput) {
+        const { total: num2 } = nameToNumber(partnerInput);
+        const { score, desc } = getCompat(num1, num2);
+        const data2 = numberData[num2] ?? numberData[9];
+
+        (document.getElementById('name1Label') as HTMLElement).textContent = primaryInput.split(' ')[0];
+        const n1Badge = document.getElementById('name1NumBadge') as HTMLElement;
+        n1Badge.textContent = num1.toString();
+        n1Badge.className = `w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black text-white mx-auto shadow-xl num-badge-${Math.min(num1,9)}`;
+
+        (document.getElementById('name2Label') as HTMLElement).textContent = partnerInput.split(' ')[0];
+        const n2Badge = document.getElementById('name2NumBadge') as HTMLElement;
+        n2Badge.textContent = num2.toString();
+        n2Badge.className = `w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black text-white mx-auto shadow-xl num-badge-${Math.min(num2,9)}`;
+
+        (document.getElementById('compatPercent') as HTMLElement).textContent = `${score}% Match`;
+        (document.getElementById('compatibilityDesc') as HTMLElement).textContent = desc;
+
+        setTimeout(() => {
+          (document.getElementById('compatBar') as HTMLElement).style.width = score + '%';
+        }, 150);
+        compatCard.classList.remove('hidden');
+      } else {
+        compatCard.classList.add('hidden');
+      }
+
+      // --- Show results ---
+      const resultsSection = document.getElementById('resultsSection') as HTMLElement;
+      resultsSection.classList.remove('hidden');
+      setTimeout(() => resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    });
+  </script>
+</Layout>

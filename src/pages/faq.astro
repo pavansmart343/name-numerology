@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: "What is name numerology?",
+    answer: "Name numerology is the ancient practice of decoding the hidden vibrations and meanings behind the letters in your name by converting them into numbers. Each letter carries a specific numerical value, and by summing these values and reducing them to a single digit (or Master Number), you can uncover insights about your personality, destiny, and life purpose. This system has roots stretching back thousands of years to the Chaldeans of ancient Babylon, who first mapped the relationship between sound, letters, and cosmic energy. Today, name numerology remains one of the most popular tools for self-discovery and spiritual guidance."
+  },
+  {
+    question: "How do I calculate my name numerology number?",
+    answer: "To calculate your name numerology number using the Chaldean system, assign each letter of your name a specific value (for example, A=1, B=2, C=3, D=4, E=5, F=8, G=3, H=5, I=1, and so on). Add all the letter values together, then keep reducing the sum by adding its individual digits until you arrive at a single digit between 1 and 9 (or a Master Number like 11, 22, or 33). For example, the name 'John' would be J(1) + O(7) + H(5) + N(5) = 18, then 1+8 = 9. You can use our free Name Hub tool on this site to get an instant and accurate calculation without doing any manual math."
+  },
+  {
+    question: "What is the difference between Chaldean and Pythagorean numerology?",
+    answer: "Chaldean numerology originated in ancient Babylon and assigns letter values from 1 to 8, considering the number 9 sacred and not assigned to any letter. Pythagorean (or Western) numerology, attributed to the Greek philosopher Pythagoras, assigns values 1 through 9 sequentially across the alphabet, making it simpler but arguably less nuanced. Most serious numerologists regard the Chaldean system as the older and more accurate method because it is based on the phonetic vibration of each letter rather than its alphabetical position. At Name Numerology Hub, we use the Chaldean system for all our calculations to ensure the most precise readings."
+  },
+  {
+    question: "What is a Life Path number?",
+    answer: "Your Life Path number is one of the most significant numbers in your numerology profile, derived entirely from your date of birth. To calculate it, reduce the month, day, and year of your birth to single digits, then add them together and reduce again until you reach a single digit or Master Number. This number reveals your life's overarching purpose, the natural talents you were born with, the opportunities you are most likely to encounter, and the core challenges you will face. Think of it as a roadmap for your entire life journey — it doesn't dictate your fate, but it illuminates the path you are naturally inclined to walk."
+  },
+  {
+    question: "What is a Soul Urge number?",
+    answer: "The Soul Urge number, also known as the Heart's Desire number, is calculated using only the vowels in your full birth name. It reveals your innermost cravings, your deepest motivations, and the things you truly value at your core — even if you are not consciously aware of them. While your Expression number (derived from all letters) shows what the world sees, your Soul Urge number shows what drives you from within. Understanding this number can bring clarity to why you make certain decisions, what kind of relationships fulfill you, and what you need to feel truly satisfied in life."
+  },
+  {
+    question: "What is name compatibility in numerology?",
+    answer: "Name compatibility in numerology compares the Expression Numbers (name numerology numbers) of two individuals to evaluate how harmoniously their energies interact. Certain number combinations naturally complement each other — for example, 1 and 5 share a dynamic, adventurous energy, while 2 and 6 create a nurturing, harmonious bond. Other combinations may indicate friction or challenge, which isn't necessarily negative but requires awareness. Our Name Hub tool calculates a detailed compatibility score for any two names, making it useful for romantic partners, business associates, or even choosing a baby name that harmonizes with the family."
+  },
+  {
+    question: "Which name number is the luckiest?",
+    answer: "In numerology, there is no single universally 'luckiest' number — each number from 1 to 9 carries its own unique strengths, challenges, and areas of fortune. That said, numbers 1, 3, 6, and 9 are often considered particularly favorable: 1 for leadership and new beginnings, 3 for creativity and joy, 6 for love and harmony, and 9 for wisdom and humanitarianism. Master Numbers 11, 22, and 33 carry extraordinary potential but also come with heightened challenges. The truly 'luckiest' number for you is the one that aligns most harmoniously with your Life Path number and overall birth chart."
+  },
+  {
+    question: "Can I change my luck by changing my name?",
+    answer: "Name correction — slightly altering the spelling of your name to achieve a more favorable numerology number — is a widely practiced technique in many cultures, particularly in India and East Asia. Many people report experiencing positive shifts in their career, relationships, and overall well-being after adopting a numerologically corrected name. However, for the new vibration to take effect, the corrected name must be used consistently in your daily life — on documents, introductions, email signatures, and social interactions. It is always advisable to consult an experienced numerologist before making any changes to ensure the new number truly aligns with your birth chart."
+  },
+  {
+    question: "What is an astrological name analysis?",
+    answer: "Astrological name analysis is a powerful technique that combines Chaldean numerology with Vedic astrology to understand how your name's numerical vibration aligns with your ruling planets and zodiac sign. Each numerology number from 1 to 9 is governed by a specific planet — for instance, 1 corresponds to the Sun, 2 to the Moon, 3 to Jupiter, and 8 to Saturn. When your name number resonates with your dominant planetary energy (determined by your birth date and astrological chart), it is considered highly auspicious and can amplify positive traits. This cross-disciplinary approach offers one of the deepest levels of name analysis available."
+  },
+  {
+    question: "How do I find the best name for my baby using numerology?",
+    answer: "Finding the perfect baby name with numerology involves several thoughtful steps. First, calculate the name numbers for your shortlisted names using a Chaldean numerology calculator and compare how each number's traits align with your hopes for your child. Second, check compatibility between the baby's potential name number and both parents' Life Path numbers to ensure family harmony. Third, if the baby's birth date is known, favor names whose number aligns with the baby's own Life Path for maximum resonance. Names with highly harmonious numbers like 1, 3, 6, or 9, or powerful Master Numbers like 11 and 22, are often considered especially auspicious starting points."
+  },
+  {
+    question: "What are Master Numbers (11, 22, 33) in numerology?",
+    answer: "Master Numbers — 11, 22, and 33 — are special double-digit numbers that are not reduced to a single digit during numerology calculations because they carry an intensified, higher vibration. Number 11 is known as the 'Master Intuitive,' associated with spiritual insight, heightened sensitivity, and visionary thinking. Number 22, the 'Master Builder,' represents the ability to turn grand visions into tangible reality with disciplined effort. Number 33, the 'Master Teacher,' embodies compassion, healing, and selfless service to humanity. While these numbers bestow extraordinary potential, they also bring significant inner tension and challenges that require conscious development to harness."
+  },
+  {
+    question: "How does numerology relate to astrology?",
+    answer: "Numerology and astrology are deeply interconnected ancient systems that both seek to understand human nature and destiny through cosmic patterns. In Chaldean numerology, each number from 1 to 9 is directly associated with a ruling planet — Sun (1), Moon (2), Jupiter (3), Rahu (4), Mercury (5), Venus (6), Ketu (7), Saturn (8), and Mars (9). This planetary connection means your name number and Life Path number carry astrological significance beyond their numerical value. Many practitioners use both systems together for a more comprehensive reading, cross-referencing name numbers with birth charts, planetary transits, and zodiac characteristics to achieve deeper and more nuanced insights."
+  },
+  {
+    question: "Is name numerology scientifically proven?",
+    answer: "Name numerology is not recognized as a science by the mainstream scientific community, and there are no peer-reviewed studies that conclusively prove a causal relationship between name numbers and life outcomes. It is best understood as a metaphysical and spiritual practice — similar to astrology, tarot, or feng shui — that millions of people around the world find genuinely meaningful and insightful. Many users report that numerology readings resonate deeply with their lived experiences and provide valuable frameworks for self-reflection. At Name Numerology Hub, we present numerology as a tool for personal exploration and inspiration, not as a substitute for professional, medical, or financial advice."
+  },
+  {
+    question: "Can numerology predict my career or financial success?",
+    answer: "Numerology can offer insights into your natural strengths, inclinations, and the types of careers where you are most likely to thrive, based on your Life Path and Expression numbers. For example, a Life Path 1 person may excel in leadership roles and entrepreneurship, while a Life Path 7 may flourish in research, analysis, or spiritual pursuits. Some numerologists also analyze 'peak cycles' and 'personal year numbers' to identify periods that are most favorable for financial decisions or career moves. However, numerology should be viewed as a guiding compass rather than a crystal ball — real-world success depends on your actions, skills, and circumstances as much as any cosmic pattern."
+  },
+  {
+    question: "How often should I check my numerology readings?",
+    answer: "Your core numerology numbers — such as your Life Path, Expression, and Soul Urge numbers — are fixed and do not change, so there is no need to recalculate them. However, numerology also includes dynamic cycles like your Personal Year Number (which changes every calendar year) and Personal Month Numbers that shift monthly, offering timely guidance for decisions and planning. Checking your Personal Year Number at the start of each year and reviewing monthly numbers at the beginning of each month is a common and beneficial practice. If you are going through a major life transition — a new job, a move, a relationship change — that can also be an excellent time to revisit your full numerology profile for fresh perspective."
+  }
+];
+---
+
+<Layout
+  title="Frequently Asked Questions"
+  description="Get answers to the most common questions about name numerology, Chaldean vs Pythagorean systems, Life Path numbers, Soul Urge numbers, Master Numbers, and more."
+>
+  <!-- JSON-LD FAQPage Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.answer
+      }
+    }))
+  })} />
+
+  <!-- Hero / Page Header -->
+  <div class="relative overflow-hidden">
+    <!-- Background Glow -->
+    <div class="absolute -top-40 -z-10 left-1/2 -translate-x-1/2 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="aspect-[1155/678] w-[36.125rem] bg-gradient-to-tr from-purple-500 to-cyan-400 opacity-20 sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+      <span class="inline-block themed-card text-purple-400 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">FAQ</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight themed-text mb-6">
+        Frequently Asked <span class="gradient-text">Questions</span>
+      </h1>
+      <p class="themed-text-2 text-lg leading-relaxed max-w-2xl mx-auto">
+        Everything you need to know about name numerology — from calculation methods and systems to practical applications and spiritual insights.
+      </p>
+    </div>
+  </div>
+
+  <!-- FAQ Accordion -->
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="space-y-4" id="faqAccordion">
+      {faqs.map((faq, i) => (
+        <div class="faq-item themed-card rounded-2xl overflow-hidden">
+          <button
+            class="faq-btn w-full flex items-center justify-between text-left px-6 py-5 themed-text font-medium hover:opacity-80 transition-opacity"
+            aria-expanded="false"
+            data-index={i}
+          >
+            <span class="pr-4 flex items-start gap-3">
+              <span class="themed-text-3 font-mono text-sm mt-0.5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+              <span>{faq.question}</span>
+            </span>
+            <svg class="faq-icon shrink-0 w-5 h-5 themed-text-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;" data-collapsed="true">
+            <div class="px-6 pb-6 pt-0 ml-9">
+              <p class="themed-text-2 text-sm leading-relaxed">{faq.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="themed-bg-2">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
+      <div class="themed-card rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <!-- Decorative glow -->
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" aria-hidden="true"></div>
+
+        <div class="relative z-10">
+          <span class="text-4xl mb-4 block">🔮</span>
+          <h2 class="text-2xl md:text-3xl font-bold themed-text mb-4">
+            Ready to Discover Your <span class="gradient-text">Name's Power</span>?
+          </h2>
+          <p class="themed-text-2 mb-8 max-w-lg mx-auto">
+            Use our free Chaldean name numerology calculator to get your name number, compatibility score, personality traits, and more — instantly.
+          </p>
+          <a
+            href="/name-analysis"
+            class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-8 py-3.5 rounded-full font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-purple-500/25"
+          >
+            Analyze My Name
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling as HTMLElement;
+        const icon = btn.querySelector('.faq-icon') as HTMLElement;
+        const isCollapsed = answer.getAttribute('data-collapsed') === 'true';
+
+        // Close all others with smooth animation
+        document.querySelectorAll('.faq-answer').forEach(a => {
+          const el = a as HTMLElement;
+          el.style.maxHeight = '0';
+          el.setAttribute('data-collapsed', 'true');
+        });
+        document.querySelectorAll('.faq-icon').forEach(ic => (ic as HTMLElement).style.transform = 'rotate(0deg)');
+        document.querySelectorAll('.faq-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+        if (isCollapsed) {
+          // Open this one
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          answer.setAttribute('data-collapsed', 'false');
+          icon.style.transform = 'rotate(180deg)';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</Layout>

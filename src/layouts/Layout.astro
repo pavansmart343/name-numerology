@@ -1,0 +1,77 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+	canonical?: string;
+}
+
+const {
+	title,
+	description = 'Free Chaldean name numerology calculator - find your name number, life path, lucky numbers, soul urge, and compatibility score instantly.',
+	canonical,
+} = Astro.props;
+const canonicalURL = canonical ?? `https://namenumerologyhub.com${Astro.url.pathname}`;
+const GA_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID || 'G-9V4EKRZ0GM';
+const hasAnalytics = /^G-[A-Z0-9]+$/i.test(GA_ID);
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+		<meta property="og:title" content={`${title} | Name Numerology Hub`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Name Numerology Hub" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={`${title} | Name Numerology Hub`} />
+		<meta name="twitter:description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap" rel="stylesheet" />
+		<title>{title} | Name Numerology Hub</title>
+
+		<!-- Prevent theme flash - must be inline -->
+		<script is:inline>
+			(function() {
+				try {
+					const saved = localStorage.getItem('nnh-theme');
+					if (saved) {
+						document.documentElement.setAttribute('data-theme', saved);
+					} else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+						document.documentElement.setAttribute('data-theme', 'light');
+					}
+				} catch(e) {}
+			})();
+		</script>
+
+		{hasAnalytics && (
+			<>
+				<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+				<script define:vars={{ GA_ID }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', GA_ID);
+				</script>
+			</>
+		)}
+
+	</head>
+	<body class="themed-bg themed-text font-sans antialiased min-h-screen flex flex-col" style="transition: background-color 0.3s ease, color 0.3s ease;">
+		<Header />
+		<main class="flex-grow">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

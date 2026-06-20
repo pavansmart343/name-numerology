@@ -1,0 +1,169 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Baby Name Meaning Finder" 
+  description="Find the perfect baby name with deep numerological meaning. Discover how Chaldean numerology reveals the hidden vibrations behind popular and unique baby names."
+>
+  <article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    
+    <!-- Hero -->
+    <div class="mb-12">
+      <span class="inline-block bg-zinc-800 text-purple-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Baby Names</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        Baby Name Meaning Finder: How Numerology Shapes Your Child's Destiny
+      </h1>
+      <p class="text-zinc-400 text-lg leading-relaxed">
+        Choosing a baby name is one of the most profound decisions a parent can make. Beyond cultural heritage and aesthetics, every name carries a unique numerical vibration that can influence your child's personality, relationships, and life path. Discover how Chaldean name numerology can guide you to a name that resonates with your baby's cosmic blueprint.
+      </p>
+    </div>
+
+    <!-- Quick Finder Tool -->
+    <div class="bg-gradient-to-br from-purple-900/30 to-cyan-900/20 border border-purple-500/20 rounded-2xl p-6 mb-12">
+      <h2 class="text-lg font-bold text-white mb-4">Quick Baby Name Number Finder</h2>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input 
+          type="text" 
+          id="babyNameInput"
+          placeholder="Enter a baby name..."
+          class="flex-1 bg-black border border-zinc-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+        />
+        <button 
+          id="babyNameBtn"
+          class="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-zinc-200 transition-colors shrink-0"
+        >
+          Find Number
+        </button>
+      </div>
+      <div id="babyResult" class="hidden mt-4 p-4 bg-zinc-900 rounded-xl flex items-start gap-4">
+        <div id="babyNum" class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 shrink-0"></div>
+        <div>
+          <p id="babyTitle" class="text-white font-semibold"></p>
+          <p id="babyDesc" class="text-zinc-400 text-sm mt-1"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Body -->
+    <div class="prose prose-invert prose-zinc max-w-none space-y-8 text-zinc-300">
+
+      <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4">What Is Numerology for Baby Names?</h2>
+      <p>Numerology is the ancient study of the mystical relationship between numbers and life events. When applied to baby names, it uses a system — most famously the <strong>Chaldean system</strong> — to assign a numerical value to each letter of the alphabet. The sum of these values, reduced to a single digit (or Master Number), reveals the name's core vibration.</p>
+      <p>This number is known as the <strong>Expression Number</strong> or <strong>Destiny Number</strong>. It is believed to shape the core identity and natural talents that will define your child's path in life.</p>
+
+      <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4">The Chaldean vs. Pythagorean System</h2>
+      <p>Two major systems are used in name numerology. The <strong>Chaldean system</strong> is considered the older and more accurate of the two, originating from ancient Babylon. It assigns values from 1 to 8, with 9 being sacred and excluded from assignment. The <strong>Pythagorean (or Western) system</strong> is simpler, assigning values 1–9 sequentially to the alphabet.</p>
+      <p>At Name Numerology Hub, we primarily use the <strong>Chaldean system</strong> for its historical depth and accuracy in readings.</p>
+      
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 overflow-x-auto">
+        <h3 class="text-white font-semibold mb-4 text-center">Chaldean Numerology Chart</h3>
+        <table class="w-full text-center text-sm">
+          <thead>
+            <tr class="border-b border-zinc-800 text-zinc-400">
+              <th class="pb-2">Number</th>
+              <th class="pb-2">Letters</th>
+            </tr>
+          </thead>
+          <tbody class="text-zinc-300">
+            <tr class="border-b border-zinc-800/50"><td class="py-2 text-purple-400 font-bold">1</td><td>A, I, J, Q, Y</td></tr>
+            <tr class="border-b border-zinc-800/50"><td class="py-2 text-cyan-400 font-bold">2</td><td>B, K, R</td></tr>
+            <tr class="border-b border-zinc-800/50"><td class="py-2 text-pink-400 font-bold">3</td><td>C, G, L, S</td></tr>
+            <tr class="border-b border-zinc-800/50"><td class="py-2 text-yellow-400 font-bold">4</td><td>D, M, T</td></tr>
+            <tr class="border-b border-zinc-800/50"><td class="py-2 text-green-400 font-bold">5</td><td>E, H, N, X</td></tr>
+            <tr class="border-b border-zinc-800/50"><td class="py-2 text-orange-400 font-bold">6</td><td>U, V, W</td></tr>
+            <tr class="border-b border-zinc-800/50"><td class="py-2 text-blue-400 font-bold">7</td><td>O, Z</td></tr>
+            <tr><td class="py-2 text-red-400 font-bold">8</td><td>F, P</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4">Meaning of Each Name Number (1–9)</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { num: 1, name: "The Pioneer", color: "purple", desc: "Leadership, independence, originality. A name with this vibration produces a natural-born leader." },
+          { num: 2, name: "The Peacemaker", color: "cyan", desc: "Harmony, cooperation, sensitivity. This child will be empathetic and a great team player." },
+          { num: 3, name: "The Creator", color: "pink", desc: "Creativity, self-expression, joy. Expect an artistic, social, and joyful child." },
+          { num: 4, name: "The Builder", color: "yellow", desc: "Stability, discipline, hard work. This child will be grounded and reliable." },
+          { num: 5, name: "The Explorer", color: "green", desc: "Freedom, adventure, change. A curious and adaptable child who loves new experiences." },
+          { num: 6, name: "The Nurturer", color: "orange", desc: "Love, family, responsibility. A caring and compassionate child who loves to help." },
+          { num: 7, name: "The Seeker", color: "blue", desc: "Wisdom, spirituality, analysis. A deep thinker who is drawn to knowledge and truth." },
+          { num: 8, name: "The Achiever", color: "red", desc: "Ambition, power, abundance. A driven child destined for material and professional success." },
+          { num: 9, name: "The Humanitarian", color: "indigo", desc: "Compassion, wisdom, service. An old soul dedicated to making the world a better place." },
+        ].map(({ num, name, color, desc }) => (
+          <div class={`bg-zinc-900/70 border border-zinc-800 rounded-xl p-4`}>
+            <div class="text-3xl font-extrabold text-zinc-200 mb-1">{num}</div>
+            <div class={`text-sm font-semibold text-${color}-400 mb-2`}>{name}</div>
+            <p class="text-zinc-400 text-xs leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4">Tips for Choosing a Name with Good Vibration</h2>
+      <ul class="space-y-3 list-none">
+        {[
+          "Calculate the name number for your top choices using our Name Hub tool.",
+          "Consider the father's and mother's name numbers for compatibility.",
+          "A Name Number that matches or complements the parents' Life Path numbers is considered auspicious.",
+          "Avoid names that reduce to the same number as major challenges in the family's numerological chart.",
+          "Test both formal name and common nickname — the one the child will actually use daily matters most."
+        ].map(tip => (
+          <li class="flex items-start gap-3 text-zinc-300 text-sm">
+            <span class="w-2 h-2 rounded-full bg-purple-400 shrink-0 mt-1.5"></span>
+            {tip}
+          </li>
+        ))}
+      </ul>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 text-center">
+      <h3 class="text-2xl font-bold text-white mb-3">Ready to Analyze a Name?</h3>
+      <p class="text-zinc-400 mb-6">Use our full Name Hub to get a complete report including personality traits and compatibility scores.</p>
+      <a href="/name-analysis" class="inline-block bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-zinc-200 transition-colors">
+        Go to Name Hub →
+      </a>
+    </div>
+  </article>
+
+  <script>
+    const chaldean: Record<string, number> = {
+      a:1,b:2,c:3,d:4,e:5,f:8,g:3,h:5,i:1,j:1,k:2,l:3,m:4,
+      n:5,o:7,p:8,q:1,r:2,s:3,t:4,u:6,v:6,w:6,x:5,y:1,z:7
+    };
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33)
+        n = String(n).split('').reduce((s, d) => s + parseInt(d), 0);
+      return n;
+    }
+    const titles: Record<number, [string, string]> = {
+      1: ["The Pioneer", "Leadership, independence, and originality define this name. A natural-born innovator."],
+      2: ["The Peacemaker", "Harmony, cooperation, and sensitivity shine through this name."],
+      3: ["The Creator", "Creativity, self-expression, and joyfulness are the hallmarks of this vibration."],
+      4: ["The Builder", "Stability, discipline, and reliability are woven into this name."],
+      5: ["The Explorer", "Freedom, curiosity, and adaptability are this name's gifts."],
+      6: ["The Nurturer", "Love, compassion, and responsibility radiate from this name."],
+      7: ["The Seeker", "Wisdom, spirituality, and analytical depth define this vibration."],
+      8: ["The Achiever", "Ambition, power, and material success are embedded in this name."],
+      9: ["The Humanitarian", "Compassion, wisdom, and a desire to serve humanity characterize this name."],
+      11: ["The Visionary", "Extraordinary intuition and spiritual inspiration. (Master Number)"],
+      22: ["The Architect", "The power to manifest grand visions into reality. (Master Number)"],
+    };
+    document.getElementById('babyNameBtn')?.addEventListener('click', () => {
+      const val = (document.getElementById('babyNameInput') as HTMLInputElement).value.trim();
+      if (!val) return;
+      const sum = val.toLowerCase().replace(/[^a-z]/g,'').split('').reduce((s,c) => s + (chaldean[c]||0), 0);
+      const num = reduce(sum);
+      const [title, desc] = titles[num] || ["Unique Vibration", "This name carries a rare and complex energy."];
+      (document.getElementById('babyNum') as HTMLElement).textContent = num.toString();
+      (document.getElementById('babyTitle') as HTMLElement).textContent = title;
+      (document.getElementById('babyDesc') as HTMLElement).textContent = desc;
+      (document.getElementById('babyResult') as HTMLElement).classList.remove('hidden');
+    });
+    document.getElementById('babyNameInput')?.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter') document.getElementById('babyNameBtn')?.click();
+    });
+  </script>
+</Layout>

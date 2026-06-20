@@ -1,0 +1,382 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact Us"
+  description="Contact Name Numerology Hub. We're here to help with questions, feedback, or partnership enquiries. Reach out via our contact form or email."
+>
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+
+    <!-- Page Header -->
+    <div class="text-center mb-16">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+        Get in Touch
+      </span>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">
+        We'd Love to <span class="gradient-text">Hear From You</span>
+      </h1>
+      <p class="text-zinc-400 text-lg max-w-xl mx-auto">
+        Have a question about numerology, spotted a bug, or want to collaborate? Send us a message and we'll respond within 48 hours.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+      <!-- LEFT: Contact Info (2 cols) -->
+      <div class="lg:col-span-2 space-y-5">
+
+        <!-- Quick Contact Cards -->
+        <div class="themed-card rounded-2xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1">Email Us</p>
+              <a href="mailto:hello@namenumerologyhub.com" class="text-sm font-medium themed-text hover:text-purple-400 transition-colors break-all">
+                hello@namenumerologyhub.com
+              </a>
+              <p class="text-xs text-zinc-500 mt-1">For general queries & feedback</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="themed-card rounded-2xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1">Response Time</p>
+              <p class="text-sm font-medium themed-text">Within 24–48 hours</p>
+              <p class="text-xs text-zinc-500 mt-1">Monday to Saturday</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="themed-card rounded-2xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1">Website</p>
+              <a href="https://namenumerologyhub.com" class="text-sm font-medium themed-text hover:text-pink-400 transition-colors">
+                namenumerologyhub.com
+              </a>
+              <p class="text-xs text-zinc-500 mt-1">Free numerology tools online</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="pt-2">
+          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-4">What we can help with</p>
+          <ul class="space-y-2.5">
+            {[
+              ["🔢", "Numerology reading questions"],
+              ["🐛", "Bug reports & tool issues"],
+              ["💡", "Feature suggestions"],
+              ["🤝", "Content partnerships"],
+              ["📣", "Advertising enquiries"],
+              ["🔒", "Privacy & data requests"],
+            ].map(([icon, text]) => (
+              <li class="flex items-center gap-2.5 text-sm text-zinc-400">
+                <span>{icon}</span>
+                <span>{text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Contact Form (3 cols) -->
+      <div class="lg:col-span-3">
+        <div class="themed-card rounded-2xl p-6 md:p-8 h-full">
+
+          <!-- Form (shown by default) -->
+          <div id="formWrapper">
+            <h2 class="text-xl font-bold themed-text mb-6">Send a Message</h2>
+            <form id="contactForm" novalidate class="space-y-5">
+
+              <!-- Name + Email row -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="contactName" class="block text-sm font-semibold themed-text mb-1.5">
+                    Your Name <span class="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="contactName"
+                    name="name"
+                    placeholder="Jane Smith"
+                    autocomplete="name"
+                    class="themed-input w-full rounded-xl px-4 py-2.5 text-sm"
+                  />
+                  <p id="nameError" class="hidden text-xs text-red-400 mt-1">Please enter your name.</p>
+                </div>
+                <div>
+                  <label for="contactEmail" class="block text-sm font-semibold themed-text mb-1.5">
+                    Email Address <span class="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="contactEmail"
+                    name="email"
+                    placeholder="jane@example.com"
+                    autocomplete="email"
+                    class="themed-input w-full rounded-xl px-4 py-2.5 text-sm"
+                  />
+                  <p id="emailError" class="hidden text-xs text-red-400 mt-1">Please enter a valid email address.</p>
+                </div>
+              </div>
+
+              <!-- Subject dropdown -->
+              <div>
+                <label for="contactSubject" class="block text-sm font-semibold themed-text mb-1.5">Subject</label>
+                <select
+                  id="contactSubject"
+                  name="subject"
+                  class="themed-input w-full rounded-xl px-4 py-2.5 text-sm"
+                >
+                  <option value="general">General Enquiry</option>
+                  <option value="feedback">Feedback / Suggestion</option>
+                  <option value="bug">Report a Bug</option>
+                  <option value="numerology">Numerology Question</option>
+                  <option value="partnership">Partnership / Collaboration</option>
+                  <option value="advertising">Advertising Enquiry</option>
+                  <option value="privacy">Privacy / Data Request</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <!-- Your numerology context (optional) -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="contactNumerologyName" class="block text-sm font-semibold themed-text mb-1.5">
+                    Your Name <span class="text-xs font-normal text-zinc-500">(for context, optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="contactNumerologyName"
+                    name="numerologyName"
+                    placeholder="As used in your reading"
+                    class="themed-input w-full rounded-xl px-4 py-2.5 text-sm"
+                  />
+                </div>
+                <div>
+                  <label for="contactTool" class="block text-sm font-semibold themed-text mb-1.5">
+                    Which tool? <span class="text-xs font-normal text-zinc-500">(optional)</span>
+                  </label>
+                  <select
+                    id="contactTool"
+                    name="tool"
+                    class="themed-input w-full rounded-xl px-4 py-2.5 text-sm"
+                  >
+                    <option value="">Not applicable</option>
+                    <option value="name-analysis">Full Name Analysis</option>
+                    <option value="life-path">Life Path Calculator</option>
+                    <option value="soul-urge">Soul Urge Calculator</option>
+                    <option value="lucky-number">Lucky Number Finder</option>
+                    <option value="baby-name">Baby Name Finder</option>
+                    <option value="astro-analysis">Astrological Name Analysis</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="contactMessage" class="block text-sm font-semibold themed-text mb-1.5">
+                  Message <span class="text-red-400">*</span>
+                </label>
+                <textarea
+                  id="contactMessage"
+                  name="message"
+                  rows="5"
+                  placeholder="Tell us how we can help you..."
+                  class="themed-input w-full rounded-xl px-4 py-2.5 text-sm resize-none"
+                ></textarea>
+                <div class="flex items-center justify-between mt-1">
+                  <p id="messageError" class="hidden text-xs text-red-400">Please enter a message (at least 20 characters).</p>
+                  <p id="charCount" class="text-xs text-zinc-500 ml-auto">0 / 1000</p>
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                id="submitBtn"
+                class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold text-base px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-purple-500/25 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
+              >
+                <svg id="btnIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                <span id="btnText">Send Message</span>
+              </button>
+
+              <p class="text-center text-xs text-zinc-500">
+                By submitting, you agree to our
+                <a href="/privacy-policy" class="text-purple-400 hover:underline">Privacy Policy</a>.
+                We never share your information.
+              </p>
+            </form>
+          </div>
+
+          <!-- Success State (hidden initially) -->
+          <div id="successState" class="hidden flex flex-col items-center justify-center text-center py-12 px-4">
+            <div class="w-20 h-20 rounded-full bg-green-500/10 border-2 border-green-500/30 flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold themed-text mb-2">Message Sent! 🎉</h3>
+            <p class="text-zinc-400 mb-2">Thank you for reaching out. We've received your message and will get back to you within <strong class="themed-text">24–48 hours</strong>.</p>
+            <p class="text-sm text-zinc-500 mb-8">Check your inbox (and spam folder) for our reply at your provided email address.</p>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button
+                id="sendAnotherBtn"
+                class="px-6 py-2.5 rounded-xl border themed-border themed-text text-sm font-medium hover:bg-zinc-800/50 transition-colors"
+              >
+                Send Another Message
+              </button>
+              <a href="/name-analysis" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-sm font-semibold hover:scale-105 transition-all">
+                Analyze My Name →
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom: FAQ Link -->
+    <div class="mt-16 themed-card rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold themed-text mb-1">Looking for quick answers?</h3>
+        <p class="text-sm text-zinc-400">Browse our FAQ section on the homepage — many common questions are already answered there.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+        <a href="/#faqAccordion" class="px-5 py-2.5 rounded-xl border themed-border themed-text text-sm font-medium text-center hover:bg-zinc-800/50 transition-colors">
+          Read FAQ
+        </a>
+        <a href="/about" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-sm font-semibold text-center hover:scale-105 transition-all">
+          About Us
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const formWrapper = document.getElementById('formWrapper') as HTMLElement;
+    const successState = document.getElementById('successState') as HTMLElement;
+    const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+    const btnText = document.getElementById('btnText') as HTMLElement;
+    const btnIcon = document.getElementById('btnIcon') as HTMLElement;
+    const messageArea = document.getElementById('contactMessage') as HTMLTextAreaElement;
+    const charCount = document.getElementById('charCount') as HTMLElement;
+
+    // Character counter
+    messageArea?.addEventListener('input', () => {
+      const len = messageArea.value.length;
+      charCount.textContent = `${len} / 1000`;
+      if (len > 900) charCount.classList.add('text-orange-400');
+      else charCount.classList.remove('text-orange-400');
+    });
+
+    // Inline validation helpers
+    function showError(id: string, show: boolean) {
+      const el = document.getElementById(id) as HTMLElement;
+      if (el) el.classList.toggle('hidden', !show);
+    }
+
+    function setInputState(inputId: string, isError: boolean) {
+      const input = document.getElementById(inputId) as HTMLElement;
+      if (!input) return;
+      if (isError) {
+        input.style.borderColor = '#f87171';
+        input.style.boxShadow = '0 0 0 3px rgba(248,113,113,0.15)';
+      } else {
+        input.style.borderColor = '#22c55e';
+        input.style.boxShadow = '0 0 0 3px rgba(34,197,94,0.12)';
+      }
+    }
+
+    // Real-time clear errors on input
+    document.getElementById('contactName')?.addEventListener('input', () => {
+      showError('nameError', false);
+      setInputState('contactName', false);
+    });
+    document.getElementById('contactEmail')?.addEventListener('input', () => {
+      showError('emailError', false);
+      setInputState('contactEmail', false);
+    });
+    messageArea?.addEventListener('input', () => {
+      showError('messageError', false);
+      setInputState('contactMessage', false);
+    });
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name    = (document.getElementById('contactName') as HTMLInputElement).value.trim();
+      const email   = (document.getElementById('contactEmail') as HTMLInputElement).value.trim();
+      const message = messageArea.value.trim();
+
+      let hasError = false;
+
+      // Validate name
+      if (!name || name.length < 2) {
+        showError('nameError', true);
+        setInputState('contactName', true);
+        hasError = true;
+      }
+
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        showError('emailError', true);
+        setInputState('contactEmail', true);
+        hasError = true;
+      }
+
+      // Validate message
+      if (!message || message.length < 20) {
+        showError('messageError', true);
+        setInputState('contactMessage', true);
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      // Show loading state
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btnIcon.innerHTML = `<svg class="animate-spin" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>`;
+
+      // Simulate send (replace with Formspree/EmailJS in production)
+      await new Promise(resolve => setTimeout(resolve, 1200));
+
+      // Show success
+      formWrapper.classList.add('hidden');
+      successState.classList.remove('hidden');
+    });
+
+    // "Send another" button
+    document.getElementById('sendAnotherBtn')?.addEventListener('click', () => {
+      form.reset();
+      charCount.textContent = '0 / 1000';
+      submitBtn.disabled = false;
+      btnText.textContent = 'Send Message';
+      btnIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>`;
+
+      // Clear all field states
+      ['contactName','contactEmail','contactMessage'].forEach(id => {
+        const el = document.getElementById(id) as HTMLElement;
+        if (el) { el.style.borderColor = ''; el.style.boxShadow = ''; }
+      });
+
+      successState.classList.add('hidden');
+      formWrapper.classList.remove('hidden');
+    });
+  </script>
+</Layout>

@@ -1,0 +1,101 @@
+
+> name-numerology@0.0.1 dev
+> astro dev --host 127.0.0.1
+
+[vite] connected.
+[2m13:52:55[22m [34m[types][39m Generated [2m1ms[22m
+[vite] connected.
+[42m[1m astro [22m[49m [32mv6.4.8[39m [2mready in[22m 2426 [2mms[22m
+[2m┃[22m Local    [36mhttp://127.0.0.1:4321/[39m
+[2m13:52:55[22m [32mwatching for file changes...[39m
+[2m13:53:30[22m [34m[200][39m / [2m66ms[22m
+[2m13:53:41[22m [34m[200][39m / [2m6ms[22m
+[2m13:54:11[22m [34m[200][39m /contact [2m43ms[22m
+[2m13:54:22[22m [34m[200][39m / [2m7ms[22m
+[2m14:00:06[22m [34m[watch][39m /src/styles/global.css
+[2m14:00:06[22m [34m[watch][39m /src/styles/global.css
+[2m14:00:06[22m [34m[watch][39m /src/styles/global.css
+[vite] program reload
+[vite] An error happened during full reload
+Failed to load url astro:server-app.js (resolved id: astro:server-app.js). Does the file exist?
+Error: Failed to load url astro:server-app.js (resolved id: astro:server-app.js). Does the file exist?
+    at loadAndTransform (file:///C:/Users/Pavan%20Gupta/OneDrive/Desktop/Name%20numerology/node_modules/vite/dist/node/chunks/config.js:22739:33)
+[vite] program reload
+[2m14:04:07[22m [34m[200][39m /name-analysis [2m86ms[22m
+[2m14:04:31[22m [34m[200][39m / [2m84ms[22m
+[2m14:04:34[22m [34m[200][39m /name-analysis [2m5ms[22m
+[2m14:04:36[22m [34m[200][39m / [2m7ms[22m
+[2m14:04:44[22m [34m[200][39m /faq [2m55ms[22m
+[2m14:04:49[22m [34m[200][39m /about [2m49ms[22m
+[2m14:05:26[22m [34m[200][39m /about [2m4ms[22m
+[2m14:05:28[22m [34m[200][39m /contact [2m62ms[22m
+[2m14:06:26[22m [34m[200][39m / [2m14ms[22m
+[2m14:06:28[22m [34m[200][39m /contact [2m6ms[22m
+[2m14:06:30[22m [34m[200][39m /about [2m5ms[22m
+[2m14:06:32[22m [34m[200][39m /contact [2m9ms[22m
+[2m14:06:35[22m [34m[200][39m /privacy-policy [2m63ms[22m
+[2m14:06:52[22m [34m[200][39m /about [2m6ms[22m
+[2m14:06:56[22m [34m[200][39m / [2m6ms[22m
+[2m14:07:06[22m [34m[200][39m /name-analysis [2m5ms[22m
+[2m14:07:31[22m [34m[200][39m / [2m6ms[22m
+[2m14:07:33[22m [34m[200][39m / [2m5ms[22m
+[2m14:08:28[22m [34m[200][39m / [2m6ms[22m
+[2m14:08:29[22m [34m[200][39m / [2m5ms[22m
+[2m14:08:29[22m [34m[200][39m / [2m5ms[22m
+[2m14:08:32[22m [34m[200][39m /name-analysis [2m4ms[22m
+[2m14:08:33[22m [34m[200][39m / [2m4ms[22m
+[2m14:10:06[22m [34m[200][39m /faq [2m7ms[22m
+[2m14:10:31[22m [33m[404][39m /faqttt6 [2m72ms[22m
+[2m14:10:38[22m [34m[200][39m / [2m5ms[22m
+[2m14:11:51[22m [34m[200][39m / [2m8ms[22m
+[2m14:12:15[22m [33m[404][39m /356 [2m6ms[22m
+[2m14:12:31[22m [33m[404][39m /356iukiul [2m7ms[22m
+[2m14:12:43[22m [34m[200][39m / [2m10ms[22m
+[2m14:12:48[22m [33m[404][39m /356 [2m7ms[22m
+[2m14:12:54[22m [33m[404][39m /3565000 [2m6ms[22m
+[2m14:12:57[22m [34m[200][39m / [2m7ms[22m
+[2m14:13:29[22m [34m[200][39m / [2m5ms[22m
+[2m14:19:55[22m [34m[watch][39m /src/styles/global.css
+[vite] program reload
+[2m14:19:56[22m [34m[200][39m / [2m32ms[22m
+[2m14:20:05[22m [34m[watch][39m /src/styles/global.css
+[2m14:20:06[22m [34m[200][39m / [2m44ms[22m
+[2m14:20:45[22m [34m[watch][39m src/pages/name-analysis.astro
+[2m14:20:46[22m [34m[200][39m / [2m16ms[22m
+[2m14:31:18[22m [34m[watch][39m /src/styles/global.css
+[2m14:31:19[22m [34m[200][39m / [2m53ms[22m
+[2m14:32:48[22m [34m[200][39m / [2m10ms[22m
+[2m14:33:01[22m [34m[200][39m /name-analysis [2m55ms[22m
+[2m14:33:07[22m [34m[200][39m / [2m4ms[22m
+[2m14:33:09[22m [34m[200][39m /faq [2m35ms[22m
+[2m14:33:12[22m [34m[200][39m /about [2m31ms[22m
+[2m14:33:16[22m [34m[200][39m /contact [2m38ms[22m
+[2m14:33:21[22m [34m[200][39m /name-analysis [2m10ms[22m
+[2m14:46:13[22m [34m[watch][39m /src/styles/global.css
+[2m14:46:14[22m [34m[watch][39m src/pages/name-analysis.astro
+[2m14:47:07[22m [34m[watch][39m /src/styles/global.css, /src/components/AdSlot.astro?astro&type=style&index=0&lang.css
+[2m14:47:08[22m [34m[watch][39m /src/styles/global.css, /src/components/StickyAnchorAd.astro?astro&type=style&index=0&lang.css
+[2m14:47:08[22m [34m[watch][39m /src/styles/global.css
+[vite] program reload
+[2m14:49:30[22m [34m[200][39m / [2m93ms[22m
+[2m14:49:36[22m [34m[200][39m /name-analysis [2m91ms[22m
+[2m14:49:47[22m [34m[200][39m / [2m4ms[22m
+[2m14:52:59[22m [34m[200][39m /name-analysis [2m7ms[22m
+[2m15:17:01[22m [34m[200][39m /name-analysis [2m10ms[22m
+[2m15:17:02[22m [34m[200][39m / [2m8ms[22m
+[vite] program reload
+[2m15:44:36[22m [34m[watch][39m /src/styles/global.css
+[2m15:44:36[22m [34m[watch][39m /src/styles/global.css
+[2m15:44:36[22m [34m[watch][39m /src/styles/global.css
+[vite] program reload
+[2m15:47:44[22m [34m[watch][39m /src/styles/global.css
+[2m15:47:48[22m [34m[watch][39m /src/styles/global.css
+[2m15:50:15[22m [34m[watch][39m /src/styles/global.css
+[2m15:50:20[22m [34m[watch][39m /src/styles/global.css
+[2m15:51:06[22m [34m[watch][39m src/pages/index.astro
+[2m15:51:20[22m [34m[watch][39m /src/styles/global.css
+[2m15:51:31[22m [34m[vite][39m [32m.env changed, restarting server...[39m
+[vite] connected.
+[vite] connected.
+[2m15:51:33[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m15:51:33[22m [34m[vite][39m server restarted.

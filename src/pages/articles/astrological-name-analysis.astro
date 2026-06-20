@@ -1,0 +1,146 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Astrological Name Analysis" 
+  description="Explore the powerful intersection of Vedic astrology and Chaldean numerology to understand how your name aligns with planetary energies and zodiac signs."
+>
+  <article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    
+    <!-- Hero -->
+    <div class="mb-12">
+      <span class="inline-block bg-zinc-800 text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Astrological Analysis</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        Astrological Name Analysis: Where Numerology Meets the Stars
+      </h1>
+      <p class="text-zinc-400 text-lg leading-relaxed">
+        Your name is more than a label — it is a cosmic signature. The ancient sciences of Chaldean numerology and Vedic astrology both emerged from the same Mesopotamian roots, and together they provide the most complete picture of your identity, destiny, and soul's purpose. This guide explores how planetary rulers govern each name number and what that means for your life.
+      </p>
+    </div>
+
+    <!-- Planet Ruler Quick Table -->
+    <div class="bg-gradient-to-br from-cyan-900/20 to-indigo-900/20 border border-cyan-500/20 rounded-2xl p-6 mb-12 overflow-x-auto">
+      <h2 class="text-lg font-bold text-white mb-4 text-center">Name Number → Planetary Ruler</h2>
+      <table class="w-full text-center text-sm">
+        <thead>
+          <tr class="border-b border-zinc-700 text-zinc-400">
+            <th class="pb-3 text-left">Number</th>
+            <th class="pb-3">Ruler</th>
+            <th class="pb-3">Energy</th>
+            <th class="pb-3 text-right">Zodiac Sign</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            { num: 1, planet: "☀️ Sun", energy: "Authority, Will", sign: "Leo" },
+            { num: 2, planet: "🌙 Moon", energy: "Emotion, Intuition", sign: "Cancer" },
+            { num: 3, planet: "♃ Jupiter", energy: "Wisdom, Expansion", sign: "Sagittarius" },
+            { num: 4, planet: "♄ Saturn / ♅ Uranus", energy: "Structure, Change", sign: "Aquarius" },
+            { num: 5, planet: "☿ Mercury", energy: "Communication, Wit", sign: "Gemini / Virgo" },
+            { num: 6, planet: "♀ Venus", energy: "Love, Beauty, Art", sign: "Taurus / Libra" },
+            { num: 7, planet: "♆ Neptune / ☽ Ketu", energy: "Mysticism, Depth", sign: "Pisces" },
+            { num: 8, planet: "♄ Saturn", energy: "Karma, Discipline", sign: "Capricorn" },
+            { num: 9, planet: "♂ Mars", energy: "Courage, Action", sign: "Aries / Scorpio" },
+          ].map(({ num, planet, energy, sign }) => (
+            <tr class="border-b border-zinc-800/50 hover:bg-zinc-900/50 transition-colors">
+              <td class="py-3 text-left font-bold text-purple-400">{num}</td>
+              <td class="py-3 text-white">{planet}</td>
+              <td class="py-3 text-zinc-400">{energy}</td>
+              <td class="py-3 text-right text-zinc-400">{sign}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Article Body -->
+    <div class="space-y-10 text-zinc-300">
+
+      <section>
+        <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4 mb-4">The Chaldean–Astrological Connection</h2>
+        <p class="leading-relaxed">The Chaldeans of ancient Babylon were simultaneously astrologers and numerologists. They observed that the seven classical planets (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn) each resonated with specific numbers. This is why the Chaldean numerology system only uses numbers 1 through 8 — 9 was considered divine and sacred, untouchable by earthly letters.</p>
+        <p class="mt-4 leading-relaxed">The key insight is this: <strong class="text-white">your Name Number identifies which planetary energy is your primary guide through life</strong>. A person with a Name Number of 6 is under the benevolent influence of Venus — they are naturally drawn to beauty, love, art, and nurturing relationships. A person with a Name Number of 8 carries the weight of Saturn — a path of karma, discipline, and eventual great success through sustained hard work.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4 mb-4">How to Align Your Name with Your Natal Chart</h2>
+        <p class="leading-relaxed">Your birth chart (or natal chart) is a snapshot of the sky at the moment you were born. For the deepest alignment:</p>
+        <ol class="mt-4 space-y-4 list-none">
+          {[
+            ["Find Your Ascendant (Rising Sign)", "The ascendant is the zodiac sign rising on the eastern horizon at your birth. A name whose number is ruled by the planet governing your rising sign is considered extremely auspicious in Vedic numerology."],
+            ["Check Your Moon Sign", "The Moon sign governs your emotional nature. A name that resonates with your Moon's energy promotes emotional wellbeing and inner peace."],
+            ["Identify Your Dominant Planet", "If one planet appears prominently in your chart (in its own sign, exalted, or occupying many houses), a name ruled by that planet powerfully amplifies your strengths."],
+            ["Avoid Conflicting Energies", "If Saturn is weak or afflicted in your chart, a Name Number of 8 may intensify those challenges rather than resolve them. Consider a Name Number aligned to a stronger planet."],
+          ].map(([title, desc], i) => (
+            <li class="flex items-start gap-4">
+              <span class="shrink-0 w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-sm font-bold text-cyan-400">{i+1}</span>
+              <div>
+                <strong class="text-white">{title}:</strong>
+                <span class="text-zinc-400"> {desc}</span>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4 mb-4">Name Correction: Can You Change Your Luck by Changing Your Name?</h2>
+        <p class="leading-relaxed">Name correction is a popular practice in numerology where a person slightly alters the spelling of their name — adding a letter, changing a vowel, or adopting a nickname — to achieve a more favorable Name Number. Many celebrities, actors, and business leaders have reportedly done this.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          {[
+            { title: "Before: John (Name No. 2)", desc: "A 2 name can lead to indecisiveness and dependency. Adding a strong consonant can shift the vibration." },
+            { title: "After: Jonn (Name No. 8)", desc: "The restructured name resonates with Saturn's discipline and ambition, better supporting career goals." },
+          ].map(({ title, desc }) => (
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+              <p class="text-white font-semibold mb-2">{title}</p>
+              <p class="text-zinc-400 text-sm">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-4 text-sm text-zinc-500 italic">Note: Name correction is a guide, not a guarantee. Always consult a professional numerologist for personalized advice.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4 mb-4">Name Numbers for Each Zodiac Sign</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {[
+            { sign: "♈ Aries", nums: "9, 1", ruler: "Mars" },
+            { sign: "♉ Taurus", nums: "6, 2", ruler: "Venus" },
+            { sign: "♊ Gemini", nums: "5, 3", ruler: "Mercury" },
+            { sign: "♋ Cancer", nums: "2, 7", ruler: "Moon" },
+            { sign: "♌ Leo", nums: "1, 4", ruler: "Sun" },
+            { sign: "♍ Virgo", nums: "5, 6", ruler: "Mercury" },
+            { sign: "♎ Libra", nums: "6, 3", ruler: "Venus" },
+            { sign: "♏ Scorpio", nums: "9, 4", ruler: "Mars" },
+            { sign: "♐ Sagittarius", nums: "3, 6", ruler: "Jupiter" },
+            { sign: "♑ Capricorn", nums: "8, 1", ruler: "Saturn" },
+            { sign: "♒ Aquarius", nums: "4, 8", ruler: "Saturn/Uranus" },
+            { sign: "♓ Pisces", nums: "7, 3", ruler: "Neptune" },
+          ].map(({ sign, nums, ruler }) => (
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-zinc-700 transition-colors">
+              <p class="text-white font-semibold">{sign}</p>
+              <p class="text-cyan-400 font-bold text-lg mt-1">{nums}</p>
+              <p class="text-zinc-500 text-xs mt-1">Ruler: {ruler}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 text-center">
+      <h3 class="text-2xl font-bold text-white mb-3">Discover Your Name's Planetary Ruler</h3>
+      <p class="text-zinc-400 mb-6">Enter your name in our full analysis tool to see your name number, planetary ruler, and what it means for your destiny.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/name-analysis" class="inline-block bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-zinc-200 transition-colors">
+          Analyze My Name →
+        </a>
+        <a href="/life-path-calculator" class="inline-block bg-zinc-900 text-white border border-zinc-700 px-8 py-3 rounded-full font-semibold hover:bg-zinc-800 transition-colors">
+          Life Path Calculator
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

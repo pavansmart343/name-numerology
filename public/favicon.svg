@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Background Gradient: Deep celestial dark blue and purple -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0714" />
+      <stop offset="50%" stop-color="#140a24" />
+      <stop offset="100%" stop-color="#05141c" />
+    </linearGradient>
+    
+    <!-- Orbit Rings / Line Gradients -->
+    <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    
+    <!-- Central Sparkle Gradient: Pure white to cyan glow -->
+    <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#f0f6ff" />
+      <stop offset="100%" stop-color="#22d3ee" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Card with dark border -->
+  <rect width="128" height="128" rx="28" fill="url(#bgGrad)" stroke="#27272a" stroke-width="1.5" />
+
+  <!-- Concentric Orbit Circles (Outer & Inner) -->
+  <circle cx="64" cy="64" r="46" fill="none" stroke="url(#orbitGrad)" stroke-width="1" stroke-opacity="0.3" />
+  <circle cx="64" cy="64" r="38" fill="none" stroke="url(#orbitGrad)" stroke-width="0.75" stroke-opacity="0.2" />
+
+  <!-- Thin Axis Lines -->
+  <line x1="64" y1="18" x2="64" y2="110" stroke="url(#orbitGrad)" stroke-width="0.5" stroke-opacity="0.15" />
+  <line x1="18" y1="64" x2="110" y2="64" stroke="url(#orbitGrad)" stroke-width="0.5" stroke-opacity="0.15" />
+  
+  <!-- Numerology Numbers 1-9 arranged at 40-degree increments around the wheel -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="800" text-anchor="middle" dominant-baseline="central">
+    <!-- 9 at the top (0 deg) -->
+    <text x="64" y="24" fill="#a855f7">9</text>
+    <!-- 1 at upper-right (40 deg) -->
+    <text x="91" y="33" fill="#c084fc">1</text>
+    <!-- 2 at mid-right (80 deg) -->
+    <text x="104" y="58" fill="#e879f9">2</text>
+    <!-- 3 at lower-right (120 deg) -->
+    <text x="100" y="83" fill="#38bdf8">3</text>
+    <!-- 4 at bottom-right (160 deg) -->
+    <text x="78" y="102" fill="#22d3ee">4</text>
+    <!-- 5 at bottom-left (200 deg) -->
+    <text x="50" y="102" fill="#22d3ee">5</text>
+    <!-- 6 at lower-left (240 deg) -->
+    <text x="28" y="83" fill="#38bdf8">6</text>
+    <!-- 7 at mid-left (280 deg) -->
+    <text x="24" y="58" fill="#e879f9">7</text>
+    <!-- 8 at upper-left (320 deg) -->
+    <text x="37" y="33" fill="#c084fc">8</text>
+  </g>
+
+  <!-- Central Star of Destiny (Four-pointed Sparkle) -->
+  <path d="M64 46 Q64 64 82 64 Q64 64 64 82 Q64 64 46 64 Q64 64 64 46 Z" fill="url(#sparkleGrad)" stroke="#22d3ee" stroke-width="0.5" />
+  
+  <!-- Glowing Center core -->
+  <circle cx="64" cy="64" r="2.5" fill="#ffffff" />
+</svg>
