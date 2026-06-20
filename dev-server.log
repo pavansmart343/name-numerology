@@ -99,3 +99,5 @@ Error: Failed to load url astro:server-app.js (resolved id: astro:server-app.js)
 [vite] connected.
 [2m15:51:33[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
 [2m15:51:33[22m [34m[vite][39m server restarted.
+[2m19:16:15[22m [34m[watch][39m convert.html
+[2m19:21:08[22m [34m[watch][39m convert.html
