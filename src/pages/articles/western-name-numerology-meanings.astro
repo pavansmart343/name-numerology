@@ -1,0 +1,334 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const pageTitle = "Numerology Meaning of Popular Western Names — Chaldean Calculator";
+const pageDescription = "Discover the numerology meaning of popular Western names like Emma, James, Oliver and Sophia using the ancient Chaldean system. Free instant calculator included.";
+
+const names = [
+  {
+    name: "Emma",
+    calc: "E(5) + M(4) + M(4) + A(1)",
+    rawSum: 14,
+    number: 5,
+    planet: "☿ Mercury",
+    title: "The Explorer",
+    color: "#10b981",
+    emoji: "🌍",
+    meaning: "Emma vibrates with the energy of Mercury — quick-witted, adaptable, and irresistibly curious. Those named Emma are natural communicators who thrive on freedom, variety, and new experiences, making them magnetic in any social setting."
+  },
+  {
+    name: "Oliver",
+    calc: "O(7) + L(3) + I(1) + V(6) + E(5) + R(2)",
+    rawSum: 24,
+    number: 6,
+    planet: "♀ Venus",
+    title: "The Nurturer",
+    color: "#ec4899",
+    emoji: "💗",
+    meaning: "Oliver carries the loving vibration of Venus — a name naturally drawn to harmony, beauty, and protecting the people it loves. Those named Oliver tend to be deeply responsible, artistically gifted, and the emotional anchor of their family and social circle."
+  },
+  {
+    name: "Sophia",
+    calc: "S(3) + O(7) + P(8) + H(5) + I(1) + A(1)",
+    rawSum: 25,
+    number: 7,
+    planet: "♆ Neptune",
+    title: "The Seeker",
+    color: "#8b5cf6",
+    emoji: "🔮",
+    meaning: "Sophia resonates with the mystical energy of Neptune — a name that runs deep, always seeking wisdom beneath the surface. People named Sophia are natural scholars and philosophers, often possessing a quiet spiritual intelligence that sets them apart."
+  },
+  {
+    name: "James",
+    calc: "J(1) + A(1) + M(4) + E(5) + S(3)",
+    rawSum: 14,
+    number: 5,
+    planet: "☿ Mercury",
+    title: "The Explorer",
+    color: "#10b981",
+    emoji: "🌍",
+    meaning: "James vibrates at the frequency of Mercury — sharp, versatile, and perpetually in motion. Like Emma, this name carries a 5 vibration, blessing its bearer with outstanding communication skills, an adventurous spirit, and the ability to excel in almost any field they choose."
+  },
+  {
+    name: "Ava",
+    calc: "A(1) + V(6) + A(1)",
+    rawSum: 8,
+    number: 8,
+    planet: "♄ Saturn",
+    title: "The Executive",
+    color: "#64748b",
+    emoji: "💎",
+    meaning: "Ava carries the formidable energy of Saturn — a name that vibrates with ambition, resilience, and long-term material mastery. Those named Ava are born with an innate understanding of power, strategy, and the discipline required to build lasting success."
+  },
+  {
+    name: "William",
+    calc: "W(6) + I(1) + L(3) + L(3) + I(1) + A(1) + M(4)",
+    rawSum: 19,
+    number: 1,
+    planet: "☀️ Sun",
+    title: "The Leader",
+    color: "#f59e0b",
+    emoji: "👑",
+    meaning: "William vibrates with the pure authority of the Sun — a name historically associated with kings and leaders for good reason. Those named William carry a natural magnetism and pioneering drive, destined to forge their own path and inspire others to follow."
+  },
+  {
+    name: "Isabella",
+    calc: "I(1) + S(3) + A(1) + B(2) + E(5) + L(3) + L(3) + A(1)",
+    rawSum: 19,
+    number: 1,
+    planet: "☀️ Sun",
+    title: "The Leader",
+    color: "#f59e0b",
+    emoji: "👑",
+    meaning: "Isabella shares the Sun's radiant 1 vibration with William, making it a name of tremendous inner strength and independence. Those named Isabella are original thinkers who blaze their own trail, possessing the courage to pursue their ambitions without needing external validation."
+  },
+  {
+    name: "Noah",
+    calc: "N(5) + O(7) + A(1) + H(5)",
+    rawSum: 18,
+    number: 9,
+    planet: "♂ Mars",
+    title: "The Humanitarian",
+    color: "#ef4444",
+    emoji: "🌟",
+    meaning: "Noah resonates with the compassionate fire of Mars at its 9 vibration — a name that carries the energy of the old soul, the healer, and the idealist. Those named Noah often feel called to make a meaningful difference in the world, with a deep sense of justice and an instinct for service."
+  },
+  {
+    name: "Charlotte",
+    calc: "C(3) + H(5) + A(1) + R(2) + L(3) + O(7) + T(4) + T(4) + E(5)",
+    rawSum: 34,
+    number: 7,
+    planet: "♆ Neptune",
+    title: "The Seeker",
+    color: "#8b5cf6",
+    emoji: "🔮",
+    meaning: "Charlotte shares Sophia's deep 7 vibration, making it a name of profound introspection and intellectual curiosity. Those named Charlotte are drawn to learning, meaning, and spiritual understanding, often becoming the wise counsel that friends and family turn to in difficult times."
+  },
+  {
+    name: "Liam",
+    calc: "L(3) + I(1) + A(1) + M(4)",
+    rawSum: 9,
+    number: 9,
+    planet: "♂ Mars",
+    title: "The Humanitarian",
+    color: "#ef4444",
+    emoji: "🌟",
+    meaning: "Liam carries the humanitarian energy of Mars at its most evolved expression — a name that vibrates with generosity, creative vision, and the desire to leave the world better than it found it. Those named Liam often possess an extraordinary breadth of talents and a warm, inclusive nature."
+  },
+];
+
+const faqs = [
+  {
+    question: "What is the numerology number for the name Emma?",
+    answer: "Using the Chaldean system, Emma calculates as E(5) + M(4) + M(4) + A(1) = 14, which reduces to 5 (1+4=5). This gives Emma a Name Number of 5, governed by Mercury — the planet of communication, curiosity, and adaptability."
+  },
+  {
+    question: "Which numerology system is best for English names?",
+    answer: "The Chaldean system is widely regarded as the most accurate for English and Western names. Originating in ancient Babylon over 4,000 years ago, it assigns values based on the phonetic sound vibration of letters rather than their simple alphabetical order. Many professional numerologists in the UK, US, and Australia prefer Chaldean over the Pythagorean system precisely because it captures the energetic resonance of how a name is actually spoken."
+  },
+  {
+    question: "How do I calculate the numerology of my Western name?",
+    answer: "To calculate your Western name's numerology using the Chaldean system: (1) Write out each letter of your name. (2) Assign each letter its Chaldean value — for example, A=1, B=2, C=3, D=4, E=5, F=8, G=3, H=5, I=1, J=1, K=2, L=3, M=4, N=5, O=7, P=8. (3) Add all values together. (4) Reduce the total to a single digit by adding the digits of the sum (unless the result is 11, 22, or 33 — these are kept as Master Numbers). Or simply use our free calculator at the top of the page for an instant result."
+  },
+  {
+    question: "Does name numerology work differently for English vs Indian names?",
+    answer: "The underlying Chaldean system is the same, but there are some practical differences. Indian names are often longer and may contain sounds not common in English (and vice versa), which can produce different number distributions. Additionally, some Indian numerology traditions use slightly different Chaldean chart variants influenced by Sanskrit phonetics. For English and Western names specifically, the standard Chaldean chart used on this site is the most universally accepted and widely used method."
+  }
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <!-- JSON-LD FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.answer
+      }
+    }))
+  })} />
+
+  <!-- JSON-LD Article Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": pageTitle,
+    "description": pageDescription,
+    "url": "https://namenumerologyhub.com/articles/western-name-numerology-meanings",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Name Numerology Hub",
+      "url": "https://namenumerologyhub.com"
+    }
+  })} />
+
+  <article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+    <!-- Hero -->
+    <div class="mb-12">
+      <span class="inline-block bg-zinc-800 text-purple-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4">Western Name Numerology</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        Numerology Meaning of Popular Western Names
+      </h1>
+      <p class="text-zinc-400 text-lg leading-relaxed">
+        Every name carries a hidden numerical vibration that shapes personality, destiny, and life path. For Western names — the Emmas, Olivers, Sophias, and Liams of the English-speaking world — the ancient Chaldean numerology system provides a remarkably precise energetic profile. Unlike simpler methods, Chaldean assigns values based on the sound frequency of each letter, meaning your name's vibration is calculated the way it is actually spoken, not just written.
+      </p>
+      <p class="text-zinc-400 text-lg leading-relaxed mt-4">
+        In this guide, we calculate the Chaldean numerology number for ten of the most popular Western names and explore what each number reveals about the people who carry it. Whether you are exploring your own name, choosing a baby name, or simply curious about the hidden patterns behind the most common names in the UK, US, and Australia, you will find precise calculations and meaningful interpretations below.
+      </p>
+    </div>
+
+    <!-- Name Cards Grid -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4 mb-8">Chaldean Numerology Numbers for Popular Western Names</h2>
+      <div class="space-y-5">
+        {names.map(({ name, calc, rawSum, number, planet, title, color, emoji, meaning }) => (
+          <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-colors">
+            <div class="flex items-start gap-5">
+              <!-- Number Badge -->
+              <div
+                class="shrink-0 w-16 h-16 rounded-xl flex flex-col items-center justify-center text-white font-black shadow-lg"
+                style={`background: linear-gradient(135deg, ${color}33, ${color}11); border: 1px solid ${color}44;`}
+              >
+                <span class="text-xl">{emoji}</span>
+                <span class="text-lg leading-none" style={`color: ${color};`}>{number}</span>
+              </div>
+              <!-- Content -->
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <h3 class="text-xl font-bold text-white">{name}</h3>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">{title}</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">{planet}</span>
+                </div>
+                <p class="text-xs font-mono text-zinc-500 mb-3">{calc} = {rawSum} → <strong style={`color: ${color};`}>{number}</strong></p>
+                <p class="text-zinc-300 text-sm leading-relaxed">{meaning}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Why Chaldean Works for English Names -->
+    <div class="space-y-10 text-zinc-300">
+      <section>
+        <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4 mb-4">Why the Chaldean System Works So Well for English Names</h2>
+        <p class="leading-relaxed">
+          The Chaldean numerology system was developed in ancient Mesopotamia (modern-day Iraq and Syria) at a time when the predecessor languages of modern English were already carrying many of the same consonant and vowel sounds. The Chaldean chart assigns numerical values based on acoustic vibration — the energetic frequency produced when a sound is spoken aloud. This is why Chaldean practitioners believe it captures the true energetic essence of a name rather than simply its written form.
+        </p>
+        <p class="mt-4 leading-relaxed">
+          English names contain a rich variety of phonemes, and the Chaldean chart maps these sounds with remarkable precision. A name like <strong class="text-white">William</strong> reduces to 1, a number associated with the Sun's leadership energy — and historically, William has been the name of kings, conquerors, and pioneers across the English-speaking world. A name like <strong class="text-white">Sophia</strong> reduces to 7, the number of the mystic and the philosopher — and Sophia literally means "wisdom" in Greek, the origin language of many English names. These convergences are not coincidences according to numerologists; they are evidence that the system resonates with the cultural and linguistic DNA of the Western world.
+        </p>
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { icon: "🔊", title: "Sound-Based", desc: "Values are assigned by acoustic frequency, not alphabetical order — matching how names are spoken in English." },
+            { icon: "🌍", title: "Culturally Aligned", desc: "Developed alongside predecessor languages that share roots with modern English, French, and Germanic names." },
+            { icon: "⚡", title: "Most Widely Used", desc: "Preferred by professional numerologists across the UK, US, and Australia for Western name readings." },
+          ].map(({ icon, title, desc }) => (
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+              <div class="text-2xl mb-3">{icon}</div>
+              <p class="text-white font-semibold mb-1">{title}</p>
+              <p class="text-zinc-400 text-sm">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Number Distribution Insight -->
+      <section>
+        <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4 mb-4">Patterns Across the Top Western Names</h2>
+        <p class="leading-relaxed">
+          Looking at the ten names analysed above, an interesting pattern emerges. Numbers <strong class="text-white">1, 5, 7, and 9</strong> appear most frequently among the most popular Western names. This is not random — these are numbers associated with leadership (1), curiosity (5), wisdom (7), and compassion (9): qualities that parents across centuries have unconsciously gravitated toward when naming their children. The prevalence of 7 (Sophia, Charlotte) among top female names is particularly striking, reflecting a cultural valuation of wisdom, beauty, and depth in women's names throughout Western history.
+        </p>
+        <p class="mt-4 leading-relaxed">
+          Understanding your name's number is the first step in a complete numerological profile. For the deepest insight, numerologists recommend comparing your Name Number with your Life Path Number (calculated from your date of birth). When these two numbers are harmonious, your external identity and inner life purpose align — and that alignment is considered one of the most powerful forces for a fulfilled, purposeful life.
+        </p>
+      </section>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-14 bg-gradient-to-br from-purple-900/30 to-cyan-900/20 border border-purple-500/20 rounded-2xl p-8 text-center">
+      <h3 class="text-2xl font-bold text-white mb-3">What Is Your Name's Numerology Number?</h3>
+      <p class="text-zinc-400 mb-6 max-w-xl mx-auto">Enter any Western name — first name, full birth name, or a name you are considering — and get your instant Chaldean number, planetary ruler, personality profile, and compatibility score.</p>
+      <a
+        href="/"
+        class="inline-block bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white px-10 py-3.5 rounded-full font-semibold text-base transition-all duration-200 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5"
+      >
+        Calculate Your Name Numerology Free →
+      </a>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-white border-b border-zinc-800 pb-4 mb-8">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqs.map((faq, i) => (
+          <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
+            <button
+              class="faq-btn w-full flex items-center justify-between text-left px-6 py-5 text-white font-medium hover:bg-zinc-800/50 transition-colors"
+              aria-expanded="false"
+              data-index={i}
+            >
+              <span class="pr-4">{faq.question}</span>
+              <svg class="faq-icon shrink-0 w-5 h-5 text-zinc-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-5 text-zinc-400 text-sm leading-relaxed">
+              {faq.answer}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Related Articles -->
+    <div class="mt-14 pt-10 border-t border-zinc-800">
+      <p class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">Related Reading</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/articles/baby-name-meaning-finder" class="group flex items-center gap-4 bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-zinc-700 transition-colors">
+          <span class="text-2xl shrink-0">👶</span>
+          <div>
+            <p class="text-white font-semibold text-sm group-hover:text-purple-400 transition-colors">Baby Name Meaning Finder</p>
+            <p class="text-zinc-500 text-xs mt-0.5">Find the perfect name using numerology</p>
+          </div>
+        </a>
+        <a href="/articles/astrological-name-analysis" class="group flex items-center gap-4 bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-zinc-700 transition-colors">
+          <span class="text-2xl shrink-0">🌟</span>
+          <div>
+            <p class="text-white font-semibold text-sm group-hover:text-cyan-400 transition-colors">Astrological Name Analysis</p>
+            <p class="text-zinc-500 text-xs mt-0.5">How your name aligns with the planets</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </article>
+
+  <script>
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling as HTMLElement;
+        const icon = btn.querySelector('.faq-icon') as HTMLElement;
+        const isOpen = !answer.classList.contains('hidden');
+
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+        document.querySelectorAll('.faq-icon').forEach(ic => (ic as HTMLElement).style.transform = 'rotate(0deg)');
+        document.querySelectorAll('.faq-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+        if (!isOpen) {
+          answer.classList.remove('hidden');
+          icon.style.transform = 'rotate(180deg)';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</Layout>
