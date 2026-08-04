@@ -1,2 +1,8 @@
 https://name-numerology.pages.dev/*
   X-Robots-Tag: noindex
+
+http://namenumerologyhub.com/*
+  Redirect: https://namenumerologyhub.com/:splat
+
+http://www.namenumerologyhub.com/*
+  Redirect: https://namenumerologyhub.com/:splat
