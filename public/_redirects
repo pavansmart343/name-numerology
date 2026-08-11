@@ -1,12 +1,1 @@
-# Redirect HTTP → HTTPS (non-www)
-http://namenumerologyhub.com/* https://namenumerologyhub.com/:splat 301
-
-# Redirect HTTP → HTTPS (www)
-http://www.namenumerologyhub.com/* https://namenumerologyhub.com/:splat 301
-
-# Redirect www → non-www (HTTPS)
-https://www.namenumerologyhub.com/* https://namenumerologyhub.com/:splat 301
-
-# Redirect trailing slash → no trailing slash (301 permanent)
-# Matches any path ending in / that isn't just the root /
-https://namenumerologyhub.com/*/ https://namenumerologyhub.com/:splat 301
+ 
