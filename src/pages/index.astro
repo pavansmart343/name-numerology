@@ -47,34 +47,15 @@ const faqs = [
 
 <Layout 
   title="Free Name Numerology Calculator — Chaldean System"
-  description="Free name numerology calculator using the ancient Chaldean system. Find your name number, life path, lucky numbers, soul urge, and compatibility score instantly for any English or Western name."
+  description="Free Chaldean name numerology calculator — discover your name number, soul urge, life path, and compatibility score instantly. Enter any English name to get your full reading."
 >
-  <!-- JSON-LD FAQ Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(f => ({
-      "@type": "Question",
-      "name": f.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.answer
-      }
-    }))
-  })} />
-
   <!-- JSON-LD WebSite -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Name Numerology Hub",
-    "url": "https://namenumerologyhub.com",
-    "description": "Free Chaldean name numerology calculator for name number, life path, soul urge, lucky numbers, and compatibility scores.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://namenumerologyhub.com/name-analysis?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "url": "https://namenumerologyhub.com/",
+    "description": "Free Chaldean name numerology calculator for name number, life path, soul urge, lucky numbers, and compatibility scores."
   })} />
 
   <div class="relative overflow-hidden">
@@ -89,7 +70,7 @@ const faqs = [
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Name Numerology Calculator</span>
       </h1>
       <p class="mt-4 text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
-        Discover hidden meanings, compatibility scores, and personality traits. Our advanced Chaldean calculators provide instant, accurate predictions based on the vibrations of your name. This calculator is designed for Western names and uses the Chaldean system — the most widely used numerology method in the UK, US, and Australia.
+        Discover hidden meanings, compatibility scores, and personality traits. Our calculators use the ancient Chaldean system — a Babylonian method that assigns number values based on the sound vibration of each letter, rather than simple alphabetical order.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
         <a href="/name-analysis" class="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-zinc-200 transition-colors">
@@ -159,20 +140,84 @@ const faqs = [
   <!-- SEO Content Section -->
   <div class="border-t border-white/5 bg-zinc-950">
     <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-20">
-      <h2 class="text-3xl font-bold tracking-tight text-white mb-10">
-        Free Name Numerology Calculator
+
+      <h2 class="text-3xl font-bold tracking-tight text-white mb-6">
+        How the Chaldean Name Number Calculator Works
       </h2>
-      <div class="space-y-7 text-zinc-400 leading-relaxed text-base md:text-lg">
+      <div class="space-y-5 text-zinc-400 leading-relaxed text-base md:text-lg mb-14">
         <p>
-          Our free <strong class="text-zinc-200">name numerology calculator</strong> converts the letters of any name into a single vibrational number, then maps that number to its planetary ruler and core personality archetype. Simply type your full name — first, middle, and last — and the tool instantly performs every calculation client-side in your browser, with no data ever leaving your device. The result is your Expression Number (also called the Destiny Number), which reveals the natural talents, tendencies, and life themes encoded in the name you were given at birth. Whether you're exploring your own identity or evaluating a name for a newborn, the calculator gives you an immediate, research-backed reading.
+          Our free <strong class="text-zinc-200">name numerology calculator</strong> converts the letters of any name into a single vibrational number, then maps that number to its planetary ruler and core personality archetype. Type your full name — first, middle, and last — and the tool instantly performs every calculation client-side in your browser, with no data ever sent to a server. The result is your Expression Number (also called the Destiny Number), which reveals the natural talents, tendencies, and life themes encoded in the name you were given at birth.
         </p>
         <p>
-          Using a <strong class="text-zinc-200">numerology calculator by name</strong> is one of the most direct ways to understand the energetic fingerprint a name carries through life. Each letter in your name is assigned a number according to the Chaldean chart, those values are summed, and the total is reduced to a single digit or a Master Number (11, 22, or 33). As a <strong class="text-zinc-200">numerology calculator name</strong> tool, the Name Hub also goes further — it cross-references your Expression Number with your Life Path Number to highlight areas of natural harmony and tension. This layered approach gives you a far richer picture than any single number alone can provide.
-        </p>
-        <p>
-          We chose the ancient Babylonian framework for this <strong class="text-zinc-200">Chaldean numerology calculator</strong> because it assigns number values based on the phonetic vibration of each letter rather than its sequential position in the alphabet — a distinction that most practitioners consider more accurate. The <strong class="text-zinc-200">name number calculator</strong> on this platform uses the same letter-to-number mapping that Chaldean scholars have used for over four thousand years, with no modifications or modern shortcuts. If you're curious about how the Chaldean system compares to the more common Pythagorean method, our in-depth guide breaks down the differences and explains why we believe Chaldean produces more nuanced and reliable results for English names.
+          Each letter in your name is assigned a number according to the Chaldean chart, those values are summed, and the total is reduced to a single digit or a Master Number (11, 22, or 33). The Name Hub also cross-references your Expression Number with your Life Path Number to highlight areas of natural harmony and tension — giving you a far richer picture than any single number alone.
         </p>
       </div>
+
+      <h2 class="text-2xl font-bold tracking-tight text-white mb-5">
+        What Is a Name Numerology Calculator?
+      </h2>
+      <div class="space-y-4 text-zinc-400 leading-relaxed text-base mb-14">
+        <p>
+          A name numerology calculator is a tool that converts the letters of a name into a numerical value using a defined letter-to-number system. That number — often called the Expression Number or Destiny Number — is interpreted to reveal personality traits, natural strengths, life tendencies, and the kind of energy a person projects into the world.
+        </p>
+        <p>
+          The two most widely used systems are Chaldean and Pythagorean. Our calculator uses the <strong class="text-zinc-200">Chaldean system</strong>, which assigns values based on the acoustic vibration of each letter — how it sounds when spoken — rather than its sequential position in the alphabet. This phonetic approach is preferred by many professional numerologists for personal name analysis because it reflects the living, spoken energy of a name.
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold tracking-tight text-white mb-5">
+        The Chaldean Letter-to-Number Chart
+      </h2>
+      <div class="mb-14 overflow-x-auto">
+        <table class="w-full text-center text-sm border border-zinc-800 rounded-xl overflow-hidden">
+          <thead>
+            <tr class="bg-zinc-800/60 text-zinc-400 border-b border-zinc-700">
+              <th class="py-2 px-3">Number</th>
+              <th class="py-2 px-3">Letters</th>
+              <th class="py-2 px-3">Note</th>
+            </tr>
+          </thead>
+          <tbody class="text-zinc-300 divide-y divide-zinc-800/50">
+            <tr><td class="py-2 text-purple-400 font-bold">1</td><td>A, I, J, Q, Y</td><td class="text-zinc-500 text-xs">Sun energy</td></tr>
+            <tr><td class="py-2 text-cyan-400 font-bold">2</td><td>B, K, R</td><td class="text-zinc-500 text-xs">Moon energy</td></tr>
+            <tr><td class="py-2 text-pink-400 font-bold">3</td><td>C, G, L, S</td><td class="text-zinc-500 text-xs">Jupiter energy</td></tr>
+            <tr><td class="py-2 text-yellow-400 font-bold">4</td><td>D, M, T</td><td class="text-zinc-500 text-xs">Uranus energy</td></tr>
+            <tr><td class="py-2 text-green-400 font-bold">5</td><td>E, H, N, X</td><td class="text-zinc-500 text-xs">Mercury energy</td></tr>
+            <tr><td class="py-2 text-orange-400 font-bold">6</td><td>U, V, W</td><td class="text-zinc-500 text-xs">Venus energy</td></tr>
+            <tr><td class="py-2 text-blue-400 font-bold">7</td><td>O, Z</td><td class="text-zinc-500 text-xs">Neptune energy</td></tr>
+            <tr><td class="py-2 text-red-400 font-bold">8</td><td>F, P</td><td class="text-zinc-500 text-xs">Saturn energy</td></tr>
+            <tr><td class="py-2 text-zinc-400 font-bold">9</td><td colspan="2" class="text-zinc-500 text-xs italic">Sacred — no letter assigned; can appear as a reduced total</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold tracking-tight text-white mb-5">
+        Name Number vs Life Path Number
+      </h2>
+      <div class="space-y-4 text-zinc-400 leading-relaxed text-base mb-14">
+        <p>
+          Your <strong class="text-zinc-200">Name Number</strong> (Expression Number) is calculated from the letters in your name and reflects how you express yourself to the world — your talents, personality, and the energy others perceive in you.
+        </p>
+        <p>
+          Your <strong class="text-zinc-200">Life Path Number</strong> is calculated from your date of birth and reflects your core life purpose — the underlying journey, opportunities, and challenges that define your path through life.
+        </p>
+        <p>
+          When these two numbers are in harmony, your outer expression and inner purpose align — a combination many numerologists consider especially favorable. Use our <a href="/life-path-calculator" class="text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors">Life Path Calculator</a> to discover your birth number, then compare it with your name number for a complete picture.
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold tracking-tight text-white mb-5">
+        Chaldean vs Pythagorean — Which System Does This Calculator Use?
+      </h2>
+      <div class="space-y-4 text-zinc-400 leading-relaxed text-base">
+        <p>
+          This calculator uses the <strong class="text-zinc-200">Chaldean system</strong>, originating in ancient Babylon over 4,000 years ago. The key distinction from the Pythagorean system is how letter values are assigned: Chaldean uses acoustic vibration (phonetics), while Pythagorean uses alphabetical sequence (A=1, B=2, C=3…).
+        </p>
+        <p>
+          The two systems often produce different numbers for the same name. For a detailed comparison with worked examples — including the name James calculated in both systems — read our guide: <a href="/articles/chaldean-vs-pythagorean-numerology" class="text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors">Chaldean vs Pythagorean Numerology — Key Differences Explained</a>.
+        </p>
+      </div>
+
     </div>
   </div>
 

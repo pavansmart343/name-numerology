@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Free Soul Urge Number Calculator — Chaldean Numerology" description="Free Soul Urge number calculator using Chaldean numerology. Discover your innermost motivations, heart's desires, and what truly drives you — instantly, no sign-up needed.">
+<Layout title="Free Soul Urge Number Calculator — Chaldean Numerology" description="Free Soul Urge number calculator using the Chaldean system. Enter your full birth name to discover your heart's desire number — the vowels reveal your deepest motivations and hidden drives.">
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
 
     <div class="mb-10 text-center no-print">
@@ -124,6 +124,95 @@ import Layout from '../layouts/Layout.astro';
           </a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Supporting content section -->
+  <div class="border-t border-white/5 bg-zinc-950">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4">What Is a Soul Urge Number?</h2>
+        <div class="space-y-4 text-zinc-400 leading-relaxed">
+          <p>The Soul Urge number — also called the Heart's Desire number — is one of the five core numbers in a full numerology profile. It is calculated from the <strong class="text-zinc-200">vowels only</strong> in your full birth name and is believed to reveal your innermost cravings, hidden motivations, and what you genuinely value at the deepest level of your being.</p>
+          <p>While your Expression Number (name number) shows how you appear to the world, and your Life Path Number shows your overarching journey, the Soul Urge Number describes the private, inner self — the desires that quietly shape your choices, even when you aren't consciously aware of them.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4">How Your Soul Urge Number Is Calculated</h2>
+        <div class="space-y-4 text-zinc-400 leading-relaxed">
+          <p>Using the Chaldean system, only the vowels in your full birth name are extracted and assigned their numerical values. The vowels and their Chaldean values are:</p>
+          <div class="grid grid-cols-6 gap-2 my-4">
+            {['A','E','I','O','U','Y'].map((v, i) => (
+              <div class="text-center p-3 rounded-lg bg-zinc-900 border border-zinc-800">
+                <div class="text-lg font-black text-pink-400">{v}</div>
+                <div class="text-xs text-zinc-400">{[1,5,1,7,6,1][i]}</div>
+              </div>
+            ))}
+          </div>
+          <p>These values are summed, then reduced to a single digit (or Master Number 11, 22). For example, the name <strong class="text-zinc-200">Sarah</strong> contains the vowels A(1) + A(1) = 2, giving a Soul Urge of <strong class="text-zinc-200">2 — The Love-Seeker</strong>.</p>
+          <p class="text-sm text-zinc-500">Note: Whether Y is treated as a vowel depends on its phonetic role in the name. In this calculator, Y is always counted as a vowel for consistency.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4">Soul Urge vs Expression Number — What's the Difference?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-pink-400 font-bold mb-1">Soul Urge Number</p>
+            <p class="text-zinc-400">Calculated from vowels only. Reflects your private inner world — what you truly want, need, and feel most deeply. The desires beneath the surface.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-purple-400 font-bold mb-1">Expression Number</p>
+            <p class="text-zinc-400">Calculated from all letters. Reflects how you present yourself to the world — your talents, personality, and the energy others perceive in you.</p>
+          </div>
+        </div>
+        <p class="text-zinc-400 mt-4 text-sm">Use the <a href="/name-analysis" class="text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors">Name Analysis tool</a> to calculate both your Soul Urge and Expression Number in one place.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-4 text-zinc-400">
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-white font-semibold mb-2">What is the difference between a Soul Urge number and a Soul Plan?</p>
+            <p class="text-sm leading-relaxed">These are two entirely different systems. A Soul Urge number (Heart's Desire number) is derived from the vowels in your birth name using Chaldean or Pythagorean numerology. A Soul Plan is a separate numerological framework created by Frank Alper and later adapted by Blue Marsden, using a different calculation method. This calculator provides Soul Urge numbers only.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-white font-semibold mb-2">Should I use my birth name or the name I go by?</p>
+            <p class="text-sm leading-relaxed">For the most traditionally accurate Soul Urge reading, use the name on your birth certificate — even if you no longer use it. The birth name is considered your original energetic blueprint. You can also calculate the Soul Urge of your current name separately and compare the two.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-white font-semibold mb-2">Is Y always counted as a vowel?</p>
+            <p class="text-sm leading-relaxed">In some numerology traditions, Y is counted as a vowel only when it functions as one phonetically (e.g., "Cyndy" where Y sounds like "ee"). In others, Y is always included as a vowel. This calculator treats Y consistently as a vowel in all cases. If you use the other convention, your result may differ by the value of Y (1 in Chaldean).</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-white font-semibold mb-2">Can my Soul Urge number change if I change my name?</p>
+            <p class="text-sm leading-relaxed">Yes. A legal name change that you use consistently in daily life will gradually shift the numerological energy you project, including the Soul Urge derived from that name. However, many numerologists believe your birth name Soul Urge remains a permanent underlying influence throughout your life.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="pt-6 border-t border-zinc-800">
+        <p class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">Related Calculators</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="/name-analysis" class="group flex items-center gap-4 bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-zinc-700 transition-colors">
+            <span class="text-2xl shrink-0">🔢</span>
+            <div>
+              <p class="text-white font-semibold text-sm group-hover:text-purple-400 transition-colors">Name Analysis</p>
+              <p class="text-zinc-500 text-xs mt-0.5">Full report: name number, compatibility, personality</p>
+            </div>
+          </a>
+          <a href="/life-path-calculator" class="group flex items-center gap-4 bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-zinc-700 transition-colors">
+            <span class="text-2xl shrink-0">🌱</span>
+            <div>
+              <p class="text-white font-semibold text-sm group-hover:text-purple-400 transition-colors">Life Path Calculator</p>
+              <p class="text-zinc-500 text-xs mt-0.5">Discover your life purpose from your date of birth</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 

@@ -19,9 +19,30 @@ const numberData = {
 ---
 
 <Layout
-  title="Free Name Analysis — Chaldean Numerology"
-  description="Free Chaldean name analysis: get your name number, compatibility score, and personality traits all in one place. No sign-up needed."
+  title="Free Name Numerology Calculator — Chaldean Name Number & Compatibility"
+  description="Free Chaldean name numerology calculator — get your name number, personality traits, and compatibility score instantly. Enter any English name. No sign-up required."
 >
+  <!-- JSON-LD WebApplication schema for the name calculator tool -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Chaldean Name Numerology Calculator",
+    "url": "https://namenumerologyhub.com/name-analysis",
+    "description": "Free Chaldean name numerology calculator. Enter your full name to get your Expression Number, personality traits, and compatibility score.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Name Numerology Hub",
+      "url": "https://namenumerologyhub.com/"
+    }
+  })} />
+
   <!-- Print header (only visible when printing) -->
   <div class="hidden print:block p-8 border-b border-gray-200 mb-6">
     <h2 class="text-2xl font-bold text-black">Name Numerology Hub</h2>

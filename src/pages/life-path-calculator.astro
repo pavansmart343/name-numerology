@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Free Life Path Number Calculator — Chaldean Numerology" description="Free Life Path number calculator using Chaldean numerology. Enter your date of birth to get your life path number, planetary ruler, personality traits, and lucky numbers instantly.">
+<Layout title="Free Life Path Number Calculator — Find Your Life Path Number" description="Free life path number calculator. Enter your date of birth to instantly discover your life path number, its meaning, personality traits, strengths, and life lessons.">
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
     <!-- Header -->
     <div class="mb-10 text-center no-print">
@@ -115,6 +115,93 @@ import Layout from '../layouts/Layout.astro';
           </a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Supporting content section -->
+  <div class="border-t border-white/5 bg-zinc-950">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4">What Is a Life Path Number?</h2>
+        <div class="space-y-4 text-zinc-400 leading-relaxed">
+          <p>Your Life Path Number is the most significant number in numerology. Calculated from your full date of birth, it describes the broad themes of your life journey — the core purpose, opportunities, and challenges you will encounter throughout your lifetime.</p>
+          <p>Unlike your Name Number, which reflects how you express yourself outwardly, the Life Path Number is fixed at birth and is considered a permanent blueprint of your life's overarching direction. Numerologists often describe it as the road you travel, while your name number describes how you travel it.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4">How to Calculate Your Life Path Number</h2>
+        <div class="space-y-4 text-zinc-400 leading-relaxed">
+          <p>The Life Path Number is calculated by reducing your full birth date to a single digit (or preserving it as a Master Number if it equals 11, 22, or 33).</p>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 font-mono text-sm my-4">
+            <p class="text-zinc-200 font-bold mb-2">Example: Born June 15, 1990</p>
+            <p class="text-zinc-400">Month: 6 → 6</p>
+            <p class="text-zinc-400">Day: 15 → 1+5 = <strong class="text-white">6</strong></p>
+            <p class="text-zinc-400">Year: 1990 → 1+9+9+0 = 19 → 1+9 = <strong class="text-white">10</strong> → 1+0 = <strong class="text-white">1</strong></p>
+            <p class="text-zinc-400 mt-2 border-t border-zinc-700 pt-2">Total: 6 + 6 + 1 = <strong class="text-purple-400 text-base">13 → 1+3 = 4 (The Builder)</strong></p>
+          </div>
+          <p class="text-sm text-zinc-500">Master Numbers 11, 22, and 33 are not reduced further. If your total is one of these, it is preserved as your Life Path Number.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4">Life Path Number vs Name Number — What's the Difference?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-purple-400 font-bold mb-1">Life Path Number</p>
+            <p class="text-zinc-400">Calculated from your date of birth. Fixed and permanent. Reflects your core life purpose, challenges, and the broad themes of your journey.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-cyan-400 font-bold mb-1">Name Number (Expression)</p>
+            <p class="text-zinc-400">Calculated from your name letters. Can technically change with a name change. Reflects your talents, personality, and outward expression.</p>
+          </div>
+        </div>
+        <p class="text-zinc-400 mt-4 text-sm">For a complete numerology profile, use the <a href="/name-analysis" class="text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors">Name Analysis tool</a> to get both numbers together.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-4 text-zinc-400">
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-white font-semibold mb-2">Can two people have the same Life Path Number but very different lives?</p>
+            <p class="text-sm leading-relaxed">Yes. The Life Path Number describes broad themes and tendencies, not specific events. Two people with Life Path 8 might both be driven toward achievement, but one might pursue business and another art. Personal choices, environment, and other numerological factors all shape how the Life Path plays out in practice.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-white font-semibold mb-2">What is a Master Number and why doesn't it get reduced?</p>
+            <p class="text-sm leading-relaxed">Master Numbers (11, 22, 33) are considered to carry amplified potential and significance. In numerology tradition, reducing them to 2, 4, or 6 would lose this elevated meaning. However, Master Numbers also come with intensified challenges, and many practitioners note that people with Master Number Life Paths often operate at their reduced digit value for much of their lives before stepping into the full Master Number potential.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-white font-semibold mb-2">Is the Life Path Number the same in all numerology systems?</p>
+            <p class="text-sm leading-relaxed">Mostly, yes. Because Life Path is calculated from digits in the birth date rather than letter-to-number assignments, it is not system-dependent in the way name calculations are. The reduction method is the same whether you use Chaldean or Pythagorean numerology. The interpretation and associated planetary rulers may differ between traditions.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-white font-semibold mb-2">What is the luckiest Life Path Number?</p>
+            <p class="text-sm leading-relaxed">No Life Path Number is universally "lucky" — each has distinct strengths and challenges. However, numbers 3, 6, and 9 are often considered naturally fortunate because they are associated with creativity, love, and humanitarian wisdom. Master Numbers 11 and 22 carry exceptional potential but also significant pressure. The most favorable Life Path is the one whose themes align with your personal values and goals.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="pt-6 border-t border-zinc-800">
+        <p class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">Related Calculators</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="/name-analysis" class="group flex items-center gap-4 bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-zinc-700 transition-colors">
+            <span class="text-2xl shrink-0">🔢</span>
+            <div>
+              <p class="text-white font-semibold text-sm group-hover:text-purple-400 transition-colors">Name Analysis</p>
+              <p class="text-zinc-500 text-xs mt-0.5">Get your name number, compatibility, and personality</p>
+            </div>
+          </a>
+          <a href="/soul-urge-calculator" class="group flex items-center gap-4 bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-zinc-700 transition-colors">
+            <span class="text-2xl shrink-0">❤️‍🔥</span>
+            <div>
+              <p class="text-white font-semibold text-sm group-hover:text-pink-400 transition-colors">Soul Urge Calculator</p>
+              <p class="text-zinc-500 text-xs mt-0.5">Discover your heart's deepest desires from vowels</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 
