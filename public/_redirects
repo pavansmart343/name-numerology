@@ -2,16 +2,17 @@
 # These go DIRECTLY to final canonical URL — no chains.
 # www→non-www and http→https are handled by Cloudflare zone settings (not here).
 
-/articles/baby-name-meaning-finder/    /articles/baby-name-meaning-finder    301
-/articles/chaldean-vs-pythagorean-numerology/    /articles/chaldean-vs-pythagorean-numerology    301
-/articles/western-name-numerology-meanings/    /articles/western-name-numerology-meanings    301
-/articles/astrological-name-analysis/    /articles/astrological-name-analysis    301
-/name-analysis/    /name-analysis    301
-/life-path-calculator/    /life-path-calculator    301
-/soul-urge-calculator/    /soul-urge-calculator    301
-/lucky-number-finder/    /lucky-number-finder    301
-/faq/    /faq    301
-/about/    /about    301
-/contact/    /contact    301
-/privacy-policy/    /privacy-policy    301
-/terms-and-conditions/    /terms-and-conditions    301
+# TEMPORARILY DISABLED TO INVESTIGATE REDIRECT LOOP
+# /articles/baby-name-meaning-finder/    /articles/baby-name-meaning-finder    301
+# /articles/chaldean-vs-pythagorean-numerology/    /articles/chaldean-vs-pythagorean-numerology    301
+# /articles/western-name-numerology-meanings/    /articles/western-name-numerology-meanings    301
+# /articles/astrological-name-analysis/    /articles/astrological-name-analysis    301
+# /name-analysis/    /name-analysis    301
+# /life-path-calculator/    /life-path-calculator    301
+# /soul-urge-calculator/    /soul-urge-calculator    301
+# /lucky-number-finder/    /lucky-number-finder    301
+# /faq/    /faq    301
+# /about/    /about    301
+# /contact/    /contact    301
+# /privacy-policy/    /privacy-policy    301
+# /terms-and-conditions/    /terms-and-conditions    301
