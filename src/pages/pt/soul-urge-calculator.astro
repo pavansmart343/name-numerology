@@ -1,0 +1,253 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Calculadora do Impulso da Alma Gratuita — Numerologia Chaldeu" description="Calculadora gratuita do Impulso da Alma. Digite seu nome de batismo para descobrir o número do desejo do seu coração." lang="pt-BR" ogLocale="pt_BR">
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/soul-urge-calculator" />
+    <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/soul-urge-calculator" />
+    <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/soul-urge-calculator" />
+  </Fragment>
+
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+    <div class="mb-10 text-center no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-pink-500/10 text-pink-400 border border-pink-500/20">Ferramenta Principal</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">Calculadora Gratuita do <span class="gradient-text">Impulso da Alma</span></h1>
+      <p class="themed-text-2 text-lg max-w-xl mx-auto">As vogais em seu nome carregam seus desejos mais íntimos e motivações ocultas — os desejos que guiam silenciosamente cada decisão que você toma.</p>
+    </div>
+
+    <div class="themed-card rounded-2xl p-6 md:p-10 mb-8 no-print">
+      <form id="soulUrgeForm" class="space-y-6">
+        <div>
+          <label for="fullName" class="block text-sm font-semibold themed-text mb-2">Nome Completo de Nascimento <span class="text-red-400">*</span></label>
+          <input type="text" id="fullName" required placeholder="Ex: João da Silva"
+            class="themed-input w-full rounded-xl px-4 py-3 text-base"
+          />
+          <p class="mt-1.5 text-xs themed-text-3">Use seu nome exato da certidão de nascimento. As vogais A, E, I, O, U, Y são extraídas para este cálculo.</p>
+        </div>
+
+        <div class="grid grid-cols-6 gap-2">
+          {['A','E','I','O','U','Y'].map((v, i) => (
+            <div class="text-center p-2 rounded-lg bg-[var(--bg-secondary)] border themed-border">
+              <div class="text-lg font-black gradient-text">{v}</div>
+              <div class="text-xs themed-text-3">{[1,5,1,7,6,1][i]}</div>
+            </div>
+          ))}
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-pink-600 to-orange-500 hover:from-pink-500 hover:to-orange-400 text-white font-bold px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-pink-500/25 hover:-translate-y-0.5">
+          Revelar Meu Impulso da Alma ❤️‍🔥
+        </button>
+      </form>
+    </div>
+
+    <div id="resultContainer" class="hidden space-y-5">
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">A verdade mais profunda da sua alma ✨</p>
+        <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Imprimir
+        </button>
+      </div>
+
+      <div class="result-card themed-card rounded-2xl overflow-hidden print-section">
+        <div id="cardBanner" class="h-1.5 bg-gradient-to-r from-pink-500 to-orange-500"></div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col sm:flex-row items-start gap-6">
+            <div id="numDisplay" class="w-20 h-20 md:w-28 md:h-28 rounded-2xl flex flex-col items-center justify-center text-white shrink-0 animate-pulse-glow shadow-2xl">
+              <span id="numEmoji" class="text-2xl"></span>
+              <span id="numVal" class="text-3xl md:text-4xl font-black leading-none"></span>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/20">Número do Impulso da Alma</span>
+                <span id="planetTag" class="text-xs themed-text-2 px-2.5 py-1 rounded-full border themed-border"></span>
+              </div>
+              <h2 id="resultTitle" class="text-2xl md:text-3xl font-extrabold themed-text mb-1"></h2>
+              <p id="nameLabel" class="text-xs themed-text-3 mb-3"></p>
+              <p id="resultMeaning" class="themed-text-2 text-sm leading-relaxed"></p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-6 border-t themed-border">
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-3">Vogais extraídas do seu nome</p>
+            <div id="vowelDisplay" class="flex flex-wrap gap-2 mb-4"></div>
+            <p id="vowelFormula" class="text-xs themed-text-3 font-mono"></p>
+          </div>
+
+          <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-[var(--bg-secondary)]">
+              <h3 class="text-sm font-semibold themed-text mb-3 flex items-center gap-2">
+                <span>💝</span> Desejos Profundos
+              </h3>
+              <ul id="desires" class="space-y-2"></ul>
+            </div>
+            <div class="p-4 rounded-xl bg-[var(--bg-secondary)]">
+              <h3 class="text-sm font-semibold themed-text mb-3 flex items-center gap-2">
+                <span>⚠️</span> Conflitos Internos
+              </h3>
+              <ul id="conflicts" class="space-y-2"></ul>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-4 border-t themed-border grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Cores da Sorte</p>
+              <p id="suColors" class="text-xs font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Afirmação</p>
+              <p id="suAffirm" class="text-xs font-medium themed-text italic"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Compatível</p>
+              <p id="suCompat" class="text-xs font-medium themed-text"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card themed-card rounded-2xl p-6 no-print">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 class="font-bold themed-text mb-1">Combine com o seu Número de Nome</h3>
+            <p class="text-sm themed-text-2">Obtenha o quadro completo da sua numerologia.</p>
+          </div>
+          <a href="/pt/name-analysis" class="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold text-sm hover:scale-105 transition-all shadow-lg shadow-purple-500/20">
+            Análise Completa →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chaldeanVowels: Record<string, number> = { a:1, e:5, i:1, o:7, u:6, y:1 };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33)
+        n = String(n).split('').reduce((s,d) => s + parseInt(d), 0);
+      return n;
+    }
+
+    const data: Record<number, any> = {
+      1: { emoji:"👑", planet:"☀️ Sol", title:"A Alma Feita por Si", colors:"Ouro, Laranja", compat:"Impulso 3, 5",
+           affirmation:'"Eu lidero sendo eu mesmo."',
+           meaning:"No nível mais profundo da sua alma, você deseja independência, reconhecimento e liberdade para liderar. Você deseja acima de tudo ser excepcionalmente você.",
+           desires:["Ser o número 1 na sua área","Verdadeira independência","Ser visto como original","Deixar uma marca","Controle criativo sobre sua vida"],
+           conflicts:["Precisar dos outros enquanto anseia independência","Solidão disfarçada de autossuficiência","Dificuldade em receber ajuda","Orgulho que se torna isolamento","O peso da pressão imposta a si mesmo"] },
+      2: { emoji:"🕊️", planet:"🌙 Lua", title:"O Buscador de Amor", colors:"Prata, Branco", compat:"Impulso 6, 9",
+           affirmation:'"Eu sou digno de amor profundo."',
+           meaning:"A fome mais profunda da sua alma é por uma parceria verdadeira e duradoura e segurança emocional. Paz é o seu valor mais alto.",
+           desires:["Um relacionamento de alma gêmea","Harmonia em todas as relações","Ser verdadeiramente compreendido","Segurança emocional","Ambientes pacíficos e bonitos"],
+           conflicts:["Medo de abandono","Dizer sim quando quer dizer não","Perder-se nos relacionamentos","Ressentimentos ocultos","Dificuldade em ficar sozinho"] },
+      3: { emoji:"🎨", planet:"♃ Júpiter", title:"O Buscador de Expressão", colors:"Amarelo, Roxo", compat:"Impulso 1, 5",
+           affirmation:'"Minha criatividade é meu presente para o mundo."',
+           meaning:"Sua alma queima com um desejo insaciável de criar, expressar e ser ouvida. A dor mais profunda é ser silenciado ou mal compreendido.",
+           desires:["Autoexpressão criativa","Um público apreciativo","Conexão social alegre","Beleza em todas as formas","Fazer as pessoas sentirem algo"],
+           conflicts:["Dispersar energia criativa","Performar enquanto se sente invisível","Necessidade de validação","Superficialidade como defesa","Suprimir emoções com humor"] },
+      4: { emoji:"🏛️", planet:"♄ Saturno", title:"O Buscador de Estabilidade", colors:"Azul Marinho, Verde Escuro", compat:"Impulso 2, 8",
+           affirmation:'"Eu construo minha segurança a cada passo."',
+           meaning:"Sua alma anseia por ordem, segurança e a profunda satisfação do trabalho bem feito. Caos e incerteza são perturbadores para o seu ser interior.",
+           desires:["Segurança financeira","Uma vida bem ordenada","Trabalho duradouro","Lealdade profunda","Respeito pela sua dedicação"],
+           conflicts:["Rigidez que resiste à mudança","Medo do desconhecido","Trabalhar demais como mecanismo de controle","Dificuldade com a espontaneidade","Estabelecer padrões impossivelmente altos"] },
+      5: { emoji:"🌍", planet:"☿ Mercúrio", title:"O Buscador de Liberdade", colors:"Turquesa, Prata", compat:"Impulso 1, 3",
+           affirmation:'"Eu sou livre para explorar e viver plenamente."',
+           meaning:"Liberdade é o oxigênio que sua alma respira. Seu anseio mais profundo é por variedade, aventura e o direito absoluto de viver nos seus próprios termos.",
+           desires:["Liberdade pessoal completa","Novas experiências & viagens","Variedade física e mental","Prazer sensorial","Nunca parar de crescer"],
+           conflicts:["Fobia de compromisso","Fugir da profundidade","Excessos como fuga","Medo do tédio levando à sabotagem","Inquietação que impede a satisfação"] },
+      6: { emoji:"💗", planet:"♀ Vênus", title:"O Doador de Amor", colors:"Rosa, Lavanda", compat:"Impulso 2, 9",
+           affirmation:'"O amor que eu dou retorna dez vezes mais."',
+           meaning:"A realização mais profunda da sua alma vem de nutrir, proteger e prover para aqueles que você ama. Você nasceu com um profundo senso de responsabilidade.",
+           desires:["Um lar amoroso e estável","Ser necessário e apreciado","Harmonia na família","Criar beleza","Serviço significativo aos outros"],
+           conflicts:["Martírio e ressentimento","Dar demais e se esgotar","Controlar através do cuidado","Dificuldade em receber","Assumir os problemas dos outros"] },
+      7: { emoji:"🔮", planet:"♆ Netuno", title:"O Buscador da Verdade", colors:"Roxo Escuro, Prata", compat:"Impulso 4, 9",
+           affirmation:'"Eu confio completamente na minha sabedoria interior."',
+           meaning:"Sua alma anseia por verdade acima de tudo — a verdade profunda e cósmica sob a superfície da realidade. Você é movido por uma necessidade insaciável de entender.",
+           desires:["Compreensão espiritual profunda","Solidão para reflexão","Mestria intelectual","Paz interior","A resposta para as maiores perguntas da vida"],
+           conflicts:["Isolamento emocional","Desconfiança dos motivos alheios","Perfeccionismo e isolamento","Pensar demais como fuga","Frieza percebida escondendo profunda sensibilidade"] },
+      8: { emoji:"💎", planet:"♄ Saturno", title:"O Buscador de Poder", colors:"Preto, Ouro Escuro", compat:"Impulso 4, 6",
+           affirmation:'"Eu crio abundância através de dedicação e visão."',
+           meaning:"Sua alma é movida por um desejo de mestria, riqueza e o poder que vem da realização. Liberdade financeira é essencial para sua autoestima.",
+           desires:["Abundância financeira","Posições de autoridade","Reconhecimento por conquistas","Legado de longo prazo","Segurança material para sua família"],
+           conflicts:["Definir valor pelo patrimônio líquido","Tendências viciadas em trabalho","Dificuldade em confiar nos outros","Usar poder para controlar","Negligenciar relacionamentos pela ambição"] },
+      9: { emoji:"🌟", planet:"♂ Marte", title:"O Servidor do Mundo", colors:"Vermelho, Ouro", compat:"Impulso 3, 6",
+           affirmation:'"Meu amor é uma força que muda o mundo."',
+           meaning:"O propósito mais profundo da sua alma é amar e servir a humanidade. Você se sente mais alinhado quando contribui para algo maior do que você mesmo.",
+           desires:["Fazer o mundo melhor","Amor universal & fraternidade","Contribuição artística ou criativa","Sabedoria compartilhada","Deixar um legado de serviço"],
+           conflicts:["Dificuldade em desapegar do passado","Ressentimento quando outros não compartilham seus ideais","Dar aos outros negligenciando a si mesmo","Decepção com a imperfeição humana","Sacrificar a felicidade pessoal por uma causa"] },
+      11: { emoji:"✨", planet:"🌙 Lua + ☀️ Sol", title:"O Iluminador", colors:"Prata, Branco, Ouro", compat:"Impulso 2, 7",
+            affirmation:'"Eu confio nas minhas visões — elas guiam o mundo."',
+            meaning:"Como Número Mestre 11, sua alma anseia por inspirar, iluminar e despertar os outros. Seu desejo mais profundo é atuar como ponte entre o comum e o divino.",
+            desires:["Inspirar crescimento espiritual","Ser um canal de sabedoria","Conexão de alma gêmea verdadeira","Viver autenticamente","Expressão espiritual e criativa"],
+            conflicts:["Dúvida limitante","Extrema sensibilidade emocional","Ansiedade por carregar energia alheia","Sentir-se diferente","A lacuna entre visão e realidade"] },
+      22: { emoji:"🏗️", planet:"♀ Vênus + ♄ Saturno", title:"O Grande Arquiteto", colors:"Roxo, Ouro", compat:"Impulso 4, 8",
+            affirmation:'"Eu construo com visão, amor e disciplina inabalável."',
+            meaning:"No âmago do seu ser, você deseja criar algo verdadeiramente monumental — uma contribuição que transcenda sua própria vida e beneficie a humanidade.",
+            desires:["Construir algo duradouro","Domínio da sua área","Impacto em larga escala","Reconhecimento como visionário","Tornar o impossível real"],
+            conflicts:["O peso esmagador da ambição","Perfeccionismo causando paralisia","Dificuldade em confiar sua visão aos outros","Excesso de trabalho e esgotamento","Medo de nunca ser bom o suficiente"] },
+    };
+
+    document.getElementById('soulUrgeForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = (document.getElementById('fullName') as HTMLInputElement).value.trim();
+      if (!nameInput) return;
+
+      const clean = nameInput.toLowerCase();
+      let vowelSum = 0;
+      let vowels: { l: string; v: number }[] = [];
+      let parts: number[] = [];
+
+      for (const c of clean) {
+        if (chaldeanVowels[c]) {
+          vowelSum += chaldeanVowels[c];
+          vowels.push({ l: c.toUpperCase(), v: chaldeanVowels[c] });
+          parts.push(chaldeanVowels[c]);
+        }
+      }
+
+      if (vowelSum === 0) { alert("Nenhuma vogal encontrada."); return; }
+
+      const soulUrge = reduce(vowelSum);
+      const d = data[soulUrge] ?? data[9];
+
+      const numDisplay = document.getElementById('numDisplay') as HTMLElement;
+      numDisplay.className = `w-20 h-20 md:w-28 md:h-28 rounded-2xl flex flex-col items-center justify-center text-white shrink-0 animate-pulse-glow shadow-2xl`;
+      numDisplay.style.backgroundColor = soulUrge === 1 ? '#f59e0b' : soulUrge === 2 ? '#06b6d4' : soulUrge === 3 ? '#f97316' : soulUrge === 4 ? '#6366f1' : soulUrge === 5 ? '#10b981' : soulUrge === 6 ? '#ec4899' : soulUrge === 7 ? '#8b5cf6' : soulUrge === 8 ? '#64748b' : soulUrge === 9 ? '#ef4444' : '#f59e0b';
+
+      (document.getElementById('numEmoji') as HTMLElement).textContent = d.emoji;
+      (document.getElementById('numVal') as HTMLElement).textContent = soulUrge.toString();
+      (document.getElementById('planetTag') as HTMLElement).textContent = d.planet;
+      (document.getElementById('resultTitle') as HTMLElement).textContent = `${soulUrge} — ${d.title}`;
+      (document.getElementById('nameLabel') as HTMLElement).textContent = `Impulso da Alma para: ${nameInput}`;
+      (document.getElementById('resultMeaning') as HTMLElement).textContent = d.meaning;
+      (document.getElementById('suColors') as HTMLElement).textContent = d.colors;
+      (document.getElementById('suAffirm') as HTMLElement).textContent = d.affirmation;
+      (document.getElementById('suCompat') as HTMLElement).textContent = d.compat;
+
+      const vowelEl = document.getElementById('vowelDisplay') as HTMLElement;
+      vowelEl.innerHTML = vowels.map(({ l, v }) =>
+        `<div class="flex flex-col items-center p-2 rounded-lg bg-[var(--bg-secondary)] min-w-[2.5rem] border border-pink-500/20">
+          <span class="text-sm font-bold text-pink-400">${l}</span>
+          <span class="text-xs themed-text-3">${v}</span>
+        </div>`
+      ).join('');
+      (document.getElementById('vowelFormula') as HTMLElement).textContent =
+        `${parts.join(' + ')} = ${vowelSum} → reduzido a ${soulUrge}`;
+
+      const desiresEl = document.getElementById('desires') as HTMLElement;
+      desiresEl.innerHTML = d.desires.map((item: string) =>
+        `<li class="flex items-start gap-2 text-xs themed-text-2"><span class="text-pink-400 shrink-0 mt-0.5">♥</span>${item}</li>`
+      ).join('');
+      const conflictsEl = document.getElementById('conflicts') as HTMLElement;
+      conflictsEl.innerHTML = d.conflicts.map((item: string) =>
+        `<li class="flex items-start gap-2 text-xs themed-text-2"><span class="text-orange-400 shrink-0 mt-0.5">→</span>${item}</li>`
+      ).join('');
+
+      const rc = document.getElementById('resultContainer') as HTMLElement;
+      rc.classList.remove('hidden');
+      setTimeout(() => rc.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+    });
+  </script>
+</Layout>

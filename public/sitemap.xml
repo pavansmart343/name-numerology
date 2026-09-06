@@ -8,6 +8,12 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://namenumerologyhub.com/pt/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
   <!-- Core Tool Pages -->
   <url>
@@ -34,6 +40,27 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- PT Tool Pages -->
+  <url>
+    <loc>https://namenumerologyhub.com/pt/name-analysis/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://namenumerologyhub.com/pt/life-path-calculator/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://namenumerologyhub.com/pt/soul-urge-calculator/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Article Pages -->
   <url>
     <loc>https://namenumerologyhub.com/articles/baby-name-meaning-finder</loc>

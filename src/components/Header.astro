@@ -1,11 +1,15 @@
 ---
+const pathname = Astro.url.pathname;
+const isPt = pathname.startsWith('/pt');
+const pfx = isPt ? '/pt' : '';
+
 const navLinks = [
-  { name: 'Core Tools', href: '/#core-tools' },
-  { name: 'Name Hub', href: '/name-analysis' },
-  { name: 'Articles', href: '/#articles' },
-  { name: 'FAQ', href: '/faq' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: isPt ? 'Ferramentas' : 'Core Tools', href: `${pfx}/#core-tools` },
+  { name: isPt ? 'Análise' : 'Name Hub', href: `${pfx}/name-analysis` },
+  { name: isPt ? 'Artigos' : 'Articles', href: `/#articles` },
+  { name: 'FAQ', href: `/faq` },
+  { name: isPt ? 'Sobre' : 'About', href: `/about` },
+  { name: 'Contato', href: `/contact` },
 ];
 ---
 <header class="sticky top-0 z-50 w-full border-b themed-border bg-[var(--bg-primary)]/80 backdrop-blur-xl">
@@ -28,6 +32,13 @@ const navLinks = [
     </nav>
 
     <div class="flex items-center gap-2">
+      <!-- Language Switcher -->
+      <div class="hidden sm:flex items-center gap-2 mr-2 text-sm font-semibold">
+        <a href="/" class="themed-text-2 hover:themed-text transition-colors">EN</a>
+        <span class="themed-text-3">|</span>
+        <a href="/pt/" class="themed-text-2 hover:themed-text transition-colors">PT</a>
+      </div>
+
       <!-- Theme Toggle -->
       <button
         id="themeToggle"
@@ -41,8 +52,8 @@ const navLinks = [
       </button>
 
       <!-- CTA button -->
-      <a href="/name-analysis" class="hidden md:inline-flex h-9 items-center gap-1.5 justify-center rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 px-4 text-sm font-semibold text-white transition-all duration-200 shadow-lg shadow-purple-500/20">
-        Analyze Name
+      <a href={isPt ? "/pt/name-analysis" : "/name-analysis"} class="hidden md:inline-flex h-9 items-center gap-1.5 justify-center rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 px-4 text-sm font-semibold text-white transition-all duration-200 shadow-lg shadow-purple-500/20">
+        {isPt ? "Análise do Nome" : "Analyze Name"}
       </a>
 
       <!-- Mobile hamburger -->
@@ -61,9 +72,14 @@ const navLinks = [
           {link.name}
         </a>
       ))}
-      <a href="/name-analysis" class="mt-2 text-center bg-gradient-to-r from-purple-600 to-cyan-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold">
-        Analyze My Name
+      <a href={isPt ? "/pt/name-analysis" : "/name-analysis"} class="mt-2 text-center bg-gradient-to-r from-purple-600 to-cyan-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold">
+        {isPt ? "Análise do Nome" : "Analyze My Name"}
       </a>
+      <div class="mt-2 flex justify-center gap-4 text-sm font-semibold border-t themed-border pt-4">
+        <a href="/" class="themed-text-2 hover:themed-text transition-colors">EN</a>
+        <span class="themed-text-3">|</span>
+        <a href="/pt/" class="themed-text-2 hover:themed-text transition-colors">PT</a>
+      </div>
     </nav>
   </div>
 </header>

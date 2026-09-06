@@ -1,0 +1,241 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Calculadora do Caminho de Vida Gratuita — Encontre seu Caminho de Vida" description="Calculadora gratuita do número do caminho de vida. Digite sua data de nascimento para descobrir instantaneamente seu número do caminho de vida, significado, personalidade, pontos fortes e lições." lang="pt-BR" ogLocale="pt_BR">
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/life-path-calculator" />
+    <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/life-path-calculator" />
+    <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/life-path-calculator" />
+  </Fragment>
+
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <div class="mb-10 text-center no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-purple-500/10 text-purple-400 border border-purple-500/20">Ferramenta Principal</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">Calculadora Gratuita do Número do <span class="gradient-text">Caminho de Vida</span></h1>
+      <p class="themed-text-2 text-lg max-w-xl mx-auto">Seu Número do Caminho de Vida revela o propósito principal da sua vida, as oportunidades que você atrairá e os desafios que superará. Calculado a partir da sua data de nascimento completa.</p>
+    </div>
+
+    <div class="themed-card rounded-2xl p-6 md:p-10 mb-8 no-print">
+      <form id="lifePathForm" class="space-y-6">
+        <div>
+          <label for="dob" class="block text-sm font-semibold themed-text mb-2">Data de Nascimento</label>
+          <input type="date" id="dob" required class="themed-input w-full rounded-xl px-4 py-3 text-base" />
+          <p class="mt-1.5 text-xs themed-text-3">Insira sua data de nascimento exata para uma leitura precisa.</p>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-purple-500/25 hover:-translate-y-0.5">
+          Revelar Meu Caminho de Vida ✨
+        </button>
+      </form>
+    </div>
+
+    <div id="resultContainer" class="hidden space-y-6">
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">Seu caminho de vida foi revelado 🌟</p>
+        <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Imprimir
+        </button>
+      </div>
+
+      <div id="mainCard" class="result-card themed-card rounded-2xl overflow-hidden print-section">
+        <div id="cardBanner" class="h-1.5"></div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col sm:flex-row items-start gap-6">
+            <div id="numDisplay" class="w-20 h-20 md:w-28 md:h-28 rounded-2xl flex flex-col items-center justify-center text-white shrink-0 animate-pulse-glow shadow-2xl">
+              <span id="numEmoji" class="text-2xl"></span>
+              <span id="numVal" class="text-3xl md:text-4xl font-black leading-none"></span>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Número do Caminho de Vida</span>
+                <span id="planetTag" class="text-xs themed-text-2 px-2.5 py-1 rounded-full border themed-border"></span>
+              </div>
+              <h2 id="resultTitle" class="text-2xl md:text-3xl font-extrabold themed-text mb-1"></h2>
+              <p id="resultDob" class="text-xs themed-text-3 mb-3"></p>
+              <p id="resultMeaning" class="themed-text-2 text-sm leading-relaxed"></p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-6 border-t themed-border grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h3 class="text-sm font-semibold themed-text mb-3 flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-green-500/20 text-green-400 flex items-center justify-center text-xs">↑</span>
+                Pontos Fortes
+              </h3>
+              <ul id="strengths" class="space-y-2"></ul>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold themed-text mb-3 flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-orange-500/20 text-orange-400 flex items-center justify-center text-xs">→</span>
+                Lições de Vida
+              </h3>
+              <ul id="lessons" class="space-y-2"></ul>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-4 border-t themed-border grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Cores da Sorte</p>
+              <p id="lpColors" class="text-xs font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Dias da Sorte</p>
+              <p id="lpDays" class="text-xs font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Cálculo</p>
+              <p id="lpCalc" class="text-xs font-medium themed-text font-mono"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="famousCard" class="result-card themed-card rounded-2xl p-6 print-section">
+        <h3 class="font-bold themed-text mb-4 flex items-center gap-2"><span>🌟</span> Famosos com Caminho de Vida <span id="famousNum"></span></h3>
+        <div id="famousList" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+      </div>
+
+      <div class="result-card themed-card rounded-2xl p-6 no-print">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 class="font-bold themed-text mb-1">Quer a visão completa?</h3>
+            <p class="text-sm themed-text-2">Combine seu Caminho de Vida com a Análise do seu Nome.</p>
+          </div>
+          <a href="/pt/name-analysis" class="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold text-sm hover:scale-105 transition-all duration-200 shadow-lg shadow-purple-500/20">
+            Análise do Nome →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const data: Record<number, any> = {
+      1: { emoji:"👑", planet:"☀️ Sol", title:"O Líder", colors:"Ouro, Laranja, Amarelo", days:"Domingo, Segunda",
+           meaning:"O Caminho de Vida 1 coloca você em uma jornada de independência, inovação e liderança. Você está aqui para abrir seu próprio caminho e inspirar os outros. O Sol governa seu caminho, concedendo-lhe autoridade natural e carisma.",
+           strengths:["Líder nato","Altamente automotivado","Solucionador criativo","Resiliente & determinado","Pensador original"],
+           lessons:["Abraçar a colaboração","Gerenciar o ego","Aceitar ajuda dos outros","Praticar paciência","Dividir os holofotes"],
+           famous:["Martin Luther King Jr","Napoleon Bonaparte","Nikola Tesla","Cher","Steve Jobs"] },
+      2: { emoji:"🌙", planet:"🌙 Lua", title:"O Diplomata", colors:"Prata, Branco, Pérola", days:"Segunda, Sexta",
+           meaning:"O Caminho de Vida 2 é o caminho do pacificador e do parceiro. A Lua molda sua profundidade emocional. Você prospera em ambientes harmoniosos e possui a rara habilidade de ver beleza e verdade em todos.",
+           strengths:["Altamente empático","Mediador natural","Profundamente intuitivo","Companheiro leal","Excelente ouvinte"],
+           lessons:["Construir autoconfiança","Estabelecer limites saudáveis","Confiar nos próprios instintos","Falar a sua verdade","Evitar agradar a todos"],
+           famous:["Barack Obama","Jennifer Aniston","Bill Clinton","Tony Blair","Diana Ross"] },
+      3: { emoji:"🎨", planet:"♃ Júpiter", title:"O Criativo", colors:"Amarelo, Roxo, Laranja", days:"Quinta, Quarta",
+           meaning:"Seu Caminho de Vida 3 é o caminho do criador inspirado e comunicador alegre. Júpiter expande tudo o que você toca. Você tem uma personalidade magnética e o dom inato de trazer leveza e riso por onde passa.",
+           strengths:["Naturalmente criativo","Excelente comunicador","Alegre & otimista","Personalidade charmosa","Inspirador"],
+           lessons:["Focar sua energia","Terminar o que começa","Desenvolver profundidade emocional","Gerenciar finanças","Valorizar a solidão"],
+           famous:["Celine Dion","John Travolta","Snoop Dogg","Katy Perry","David Bowie"] },
+      4: { emoji:"🏛️", planet:"♄ Saturno", title:"O Construtor", colors:"Azul Marinho, Verde Escuro, Marrom", days:"Sábado, Domingo",
+           meaning:"O Caminho de Vida 4 é o caminho do mestre arquiteto. Saturno exige disciplina, estrutura e trabalho duro. Você é a espinha dorsal de qualquer equipe, transformando sonhos ambiciosos em realidade concreta e duradoura.",
+           strengths:["Excepcionalmente organizado","Confiável & seguro","Orientado a detalhes","Excelente planejador","Totalmente leal"],
+           lessons:["Abraçar a flexibilidade","Permitir a espontaneidade","Liberar o controle","Confiar no processo","Aberto a novos métodos"],
+           famous:["Paul McCartney","Oprah Winfrey","Elton John","Bill Gates","Keanu Reeves"] },
+      5: { emoji:"🌍", planet:"☿ Mercúrio", title:"O Explorador", colors:"Turquesa, Prata, Verde Claro", days:"Quarta, Sexta",
+           meaning:"O Caminho de Vida 5 é o caminho do eterno buscador de liberdade. Mercúrio torna você perspicaz, rápido e curiosamente perpétuo. Mudança não é apenas aceitável — é o próprio elemento em que você prospera.",
+           strengths:["Altamente adaptável","Comunicador natural","Espírito aventureiro","Aprendiz rápido","Carisma magnético"],
+           lessons:["Desenvolver comprometimento","Criar rotinas saudáveis","Olhar antes de pular","Praticar atenção plena","Construir relações duradouras"],
+           famous:["Abraham Lincoln","Mick Jagger","Steven Spielberg","Vincent van Gogh","Angelina Jolie"] },
+      6: { emoji:"💗", planet:"♀ Vênus", title:"O Cuidador", colors:"Rosa, Rosa Suave, Turquesa", days:"Sexta, Quarta",
+           meaning:"O Caminho de Vida 6 é o caminho do amor e do serviço. Vênus banha sua jornada com graça e imensa capacidade de cuidar. Você é o coração de sua família e comunidade — aquele a quem os outros instintivamente recorrem.",
+           strengths:["Profundamente compassivo","Conselheiro natural","Protetor & amoroso","Talento estético","Altamente responsável"],
+           lessons:["Evitar o martírio","Estabelecer limites","Priorizar o autocuidado","Liberar o perfeccionismo","Aceitar a imperfeição dos outros"],
+           famous:["Albert Einstein","John Lennon","Michael Jackson","Jessica Simpson","Christopher Columbus"] },
+      7: { emoji:"🔮", planet:"♆ Netuno", title:"O Buscador", colors:"Roxo Escuro, Índigo, Cinza-Prata", days:"Sábado, Domingo",
+           meaning:"O Caminho de Vida 7 é o caminho do filósofo místico. Netuno atrai você para o invisível, o profundo e o espiritual. Você é o grande questionador do mundo — nunca satisfeito com respostas superficiais.",
+           strengths:["Mente analítica excepcional","Profunda consciência espiritual","Pensador independente","Pesquisador natural","Poderosa intuição"],
+           lessons:["Abraçar conexões humanas","Compartilhar seu mundo interior","Confiar nos outros","Equilibrar intelecto com emoção","Sair do isolamento"],
+           famous:["Princess Diana","Eric Clapton","Leonardo DiCaprio","Taylor Swift","Bruce Lee"] },
+      8: { emoji:"💎", planet:"♄ Saturno", title:"O Poderoso", colors:"Preto, Marinho Escuro, Ouro Escuro", days:"Sábado, Quinta",
+           meaning:"O Caminho de Vida 8 é o caminho do mestre material. A energia de Saturno cria uma vida de lições e recompensas extraordinárias. Você entende instintivamente que poder vem da disciplina e que riqueza vem de valor criado.",
+           strengths:["Liderança visionária","Excelente mente para negócios","Poderoso manifestador","Inacreditavelmente resiliente","Autoridade natural"],
+           lessons:["Equilibrar trabalho com a vida","Praticar generosidade","Liberar o controle","Abraçar a vulnerabilidade","Usar o poder eticamente"],
+           famous:["Pablo Picasso","Richard Nixon","Edgar Allan Poe","Nelson Mandela","Michelangelo"] },
+      9: { emoji:"🌟", planet:"♂ Marte", title:"O Humanitário", colors:"Ouro, Carmesim, Roxo Profundo", days:"Terça, Quinta",
+           meaning:"O Caminho de Vida 9 é o caminho da alma velha — aquele que reuniu sabedoria de inúmeras experiências e a canaliza para o serviço. Marte dá a você o fogo para agir com base em suas convicções.",
+           strengths:["Profundamente compassivo","Visionário criativo","Generoso ao extremo","Forte bússola moral","Inspirador"],
+           lessons:["Deixar o passado para trás","Liberar ressentimentos","Evitar o martírio","Aceitar a impermanência","Criar limites saudáveis"],
+           famous:["Mahatma Gandhi","Mother Teresa","Jim Carrey","Cher","Bob Marley"] },
+      11: { emoji:"✨", planet:"🌙 Lua + ☀️ Sol", title:"O Mestre Intuitivo", colors:"Prata, Branco, Platina", days:"Domingo, Segunda",
+            meaning:"O Caminho de Vida 11 é um Número Mestre. Você une os mundos físico e espiritual com extraordinária facilidade. Sua intuição beira o profético e você está aqui para inspirar, elevar e iluminar o caminho.",
+            strengths:["Extraordinária intuição","Profundamente inspirador","Capacidade visionária","Altamente empático","Consciência espiritual"],
+            lessons:["Aterrar sua energia","Gerenciar ansiedade","Confiar em seus dons","Evitar a dúvida sobre si mesmo","Equilibrar idealismo com praticidade"],
+            famous:["Barrack Obama (11/2)","Edgar Allan Poe","Harry Houdini","Robert Downey Jr","Prince William"] },
+      22: { emoji:"🏗️", planet:"♀ Vênus + ♄ Saturno", title:"O Mestre Construtor", colors:"Roxo, Ouro, Azul Royal", days:"Sábado, Sexta",
+            meaning:"O Caminho de Vida 22 é o Mestre Construtor — o número mais poderoso de toda a numerologia. Você possui uma combinação única de visão e praticidade aterradora. Você está aqui para construir legados para a humanidade.",
+            strengths:["Visão grandiosa","Excepcional mente organizacional","Enorme poder pessoal","Diplomático e estratégico","Construtor de legados"],
+            lessons:["Gerenciar pressão esmagadora","Aceitar seus dons extraordinários","Delegar efetivamente","Evitar o perfeccionismo","Descansar e recarregar"],
+            famous:["Bryan Adams","Tina Fey","Bill Gates (22/4)","The Dalai Lama","Oprah Winfrey (22/4)"] },
+      33: { emoji:"🕊️", planet:"♃ Júpiter + ♀ Vênus", title:"O Mestre Professor", colors:"Ouro, Branco Puro, Esmeralda", days:"Quinta, Sexta",
+            meaning:"O Caminho de Vida 33 é o Mestre Professor — carregando a responsabilidade espiritual mais elevada da numerologia. Você é a encarnação viva do amor incondicional. Seu propósito é elevar a consciência coletiva.",
+            strengths:["Amor incondicional","Mestre curador","Professor inspirador","Extraordinária criatividade","Compaixão sagrada"],
+            lessons:["Evitar o martírio","Impor limites pessoais","Aceitar ser humano","Canalizar energia sabiamente","Permitir-se receber amor"],
+            famous:["Francis of Assisi","Mother Teresa (33/6)","Stephen King","John Lennon (33/6)"] },
+    };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33)
+        n = String(n).split('').reduce((s, d) => s + parseInt(d), 0);
+      return n;
+    }
+
+    document.getElementById('lifePathForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const dobInput = (document.getElementById('dob') as HTMLInputElement).value;
+      if (!dobInput) return;
+
+      const [year, month, day] = dobInput.split('-').map(Number);
+      const mRed = reduce(month), dRed = reduce(day), yRed = reduce(year);
+      const lifePath = reduce(mRed + dRed + yRed);
+      const d = data[lifePath] ?? data[9];
+
+      const numDisplay = document.getElementById('numDisplay') as HTMLElement;
+      // In absence of specific CSS classes for dynamic coloring here, we apply explicit style if num-badge-X is missing or relying on global CSS. Assuming global CSS exists.
+      numDisplay.className = `w-20 h-20 md:w-28 md:h-28 rounded-2xl flex flex-col items-center justify-center text-white shrink-0 animate-pulse-glow shadow-2xl`;
+      numDisplay.style.backgroundColor = lifePath === 1 ? '#f59e0b' : lifePath === 2 ? '#06b6d4' : lifePath === 3 ? '#f97316' : lifePath === 4 ? '#6366f1' : lifePath === 5 ? '#10b981' : lifePath === 6 ? '#ec4899' : lifePath === 7 ? '#8b5cf6' : lifePath === 8 ? '#64748b' : lifePath === 9 ? '#ef4444' : '#f59e0b';
+
+      (document.getElementById('numEmoji') as HTMLElement).textContent = d.emoji;
+      (document.getElementById('numVal') as HTMLElement).textContent = lifePath.toString();
+      (document.getElementById('planetTag') as HTMLElement).textContent = d.planet;
+      (document.getElementById('resultTitle') as HTMLElement).textContent = `${lifePath} — ${d.title}`;
+      const dateStr = new Date(year, month-1, day).toLocaleDateString('pt-BR', { day:'numeric', month:'long', year:'numeric' });
+      (document.getElementById('resultDob') as HTMLElement).textContent = `Nascido em: ${dateStr} · Cálculo: ${dRed} + ${mRed} + ${yRed} = ${dRed+mRed+yRed} → ${lifePath}`;
+      (document.getElementById('resultMeaning') as HTMLElement).textContent = d.meaning;
+      (document.getElementById('lpColors') as HTMLElement).textContent = d.colors;
+      (document.getElementById('lpDays') as HTMLElement).textContent = d.days;
+      (document.getElementById('lpCalc') as HTMLElement).textContent = `${day}+${month}+${year} → ${lifePath}`;
+
+      const banner = document.getElementById('cardBanner') as HTMLElement;
+      banner.style.background = `linear-gradient(90deg, #8b5cf6, #06b6d4)`;
+
+      const strengthsEl = document.getElementById('strengths') as HTMLElement;
+      strengthsEl.innerHTML = d.strengths.map((s: string) =>
+        `<li class="flex items-center gap-2 text-sm themed-text-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0"></span>${s}
+        </li>`
+      ).join('');
+      const lessonsEl = document.getElementById('lessons') as HTMLElement;
+      lessonsEl.innerHTML = d.lessons.map((l: string) =>
+        `<li class="flex items-center gap-2 text-sm themed-text-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0"></span>${l}
+        </li>`
+      ).join('');
+
+      (document.getElementById('famousNum') as HTMLElement).textContent = lifePath.toString();
+      const famousList = document.getElementById('famousList') as HTMLElement;
+      famousList.innerHTML = d.famous.map((name: string) =>
+        `<div class="flex items-center gap-2.5 p-3 rounded-xl bg-[var(--bg-secondary)]">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-white text-xs font-bold shrink-0">
+            ${name.split(' ').map((n: string) => n[0]).join('').substring(0,2)}
+          </div>
+          <span class="text-xs themed-text font-medium">${name}</span>
+        </div>`
+      ).join('');
+
+      const rc = document.getElementById('resultContainer') as HTMLElement;
+      rc.classList.remove('hidden');
+      setTimeout(() => rc.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+    });
+  </script>
+</Layout>

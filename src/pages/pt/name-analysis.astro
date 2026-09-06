@@ -1,0 +1,361 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Comprehensive numerology data translated to Portuguese
+const numberData = {
+  1: { title: "O Líder", planet: "☀️ Sol", element: "Fogo", color: "#f59e0b", emoji: "👑", keywords: ["Independente","Ambicioso","Pioneiro","Original","Corajoso"], luckyColors: "Ouro, Laranja, Amarelo", luckyDays: "Domingo, Segunda", compatible: [1, 3, 5], description: "Você carrega a energia do Sol — brilhante, autoritária e magnética. O número 1 é a força primordial da criação, e seu nome vibra com pura energia de liderança. Você está destinado a trilhar seu próprio caminho e inspirar os outros a segui-lo." },
+  2: { title: "O Diplomata", planet: "🌙 Lua", element: "Água", color: "#06b6d4", emoji: "🕊️", keywords: ["Empático","Cooperativo","Intuitivo","Paciente","Diplomático"], luckyColors: "Prata, Branco, Creme", luckyDays: "Segunda, Sexta", compatible: [2, 4, 6], description: "Governado pela Lua, você sente tudo profundamente. Seu nome carrega a vibração da harmonia, parceria e inteligência emocional. Você é o construtor de pontes, o pacificador, aquele que vê todos os lados de cada história." },
+  3: { title: "O Criador", planet: "♃ Júpiter", element: "Ar", color: "#f97316", emoji: "🎨", keywords: ["Criativo","Expressivo","Alegre","Social","Otimista"], luckyColors: "Amarelo, Roxo, Rosa", luckyDays: "Quinta, Quarta", compatible: [1, 3, 9], description: "Júpiter te abençoa com criatividade sem limites e um entusiasmo contagiante pela vida. Seu número 3 vibra com gênio artístico, humor e auto-expressão. Você nasceu para criar, comunicar e espalhar alegria por onde passa." },
+  4: { title: "O Construtor", planet: "♄ Saturno", element: "Terra", color: "#6366f1", emoji: "🏛️", keywords: ["Disciplinado","Confiável","Metódico","Leal","Prático"], luckyColors: "Azul Marinho, Verde Escuro, Marrom", luckyDays: "Sábado, Domingo", compatible: [2, 4, 8], description: "Saturno, o grande mestre de tarefas, governa seu nome. O número 4 é a base de todas as coisas — você constrói impérios tijolo por tijolo. Sua confiabilidade é lendária, e sua sabedoria prática cria estruturas duradouras em todas as áreas da vida." },
+  5: { title: "O Explorador", planet: "☿ Mercúrio", element: "Ar", color: "#10b981", emoji: "🌍", keywords: ["Aventureiro","Adaptável","Carismático","Curioso","Espírito Livre"], luckyColors: "Turquesa, Prata, Verde", luckyDays: "Quarta, Sexta", compatible: [1, 3, 5], description: "O astuto Mercúrio rege seu nome, enchendo-o com a energia de viagens, comunicação e curiosidade perpétua. Você resiste a todas as formas de restrição — sua alma foi feita para a liberdade, novas experiências e a emoção da descoberta." },
+  6: { title: "O Cuidador", planet: "♀ Vênus", element: "Terra", color: "#ec4899", emoji: "💗", keywords: ["Compassivo","Protetor","Artístico","Generoso","Responsável"], luckyColors: "Rosa, Turquesa, Lavanda", luckyDays: "Sexta, Quarta", compatible: [2, 4, 6], description: "Vênus, a deusa do amor e da beleza, abençoa seu nome. O número 6 carrega a mais alta vibração de amor — incondicional, nutridor e abrangente. Seu lar é seu santuário, e você derrama energia curativa em todos que ama." },
+  7: { title: "O Buscador", planet: "♆ Netuno", element: "Água", color: "#8b5cf6", emoji: "🔮", keywords: ["Analítico","Sábio","Espiritual","Introspectivo","Místico"], luckyColors: "Roxo Escuro, Índigo, Cinza", luckyDays: "Sábado, Domingo", compatible: [2, 7, 9], description: "O místico Netuno governa seu nome, atraindo você para os mistérios mais profundos da existência. Seu número 7 vibra com a energia do estudioso, do místico e do filósofo. Você vê além da superfície das coisas e nunca se contenta com respostas superficiais." },
+  8: { title: "O Executivo", planet: "♄ Saturno", element: "Terra", color: "#64748b", emoji: "💎", keywords: ["Ambicioso","Autoritário","Focado em Metas","Resiliente","Estratégico"], luckyColors: "Preto, Cinza Escuro, Azul Escuro", luckyDays: "Sábado, Quinta", compatible: [2, 4, 8], description: "A energia cármica de Saturno infunde seu nome com imenso poder e ambição. O número 8 é o número do domínio material — você entende que o sucesso exige disciplina, sacrifício e uma visão inabalável de longo prazo. Você foi feito para liderar organizações e acumular riqueza duradoura." },
+  9: { title: "O Humanitário", planet: "♂ Marte", element: "Fogo", color: "#ef4444", emoji: "🌟", keywords: ["Compassivo","Sábio","Idealista","Altruísta","Criativo"], luckyColors: "Vermelho, Ouro, Carmesim", luckyDays: "Terça, Quinta", compatible: [3, 6, 9], description: "Marte dinâmico dá ao seu nome a energia ardente da compaixão e do amor universal. O número 9 completa o ciclo — você já viveu muitas vidas e chegou à sabedoria. Sua realização mais profunda vem de dar, curar e deixar o mundo melhor do que você o encontrou." },
+  11: { title: "O Visionário", planet: "🌙 Lua + ☀️ Sol", element: "Todos", color: "#f59e0b", emoji: "✨", keywords: ["Inspirador","Intuitivo","Idealista","Sensível","Iluminado"], luckyColors: "Prata, Ouro, Branco", luckyDays: "Domingo, Segunda", compatible: [2, 11, 22], description: "Você carrega um Número Mestre — uma vibração rara e poderosa que une o terreno e o divino. Seu nome ressoa com extraordinária intuição espiritual e a capacidade de inspirar massas." },
+  22: { title: "O Mestre Construtor", planet: "♀ Vênus + ♄ Saturno", element: "Terra", color: "#8b5cf6", emoji: "🏗️", keywords: ["Visionário","Disciplinado","Magistral","Ambicioso","Prático"], luckyColors: "Roxo, Ouro, Tons de Terra", luckyDays: "Sábado, Sexta", compatible: [4, 8, 22], description: "O 22 é o número mais poderoso da numerologia. Seu nome carrega a vibração do Mestre Construtor — a capacidade de manifestar as maiores visões da história humana em uma realidade concreta e duradoura." },
+  33: { title: "O Mestre Professor", planet: "♃ Júpiter + ♀ Vênus", element: "Todos", color: "#10b981", emoji: "🕊️", keywords: ["Nutridor","Amoroso","Inspirador","Curador","Dedicado"], luckyColors: "Ouro, Verde Claro, Branco", luckyDays: "Quinta, Sexta", compatible: [6, 11, 33], description: "O mais raro de todos os Números Mestres, 33 é o número da Consciência Crística — o amor incondicional elevado à sua mais alta expressão possível. Sua missão é elevar a humanidade através da compaixão." },
+};
+---
+
+<Layout
+  title="Calculadora de Numerologia de Nome Grátis — Análise do Nome Chaldeu"
+  description="Calculadora gratuita de numerologia de nome Chaldeu. Obtenha o número do seu nome, traços de personalidade e pontuação de compatibilidade instantaneamente."
+  lang="pt-BR"
+  ogLocale="pt_BR"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/name-analysis" />
+    <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/name-analysis" />
+    <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/name-analysis" />
+  </Fragment>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de Numerologia de Nome Chaldeu",
+    "url": "https://namenumerologyhub.com/pt/name-analysis",
+    "description": "Calculadora gratuita de numerologia de nome Chaldeu. Digite seu nome completo para obter seu Número de Expressão, traços de personalidade e pontuação de compatibilidade.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  })} />
+
+  <div class="hidden print:block p-8 border-b border-gray-200 mb-6">
+    <h2 class="text-2xl font-bold text-black">Name Numerology Hub</h2>
+    <p class="text-gray-600 text-sm">namenumerologyhub.com/pt · Relatório Completo de Análise do Nome</p>
+  </div>
+
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+    <div class="mb-12 text-center no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-purple-500/10 text-purple-400 border border-purple-500/20">A Central de Nomes</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">Análise Gratuita do Nome <span class="gradient-text">— Numerologia Chaldeu</span></h1>
+      <p class="themed-text-2 text-lg max-w-2xl mx-auto">Digite seu nome completo de batismo uma vez e receba um retrato numerológico detalhado — número, regente planetário, personalidade, compatibilidade e muito mais.</p>
+    </div>
+
+    <div class="themed-card rounded-2xl p-6 md:p-10 mb-10 no-print">
+      <form id="nameHubForm" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="primaryName" class="block text-sm font-semibold themed-text mb-2">Seu Nome Completo <span class="text-red-400">*</span></label>
+            <input type="text" id="primaryName" required placeholder="Ex: João da Silva" class="themed-input w-full rounded-xl px-4 py-3 text-base" />
+            <p class="mt-1.5 text-xs themed-text-3">Use o nome da sua certidão de nascimento para maior precisão.</p>
+          </div>
+          <div>
+            <label for="partnerName" class="block text-sm font-semibold themed-text mb-2">Nome do Parceiro(a) <span class="text-xs font-normal themed-text-3">(opcional — para compatibilidade)</span></label>
+            <input type="text" id="partnerName" placeholder="Ex: Maria Pereira" class="themed-input w-full rounded-xl px-4 py-3 text-base" />
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-base font-bold px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5">
+          Gerar Relatório Completo ✨
+        </button>
+      </form>
+    </div>
+
+    <div id="resultsSection" class="hidden space-y-6">
+
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">Seu relatório de numerologia está pronto 🎉</p>
+        <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Imprimir Relatório
+        </button>
+      </div>
+
+      <div id="mainNumberCard" class="result-card themed-card rounded-2xl overflow-hidden print-section">
+        <div id="numberCardBanner" class="h-2 w-full"></div>
+        <div class="p-6 md:p-8">
+          <div class="flex flex-col md:flex-row md:items-start gap-6">
+            <div id="bigNumberDisplay" class="shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-2xl flex items-center justify-center text-5xl md:text-6xl font-black text-white shadow-2xl animate-pulse-glow"></div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span id="numberBadge" class="text-xs font-bold px-2.5 py-1 rounded-full text-white bg-zinc-800">Número de Expressão</span>
+                <span id="planetBadge" class="text-xs themed-text-2 px-2.5 py-1 rounded-full border themed-border"></span>
+                <span id="elementBadge" class="text-xs themed-text-2 px-2.5 py-1 rounded-full border themed-border"></span>
+              </div>
+              <h2 id="numberTitle" class="text-2xl md:text-3xl font-extrabold themed-text mb-1"></h2>
+              <p id="nameLabel" class="text-sm themed-text-3 mb-4"></p>
+              <p id="numberDesc" class="themed-text-2 text-sm md:text-base leading-relaxed mb-4"></p>
+              <div id="keywordPills" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t themed-border grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Cores da Sorte</p>
+              <p id="luckyColors" class="text-sm font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Dias da Sorte</p>
+              <p id="luckyDays" class="text-sm font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Compatível Com</p>
+              <p id="compatible" class="text-sm font-medium themed-text"></p>
+            </div>
+            <div>
+              <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Soma Chaldeu</p>
+              <p id="chaldeanSum" class="text-sm font-medium themed-text font-mono"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="result-card themed-card rounded-2xl p-6 print-section">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-xl">🪞</div>
+            <div>
+              <h3 class="font-bold themed-text">Traços de Personalidade</h3>
+              <p class="text-xs themed-text-3">Como os outros percebem você</p>
+            </div>
+          </div>
+          <ul id="personalityTraits" class="space-y-3"></ul>
+        </div>
+
+        <div class="result-card themed-card rounded-2xl p-6 print-section">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-xl">🔢</div>
+            <div>
+              <h3 class="font-bold themed-text">Análise das Letras</h3>
+              <p class="text-xs themed-text-3">Valor Chaldeu por letra</p>
+            </div>
+          </div>
+          <div id="letterBreakdown" class="flex flex-wrap gap-2"></div>
+          <div class="mt-4 pt-4 border-t themed-border">
+            <p class="text-xs themed-text-3">Cálculo completo</p>
+            <p id="breakdownFormula" class="text-sm themed-text font-mono mt-1 break-all"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="compatibilityCard" class="hidden result-card themed-card rounded-2xl p-6 md:p-8 print-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-xl">💞</div>
+          <div>
+            <h3 class="font-bold themed-text">Pontuação de Compatibilidade</h3>
+            <p class="text-xs themed-text-3">Harmonia numerológica entre dois nomes</p>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-8 mb-6">
+          <div class="text-center shrink-0">
+            <p id="name1Label" class="text-xs themed-text-3 uppercase tracking-wider mb-2"></p>
+            <div id="name1NumBadge" class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black text-white mx-auto shadow-xl"></div>
+          </div>
+          <div class="flex-1 w-full">
+            <div class="flex justify-between mb-2">
+              <span class="text-xs themed-text-3">Compatibilidade</span>
+              <span id="compatPercent" class="text-sm font-bold gradient-text"></span>
+            </div>
+            <div class="relative h-3 rounded-full overflow-hidden bg-[var(--bg-secondary)]">
+              <div id="compatBar" class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 transition-all duration-1000 ease-out" style="width:0%"></div>
+            </div>
+            <div class="mt-3 grid grid-cols-3 gap-1 text-center">
+              <div class="text-xs themed-text-3 py-1 rounded bg-red-500/10">0–50%<br/><span class="text-red-400">Desafiador</span></div>
+              <div class="text-xs themed-text-3 py-1 rounded bg-yellow-500/10">51–75%<br/><span class="text-yellow-400">Moderada</span></div>
+              <div class="text-xs themed-text-3 py-1 rounded bg-green-500/10">76–100%<br/><span class="text-green-400">Excelente</span></div>
+            </div>
+          </div>
+          <div class="text-center shrink-0">
+            <p id="name2Label" class="text-xs themed-text-3 uppercase tracking-wider mb-2"></p>
+            <div id="name2NumBadge" class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black text-white mx-auto shadow-xl"></div>
+          </div>
+        </div>
+        <p id="compatibilityDesc" class="themed-text-2 text-sm leading-relaxed p-4 rounded-xl bg-[var(--bg-secondary)]"></p>
+      </div>
+
+      <div class="result-card themed-card rounded-2xl p-6 print-section">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-xl">❤️‍🔥</div>
+            <div>
+              <h3 class="font-bold themed-text">Descubra Seu Impulso da Alma</h3>
+              <p class="text-xs themed-text-3">Encontre as motivações mais profundas do seu coração a partir das vogais do seu nome</p>
+            </div>
+          </div>
+          <a href="/pt/soul-urge-calculator" class="no-print shrink-0 ml-4 px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-pink-500 text-white text-sm font-semibold hover:scale-105 transition-all duration-200">
+            Calcular →
+          </a>
+        </div>
+      </div>
+
+      <div class="result-card themed-card rounded-2xl p-6 print-section">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <img src="/numerology-wheel.png" alt="Roda de numerologia sagrada" class="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover opacity-80 animate-spin-slow shrink-0" style="animation-duration: 30s;" />
+          <div>
+            <h3 class="text-lg font-bold themed-text mb-2">O Antigo Sistema Chaldeu</h3>
+            <p class="themed-text-2 text-sm leading-relaxed">Sua leitura usa o autêntico sistema de numerologia Chaldeu, originário da antiga Babilônia. Cada letra ressoa com uma frequência planetária específica. Os caldeus acreditavam que os nomes não eram arbitrários — eles eram contratos cósmicos, vibrando em harmonia com o universo.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <script>
+    const chaldean: Record<string, number> = {
+      a:1,b:2,c:3,d:4,e:5,f:8,g:3,h:5,i:1,j:1,k:2,l:3,m:4,
+      n:5,o:7,p:8,q:1,r:2,s:3,t:4,u:6,v:6,w:6,x:5,y:1,z:7
+    };
+
+    const numberData: Record<number, any> = {
+      1: { title: "O Líder", planet: "☀️ Sol", element: "Fogo", color: "#f59e0b", emoji: "👑", keywords: ["Independente","Ambicioso","Pioneiro","Original","Corajoso"], luckyColors: "Ouro, Laranja, Amarelo", luckyDays: "Domingo, Segunda", compatible: [1, 3, 5], description: "Você carrega a energia do Sol — brilhante, autoritária e magnética." },
+      2: { title: "O Diplomata", planet: "🌙 Lua", element: "Água", color: "#06b6d4", emoji: "🕊️", keywords: ["Empático","Cooperativo","Intuitivo","Paciente","Diplomático"], luckyColors: "Prata, Branco, Creme", luckyDays: "Segunda, Sexta", compatible: [2, 4, 6], description: "Governado pela Lua, você sente tudo profundamente. Seu nome carrega a vibração da harmonia." },
+      3: { title: "O Criador", planet: "♃ Júpiter", element: "Ar", color: "#f97316", emoji: "🎨", keywords: ["Criativo","Expressivo","Alegre","Social","Otimista"], luckyColors: "Amarelo, Roxo, Rosa", luckyDays: "Quinta, Quarta", compatible: [1, 3, 9], description: "Júpiter te abençoa com criatividade sem limites e um entusiasmo contagiante pela vida." },
+      4: { title: "O Construtor", planet: "♄ Saturno", element: "Terra", color: "#6366f1", emoji: "🏛️", keywords: ["Disciplinado","Confiável","Metódico","Leal","Prático"], luckyColors: "Azul Marinho, Verde Escuro, Marrom", luckyDays: "Sábado, Domingo", compatible: [2, 4, 8], description: "Saturno, o grande mestre de tarefas, governa seu nome. Você constrói impérios tijolo por tijolo." },
+      5: { title: "O Explorador", planet: "☿ Mercúrio", element: "Ar", color: "#10b981", emoji: "🌍", keywords: ["Aventureiro","Adaptável","Carismático","Curioso","Espírito Livre"], luckyColors: "Turquesa, Prata, Verde", luckyDays: "Quarta, Sexta", compatible: [1, 3, 5], description: "O astuto Mercúrio rege seu nome, enchendo-o com a energia de viagens e curiosidade perpétua." },
+      6: { title: "O Cuidador", planet: "♀ Vênus", element: "Terra", color: "#ec4899", emoji: "💗", keywords: ["Compassivo","Protetor","Artístico","Generoso","Responsável"], luckyColors: "Rosa, Turquesa, Lavanda", luckyDays: "Sexta, Quarta", compatible: [2, 4, 6], description: "Vênus abençoa seu nome. O número 6 carrega a mais alta vibração de amor — incondicional e nutridor." },
+      7: { title: "O Buscador", planet: "♆ Netuno", element: "Água", color: "#8b5cf6", emoji: "🔮", keywords: ["Analítico","Sábio","Espiritual","Introspectivo","Místico"], luckyColors: "Roxo Escuro, Índigo, Cinza", luckyDays: "Sábado, Domingo", compatible: [2, 7, 9], description: "O místico Netuno governa seu nome, atraindo você para os mistérios mais profundos da existência." },
+      8: { title: "O Executivo", planet: "♄ Saturno", element: "Terra", color: "#64748b", emoji: "💎", keywords: ["Ambicioso","Autoritário","Focado em Metas","Resiliente","Estratégico"], luckyColors: "Preto, Cinza Escuro, Azul Escuro", luckyDays: "Sábado, Quinta", compatible: [2, 4, 8], description: "A energia cármica de Saturno infunde seu nome com imenso poder e ambição." },
+      9: { title: "O Humanitário", planet: "♂ Marte", element: "Fogo", color: "#ef4444", emoji: "🌟", keywords: ["Compassivo","Sábio","Idealista","Altruísta","Criativo"], luckyColors: "Vermelho, Ouro, Carmesim", luckyDays: "Terça, Quinta", compatible: [3, 6, 9], description: "Marte dinâmico dá ao seu nome a energia ardente da compaixão e do amor universal." },
+      11: { title: "O Visionário", planet: "🌙 Lua + ☀️ Sol", element: "Todos", color: "#f59e0b", emoji: "✨", keywords: ["Inspirador","Intuitivo","Idealista","Sensível","Iluminado"], luckyColors: "Prata, Ouro, Branco", luckyDays: "Domingo, Segunda", compatible: [2, 11, 22], description: "Você carrega um Número Mestre. Seu nome ressoa com extraordinária intuição espiritual." },
+      22: { title: "O Mestre Construtor", planet: "♀ Vênus + ♄ Saturno", element: "Terra", color: "#8b5cf6", emoji: "🏗️", keywords: ["Visionário","Disciplinado","Magistral","Ambicioso","Prático"], luckyColors: "Roxo, Ouro, Tons de Terra", luckyDays: "Sábado, Sexta", compatible: [4, 8, 22], description: "O 22 é o número mais poderoso da numerologia. Seu nome carrega a vibração do Mestre Construtor." },
+      33: { title: "O Mestre Professor", planet: "♃ Júpiter + ♀ Vênus", element: "Todos", color: "#10b981", emoji: "🕊️", keywords: ["Nutridor","Amoroso","Inspirador","Curador","Dedicado"], luckyColors: "Ouro, Verde Claro, Branco", luckyDays: "Quinta, Sexta", compatible: [6, 11, 33], description: "O mais raro de todos os Números Mestres. Sua missão é elevar a humanidade através da compaixão." },
+    };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33)
+        n = String(n).split('').reduce((s,d) => s + parseInt(d), 0);
+      return n;
+    }
+
+    function nameToNumber(name: string) {
+      const clean = name.toLowerCase().replace(/[^a-z]/g,'');
+      let total = 0; let parts: string[] = []; let letters: {l:string,v:number}[] = [];
+      for (const c of clean) {
+        const v = chaldean[c] ?? 0;
+        if (v) { total += v; parts.push(`${v}`); letters.push({l:c.toUpperCase(),v}); }
+      }
+      return { total: reduce(total), rawSum: total, parts, letters };
+    }
+
+    const compat: Record<string, number> = {
+      '1-1':70,'1-2':60,'1-3':80,'1-4':75,'1-5':65,'1-6':55,'1-7':70,'1-8':85,'1-9':60,
+      '2-3':65,'2-4':80,'2-5':50,'2-6':90,'2-7':75,'2-8':55,'2-9':70,
+      '3-4':60,'3-5':85,'3-6':70,'3-7':65,'3-8':60,'3-9':80,
+      '4-5':55,'4-6':85,'4-7':70,'4-8':75,'4-9':65,
+      '5-6':60,'5-7':70,'5-8':65,'5-9':75,
+      '6-7':65,'6-8':70,'6-9':90,'7-8':60,'7-9':70,'8-9':65,
+    };
+
+    function getCompat(n1: number, n2: number): { score: number; desc: string } {
+      const key = [n1,n2].sort().join('-');
+      const score = compat[key] ?? 65;
+      let desc = '';
+      if (score >= 85) desc = `🌟 Excelente compatibilidade! Estas vibrações criam uma parceria poderosa e harmoniosa.`;
+      else if (score >= 70) desc = `✨ Boa compatibilidade. Estes nomes complementam-se bem e a relação cresce forte.`;
+      else if (score >= 55) desc = `⚡ Compatibilidade moderada. Estas vibrações criam tensão dinâmica — desafiadora, mas que promove o crescimento.`;
+      else desc = `🔥 Compatibilidade desafiadora. Estas energias podem entrar em conflito. Requer paciência e compreensão mútua.`;
+      return { score, desc };
+    }
+
+    document.getElementById('nameHubForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const primaryInput = (document.getElementById('primaryName') as HTMLInputElement).value.trim();
+      const partnerInput = (document.getElementById('partnerName') as HTMLInputElement).value.trim();
+      if (!primaryInput) return;
+
+      const { total: num1, rawSum, parts, letters } = nameToNumber(primaryInput);
+      const data = numberData[num1] ?? numberData[9];
+
+      const bigDisplay = document.getElementById('bigNumberDisplay') as HTMLElement;
+      bigDisplay.textContent = `${data.emoji} ${num1}`;
+      bigDisplay.style.backgroundColor = data.color;
+
+      const banner = document.getElementById('numberCardBanner') as HTMLElement;
+      banner.style.background = `linear-gradient(90deg, ${data.color}, transparent)`;
+
+      (document.getElementById('numberTitle') as HTMLElement).textContent = `${num1} · ${data.title}`;
+      (document.getElementById('nameLabel') as HTMLElement).textContent = `Análise para: ${primaryInput}`;
+      (document.getElementById('numberDesc') as HTMLElement).textContent = data.description;
+
+      const planetBadge = document.getElementById('planetBadge') as HTMLElement;
+      planetBadge.textContent = data.planet;
+      const elementBadge = document.getElementById('elementBadge') as HTMLElement;
+      elementBadge.textContent = `Elemento ${data.element}`;
+
+      const keywordPills = document.getElementById('keywordPills') as HTMLElement;
+      keywordPills.innerHTML = data.keywords.map((k: string) =>
+        `<span class="px-3 py-1 text-xs font-semibold rounded-full border themed-border themed-text-2">${k}</span>`
+      ).join('');
+
+      (document.getElementById('luckyColors') as HTMLElement).textContent = data.luckyColors;
+      (document.getElementById('luckyDays') as HTMLElement).textContent = data.luckyDays;
+      (document.getElementById('compatible') as HTMLElement).textContent = `Números ${data.compatible.join(', ')}`;
+      (document.getElementById('chaldeanSum') as HTMLElement).textContent = `${parts.join(' + ')} = ${rawSum} → ${num1}`;
+
+      const traitEmojis = ['💡','🎯','🧭','⚡','🌱'];
+      const traitsEl = document.getElementById('personalityTraits') as HTMLElement;
+      traitsEl.innerHTML = data.keywords.map((k: string, i: number) =>
+        `<li class="flex items-center gap-3 p-3 rounded-xl bg-[var(--bg-secondary)] themed-text text-sm font-medium">
+          <span class="text-lg">${traitEmojis[i % traitEmojis.length]}</span>
+          ${k}
+        </li>`
+      ).join('');
+
+      const letterEl = document.getElementById('letterBreakdown') as HTMLElement;
+      letterEl.innerHTML = letters.map(({ l, v }) =>
+        `<div class="flex flex-col items-center p-2 rounded-lg bg-[var(--bg-secondary)] min-w-[2.5rem]">
+          <span class="text-sm font-bold themed-text">${l}</span>
+          <span class="text-xs themed-text-3">${v}</span>
+        </div>`
+      ).join('');
+      (document.getElementById('breakdownFormula') as HTMLElement).textContent = `${parts.join(' + ')} = ${rawSum} → reduzido para ${num1}`;
+
+      const compatCard = document.getElementById('compatibilityCard') as HTMLElement;
+      if (partnerInput) {
+        const { total: num2 } = nameToNumber(partnerInput);
+        const { score, desc } = getCompat(num1, num2);
+        const data2 = numberData[num2] ?? numberData[9];
+
+        (document.getElementById('name1Label') as HTMLElement).textContent = primaryInput.split(' ')[0];
+        const n1Badge = document.getElementById('name1NumBadge') as HTMLElement;
+        n1Badge.textContent = num1.toString();
+        n1Badge.style.backgroundColor = data.color;
+
+        (document.getElementById('name2Label') as HTMLElement).textContent = partnerInput.split(' ')[0];
+        const n2Badge = document.getElementById('name2NumBadge') as HTMLElement;
+        n2Badge.textContent = num2.toString();
+        n2Badge.style.backgroundColor = data2.color;
+
+        (document.getElementById('compatPercent') as HTMLElement).textContent = `${score}% de Combinação`;
+        (document.getElementById('compatibilityDesc') as HTMLElement).textContent = desc;
+
+        setTimeout(() => {
+          (document.getElementById('compatBar') as HTMLElement).style.width = score + '%';
+        }, 150);
+        compatCard.classList.remove('hidden');
+      } else {
+        compatCard.classList.add('hidden');
+      }
+
+      const resultsSection = document.getElementById('resultsSection') as HTMLElement;
+      resultsSection.classList.remove('hidden');
+      setTimeout(() => resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    });
+  </script>
+</Layout>

@@ -7,12 +7,16 @@ interface Props {
 	title: string;
 	description?: string;
 	canonical?: string;
+	lang?: string;
+	ogLocale?: string;
 }
 
 const {
 	title,
 	description = 'Free Chaldean name numerology calculator - find your name number, life path, lucky numbers, soul urge, and compatibility score instantly.',
 	canonical,
+	lang = 'en',
+	ogLocale = 'en_US',
 } = Astro.props;
 const rawPath = Astro.url.pathname;
 const cleanPath = rawPath.length > 1 ? rawPath.replace(/\/$/, '') : rawPath;
@@ -22,12 +26,13 @@ const hasAnalytics = /^G-[A-Z0-9]+$/i.test(GA_ID);
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang={lang} data-theme="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="robots" content="index, follow" />
 		<link rel="canonical" href={canonicalURL} />
+		<meta property="og:locale" content={ogLocale} />
 		<meta property="og:title" content={`${title} | Name Numerology Hub`} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
@@ -73,6 +78,7 @@ const hasAnalytics = /^G-[A-Z0-9]+$/i.test(GA_ID);
 			</>
 		)}
 
+		<slot name="head" />
 	</head>
 	<body class="themed-bg themed-text font-sans antialiased min-h-screen flex flex-col" style="transition: background-color 0.3s ease, color 0.3s ease;">
 		<Header />
