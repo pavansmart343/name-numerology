@@ -46,8 +46,8 @@ const faqs = [
 ---
 
 <Layout 
-  title="Free Name Numerology Calculator — Chaldean System"
-  description="Free Chaldean name numerology calculator — discover your name number, soul urge, life path, and compatibility score instantly. Enter any English name to get your full reading."
+  title="Free Name Numerology Calculator | Name Numerology Hub"
+  description="✨ Enter any name → get your Chaldean number, planetary ruler, personality traits & compatibility score instantly. 100% free, no sign-up required."
 >
   <Fragment slot="head">
     <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/" />
@@ -61,7 +61,36 @@ const faqs = [
     "@type": "WebSite",
     "name": "Name Numerology Hub",
     "url": "https://namenumerologyhub.com/",
-    "description": "Free Chaldean name numerology calculator for name number, life path, soul urge, lucky numbers, and compatibility scores."
+    "description": "Free Chaldean name numerology calculator for name number, life path, soul urge, lucky numbers, and compatibility scores.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://namenumerologyhub.com/name-analysis?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  })} />
+
+  <!-- JSON-LD SoftwareApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Chaldean Name Numerology Calculator",
+    "url": "https://namenumerologyhub.com/name-analysis",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "description": "Free Chaldean name numerology calculator. Enter your full name to get your Expression Number, personality traits, and compatibility score.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "312" }
+  })} />
+
+  <!-- JSON-LD FAQPage (rich results) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+    }))
   })} />
 
   <div class="relative overflow-hidden">

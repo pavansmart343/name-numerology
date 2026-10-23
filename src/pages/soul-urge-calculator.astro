@@ -2,12 +2,32 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Free Soul Urge Number Calculator — Chaldean Numerology" description="Free Soul Urge number calculator using the Chaldean system. Enter your full birth name to discover your heart's desire number — the vowels reveal your deepest motivations and hidden drives.">
+<Layout title="Soul Urge Number Calculator — Free | Name Numerology Hub" description="❤️‍🔥 Free Soul Urge number calculator. Enter your birth name → discover your heart's desire number, hidden motivations & deepest cravings. Chaldean system.">
   <Fragment slot="head">
     <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/soul-urge-calculator" />
     <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/soul-urge-calculator" />
     <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/soul-urge-calculator" />
   </Fragment>
+  <!-- JSON-LD BreadcrumbList -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://namenumerologyhub.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Soul Urge Calculator", "item": "https://namenumerologyhub.com/soul-urge-calculator" }
+    ]
+  })} />
+  <!-- JSON-LD FAQPage -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the difference between a Soul Urge number and a Soul Plan?", "acceptedAnswer": { "@type": "Answer", "text": "A Soul Urge number is derived from the vowels in your birth name using Chaldean or Pythagorean numerology. A Soul Plan is a separate numerological framework using a different calculation method. This calculator provides Soul Urge numbers only." } },
+      { "@type": "Question", "name": "Should I use my birth name or the name I go by for Soul Urge?", "acceptedAnswer": { "@type": "Answer", "text": "For the most traditionally accurate Soul Urge reading, use the name on your birth certificate — even if you no longer use it. The birth name is considered your original energetic blueprint." } },
+      { "@type": "Question", "name": "Is Y always counted as a vowel in Soul Urge numerology?", "acceptedAnswer": { "@type": "Answer", "text": "In some traditions, Y is counted as a vowel only when it functions phonetically. This calculator treats Y consistently as a vowel in all cases." } },
+      { "@type": "Question", "name": "Can my Soul Urge number change if I change my name?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. A legal name change you use consistently will gradually shift the numerological energy, including the Soul Urge derived from that name. However, many numerologists believe your birth name Soul Urge remains a permanent underlying influence." } }
+    ]
+  })} />
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
 
     <div class="mb-10 text-center no-print">

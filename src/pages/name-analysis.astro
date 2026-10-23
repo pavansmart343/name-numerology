@@ -19,15 +19,24 @@ const numberData = {
 ---
 
 <Layout
-  title="Free Name Numerology Calculator — Chaldean Name Number & Compatibility"
-  description="Free Chaldean name numerology calculator — get your name number, personality traits, and compatibility score instantly. Enter any English name. No sign-up required."
+  title="Name Numerology Calculator — Chaldean | Name Numerology Hub"
+  description="🔢 Free Chaldean name numerology calculator. Enter your name → Expression Number, personality traits, compatibility score & planetary ruler. No sign-up needed."
 >
   <Fragment slot="head">
     <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/name-analysis" />
     <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/name-analysis" />
     <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/name-analysis" />
   </Fragment>
-  <!-- JSON-LD WebApplication schema for the name calculator tool -->
+  <!-- JSON-LD BreadcrumbList -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://namenumerologyhub.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Name Analysis", "item": "https://namenumerologyhub.com/name-analysis" }
+    ]
+  })} />
+  <!-- JSON-LD WebApplication -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -46,6 +55,19 @@ const numberData = {
       "name": "Name Numerology Hub",
       "url": "https://namenumerologyhub.com/"
     }
+  })} />
+  <!-- JSON-LD HowTo -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Your Name Numerology Number (Chaldean)",
+    "description": "Use the free Chaldean name numerology calculator to find your Expression Number, personality traits, and compatibility score.",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Enter your full birth name", "text": "Type your first, middle, and last name exactly as on your birth certificate for the most accurate reading." },
+      { "@type": "HowToStep", "position": 2, "name": "Optionally add a partner name", "text": "Add a second name to get a numerological compatibility score between two names." },
+      { "@type": "HowToStep", "position": 3, "name": "Click Generate Full Report", "text": "The Chaldean calculator assigns each letter a phonetic value, sums them, and reduces to a single digit or Master Number (11, 22, 33)." },
+      { "@type": "HowToStep", "position": 4, "name": "Read your Expression Number", "text": "Your result shows your name number, planetary ruler, personality traits, lucky colors, lucky days, and compatible numbers." }
+    ]
   })} />
 
   <!-- Print header (only visible when printing) -->

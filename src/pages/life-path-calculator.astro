@@ -2,12 +2,32 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Free Life Path Number Calculator — Find Your Life Path Number" description="Free life path number calculator. Enter your date of birth to instantly discover your life path number, its meaning, personality traits, strengths, and life lessons.">
+<Layout title="Life Path Number Calculator — Free | Name Numerology Hub" description="🌱 Free life path number calculator. Enter your birth date → instantly discover your life path number, meaning, personality traits & life lessons.">
   <Fragment slot="head">
     <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/life-path-calculator" />
     <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/life-path-calculator" />
     <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/life-path-calculator" />
   </Fragment>
+  <!-- JSON-LD BreadcrumbList -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://namenumerologyhub.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Life Path Calculator", "item": "https://namenumerologyhub.com/life-path-calculator" }
+    ]
+  })} />
+  <!-- JSON-LD FAQPage -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Can two people have the same Life Path Number but very different lives?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Life Path Number describes broad themes and tendencies, not specific events. Two people with Life Path 8 might both be driven toward achievement, but one might pursue business and another art. Personal choices, environment, and other numerological factors all shape how the Life Path plays out in practice." } },
+      { "@type": "Question", "name": "What is a Master Number and why doesn't it get reduced?", "acceptedAnswer": { "@type": "Answer", "text": "Master Numbers (11, 22, 33) are considered to carry amplified potential and significance. In numerology tradition, reducing them to 2, 4, or 6 would lose this elevated meaning. However, Master Numbers also come with intensified challenges." } },
+      { "@type": "Question", "name": "Is the Life Path Number the same in all numerology systems?", "acceptedAnswer": { "@type": "Answer", "text": "Mostly, yes. Because Life Path is calculated from digits in the birth date rather than letter-to-number assignments, it is not system-dependent in the way name calculations are. The reduction method is the same whether you use Chaldean or Pythagorean numerology." } },
+      { "@type": "Question", "name": "What is the luckiest Life Path Number?", "acceptedAnswer": { "@type": "Answer", "text": "No Life Path Number is universally lucky. However, numbers 3, 6, and 9 are often considered naturally fortunate. Master Numbers 11 and 22 carry exceptional potential but also significant pressure." } }
+    ]
+  })} />
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
     <!-- Header -->
     <div class="mb-10 text-center no-print">
