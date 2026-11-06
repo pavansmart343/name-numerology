@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import HubDirectory from '../../components/HubDirectory.astro';
 
 // Comprehensive numerology data translated to Portuguese
 const numberData = {
@@ -141,28 +142,57 @@ const faqs = [
     </div>
   </div>
 
-  <!-- Core Tools -->
-  <div id="core-tools" class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20">
-    <div class="mb-12">
-      <h2 class="text-3xl font-bold tracking-tight text-white">Ferramentas Principais</h2>
-      <p class="mt-2 text-zinc-400">Mergulhe fundo em aspectos específicos do seu perfil numerológico.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <a href="/pt/life-path-calculator" class="group block bg-zinc-900/50 border border-zinc-800 backdrop-blur-md rounded-2xl p-6 hover:border-purple-500/50 hover:bg-zinc-800/50 transition-all duration-300">
-        <div class="h-12 w-12 rounded-lg bg-zinc-800 flex items-center justify-center mb-6 text-2xl group-hover:bg-purple-500/20 group-hover:text-purple-400 transition-colors">🌱</div>
-        <h3 class="text-xl font-semibold text-white mb-2">Caminho de Vida</h3>
-        <p class="text-zinc-400 text-sm">Calcule o seu número de caminho de vida com base na sua data de nascimento para revelar a jornada da sua vida.</p>
-      </a>
-      <a href="/pt/soul-urge-calculator" class="group block bg-zinc-900/50 border border-zinc-800 backdrop-blur-md rounded-2xl p-6 hover:border-purple-500/50 hover:bg-zinc-800/50 transition-all duration-300">
-        <div class="h-12 w-12 rounded-lg bg-zinc-800 flex items-center justify-center mb-6 text-2xl group-hover:bg-purple-500/20 group-hover:text-purple-400 transition-colors">❤️</div>
-        <h3 class="text-xl font-semibold text-white mb-2">Impulso da Alma</h3>
-        <p class="text-zinc-400 text-sm">Encontre o número do desejo do seu coração usando as vogais do seu nome para entender suas verdadeiras motivações.</p>
-      </a>
-      <a href="/pt/name-analysis" class="group block bg-zinc-900/50 border border-zinc-800 backdrop-blur-md rounded-2xl p-6 hover:border-cyan-500/50 hover:bg-zinc-800/50 transition-all duration-300">
-        <div class="h-12 w-12 rounded-lg bg-zinc-800 flex items-center justify-center mb-6 text-2xl group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors">🔮</div>
-        <h3 class="text-xl font-semibold text-white mb-2">Análise do Nome</h3>
-        <p class="text-zinc-400 text-sm">Obtenha um relatório completo da numerologia do seu nome e perfil.</p>
-      </a>
+  <!-- Core Tools Hub Directory -->
+  <div id="core-tools">
+    <HubDirectory isPt={true} currentPath="/pt/" />
+  </div>
+
+  <!-- Master Numbers Deep Dive (PT) -->
+  <div id="master-numbers" class="py-20 border-b themed-border bg-[var(--bg-primary)]">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest bg-violet-500/10 text-violet-400 border border-violet-500/20">
+          Vibrações Raras
+        </span>
+        <h2 class="text-3xl font-extrabold themed-text tracking-tight mt-3">
+          O Poder dos <span class="gradient-text">Números Mestres</span> (11, 22, 33)
+        </h2>
+        <p class="mt-3 themed-text-2 text-base">
+          Na numerologia Chaldeu e Pitagórica, os números de dois dígitos iguais 11, 22 e 33 nunca são reduzidos. Eles carregam uma frequência espiritual superior, grande potencial e missões de vida elevadas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="themed-card rounded-2xl p-6 border border-amber-500/20 bg-amber-950/10 hover:border-amber-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-black bg-amber-500/20 text-amber-400 mb-4">11</div>
+          <h3 class="text-xl font-bold themed-text mb-2">O Visionário e Iluminador</h3>
+          <p class="text-xs text-amber-300/80 mb-3 font-semibold">Energia Sol + Lua · Intuição Superior</p>
+          <p class="text-sm themed-text-2 leading-relaxed mb-4">
+            O Número Mestre 11 representa inspiração, intuição aguçada e verdade espiritual. Portadores do 11 agem como faróis, guiando e elevando as pessoas ao seu redor.
+          </p>
+          <a href="/pt/name-analysis" class="text-xs font-bold text-amber-400 hover:text-amber-300">Testar Nome Para 11 →</a>
+        </div>
+
+        <div class="themed-card rounded-2xl p-6 border border-purple-500/20 bg-purple-950/10 hover:border-purple-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-black bg-purple-500/20 text-purple-400 mb-4">22</div>
+          <h3 class="text-xl font-bold themed-text mb-2">O Mestre Construtor</h3>
+          <p class="text-xs text-purple-300/80 mb-3 font-semibold">Energia Vênus + Saturno · Manifestação Concreta</p>
+          <p class="text-sm themed-text-2 leading-relaxed mb-4">
+            Considerado o número de maior realização, o 22 transforma grandes ideais e visões em projetos duradouros, organizações e legados tangíveis para a sociedade.
+          </p>
+          <a href="/pt/life-path-calculator" class="text-xs font-bold text-purple-400 hover:text-purple-300">Ver Caminho de Vida 22 →</a>
+        </div>
+
+        <div class="themed-card rounded-2xl p-6 border border-emerald-500/20 bg-emerald-950/10 hover:border-emerald-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-black bg-emerald-500/20 text-emerald-400 mb-4">33</div>
+          <h3 class="text-xl font-bold themed-text mb-2">O Mestre Professor</h3>
+          <p class="text-xs text-emerald-300/80 mb-3 font-semibold">Energia Júpiter + Vênus · Amor Incondicional</p>
+          <p class="text-sm themed-text-2 leading-relaxed mb-4">
+            A mais rara das vibrações, o 33 simboliza serviço compassivo, cura espiritual e altruísmo puro. Sua missão é elevar a consciência coletiva através da sabedoria.
+          </p>
+          <a href="/pt/soul-urge-calculator" class="text-xs font-bold text-emerald-400 hover:text-emerald-300">Descobrir Impulso da Alma 33 →</a>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HubDirectory from '../components/HubDirectory.astro';
 
 // Comprehensive numerology data
 const numberData = {
@@ -364,6 +365,8 @@ const numberData = {
       </article>
     </div>
   </section>
+
+  <HubDirectory isPt={false} currentPath="/name-analysis" />
 
   <script>
     const chaldean: Record<string, number> = {

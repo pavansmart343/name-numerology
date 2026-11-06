@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HubDirectory from '../components/HubDirectory.astro';
 
 const faqs = [
   {
@@ -118,28 +119,57 @@ const faqs = [
     </div>
   </div>
 
-  <!-- Core Tools -->
-  <div id="core-tools" class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20">
-    <div class="mb-12">
-      <h2 class="text-3xl font-bold tracking-tight text-white">The Core Tools</h2>
-      <p class="mt-2 text-zinc-400">Deep dive into specific aspects of your numerology profile.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <a href="/life-path-calculator" class="group block bg-zinc-900/50 border border-zinc-800 backdrop-blur-md rounded-2xl p-6 hover:border-purple-500/50 hover:bg-zinc-800/50 transition-all duration-300">
-        <div class="h-12 w-12 rounded-lg bg-zinc-800 flex items-center justify-center mb-6 text-2xl group-hover:bg-purple-500/20 group-hover:text-purple-400 transition-colors">🌱</div>
-        <h3 class="text-xl font-semibold text-white mb-2">Life Path Calculator</h3>
-        <p class="text-zinc-400 text-sm">Calculate your life path number based on your birth date to reveal your life's journey.</p>
-      </a>
-      <a href="/lucky-number-finder" class="group block bg-zinc-900/50 border border-zinc-800 backdrop-blur-md rounded-2xl p-6 hover:border-cyan-500/50 hover:bg-zinc-800/50 transition-all duration-300">
-        <div class="h-12 w-12 rounded-lg bg-zinc-800 flex items-center justify-center mb-6 text-2xl group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors">🍀</div>
-        <h3 class="text-xl font-semibold text-white mb-2">Lucky Number Finder</h3>
-        <p class="text-zinc-400 text-sm">Discover numbers that resonate harmoniously with your personal vibrations.</p>
-      </a>
-      <a href="/soul-urge-calculator" class="group block bg-zinc-900/50 border border-zinc-800 backdrop-blur-md rounded-2xl p-6 hover:border-purple-500/50 hover:bg-zinc-800/50 transition-all duration-300">
-        <div class="h-12 w-12 rounded-lg bg-zinc-800 flex items-center justify-center mb-6 text-2xl group-hover:bg-purple-500/20 group-hover:text-purple-400 transition-colors">❤️</div>
-        <h3 class="text-xl font-semibold text-white mb-2">Soul Urge Calculator</h3>
-        <p class="text-zinc-400 text-sm">Find your heart's desire number using the vowels in your name to understand true motivations.</p>
-      </a>
+  <!-- Core Tools Hub Directory -->
+  <div id="core-tools">
+    <HubDirectory isPt={false} currentPath="/" />
+  </div>
+
+  <!-- Master Numbers Deep Dive -->
+  <div id="master-numbers" class="py-20 border-b themed-border bg-[var(--bg-primary)]">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest bg-violet-500/10 text-violet-400 border border-violet-500/20">
+          Rare Vibrations
+        </span>
+        <h2 class="text-3xl font-extrabold themed-text tracking-tight mt-3">
+          The Power of <span class="gradient-text">Master Numbers</span> (11, 22, 33)
+        </h2>
+        <p class="mt-3 themed-text-2 text-base">
+          In Chaldean and Pythagorean numerology, the double-digit numbers 11, 22, and 33 are never reduced. They carry higher spiritual frequency, intense potential, and profound life missions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="themed-card rounded-2xl p-6 border border-amber-500/20 bg-amber-950/10 hover:border-amber-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-black bg-amber-500/20 text-amber-400 mb-4">11</div>
+          <h3 class="text-xl font-bold themed-text mb-2">The Visionary</h3>
+          <p class="text-xs text-amber-300/80 mb-3 font-semibold">Sun + Moon Energy · Spiritual Illumination</p>
+          <p class="text-sm themed-text-2 leading-relaxed mb-4">
+            Master Number 11 represents intuition, spiritual truth, and psychic sensitivity. Bearers of 11 act as conduits of light, inspiring communities through profound vision.
+          </p>
+          <a href="/name-analysis" class="text-xs font-bold text-amber-400 hover:text-amber-300">Test Your Name For 11 →</a>
+        </div>
+
+        <div class="themed-card rounded-2xl p-6 border border-purple-500/20 bg-purple-950/10 hover:border-purple-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-black bg-purple-500/20 text-purple-400 mb-4">22</div>
+          <h3 class="text-xl font-bold themed-text mb-2">The Master Builder</h3>
+          <p class="text-xs text-purple-300/80 mb-3 font-semibold">Venus + Saturn Energy · Legacy Manifestation</p>
+          <p class="text-sm themed-text-2 leading-relaxed mb-4">
+            Regarded as the most potent number in numerology, 22 turns visionary ideals into concrete, enduring institutions, architecture, and world-changing enterprises.
+          </p>
+          <a href="/life-path-calculator" class="text-xs font-bold text-purple-400 hover:text-purple-300">Check Life Path For 22 →</a>
+        </div>
+
+        <div class="themed-card rounded-2xl p-6 border border-emerald-500/20 bg-emerald-950/10 hover:border-emerald-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-black bg-emerald-500/20 text-emerald-400 mb-4">33</div>
+          <h3 class="text-xl font-bold themed-text mb-2">The Master Teacher</h3>
+          <p class="text-xs text-emerald-300/80 mb-3 font-semibold">Jupiter + Venus Energy · Universal Love</p>
+          <p class="text-sm themed-text-2 leading-relaxed mb-4">
+            The rarest vibration, 33 represents pure selfless devotion, spiritual healing, and emotional uplifting. It is the pinnacle of compassion and heart-centered guidance.
+          </p>
+          <a href="/soul-urge-calculator" class="text-xs font-bold text-emerald-400 hover:text-emerald-300">Discover Soul Urge 33 →</a>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import HubDirectory from '../../components/HubDirectory.astro';
 ---
 
 <Layout title="Calculadora do Caminho de Vida Gratuita — Encontre seu Caminho de Vida" description="Calculadora gratuita do número do caminho de vida. Digite sua data de nascimento para descobrir instantaneamente seu número do caminho de vida, significado, personalidade, pontos fortes e lições." lang="pt-BR" ogLocale="pt_BR">
@@ -109,6 +110,8 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  <HubDirectory isPt={true} currentPath="/pt/life-path-calculator" />
 
   <script>
     const data: Record<number, any> = {

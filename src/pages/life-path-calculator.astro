@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HubDirectory from '../components/HubDirectory.astro';
 ---
 
 <Layout title="Life Path Number Calculator — Free | Name Numerology Hub" description="🌱 Free life path number calculator. Enter your birth date → instantly discover your life path number, meaning, personality traits & life lessons.">
@@ -229,6 +230,8 @@ import Layout from '../layouts/Layout.astro';
 
     </div>
   </div>
+
+  <HubDirectory isPt={false} currentPath="/life-path-calculator" />
 
   <script>
     const data: Record<number, any> = {

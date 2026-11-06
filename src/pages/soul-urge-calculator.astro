@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HubDirectory from '../components/HubDirectory.astro';
 ---
 
 <Layout title="Soul Urge Number Calculator — Free | Name Numerology Hub" description="❤️‍🔥 Free Soul Urge number calculator. Enter your birth name → discover your heart's desire number, hidden motivations & deepest cravings. Chaldean system.">
@@ -240,6 +241,8 @@ import Layout from '../layouts/Layout.astro';
 
     </div>
   </div>
+
+  <HubDirectory isPt={false} currentPath="/soul-urge-calculator" />
 
   <script>
     const chaldeanVowels: Record<string, number> = { a:1, e:5, i:1, o:7, u:6, y:1 };

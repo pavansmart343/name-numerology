@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import HubDirectory from '../../components/HubDirectory.astro';
 
 // Comprehensive numerology data translated to Portuguese
 const numberData = {
@@ -216,6 +217,8 @@ const numberData = {
     </div>
   </div>
   
+  <HubDirectory isPt={true} currentPath="/pt/name-analysis" />
+
   <script>
     const chaldean: Record<string, number> = {
       a:1,b:2,c:3,d:4,e:5,f:8,g:3,h:5,i:1,j:1,k:2,l:3,m:4,

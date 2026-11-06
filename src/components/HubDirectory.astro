@@ -1,0 +1,116 @@
+---
+interface Props {
+  isPt?: boolean;
+  currentPath?: string;
+}
+
+const { isPt = false, currentPath = '' } = Astro.props;
+const pfx = isPt ? '/pt' : '';
+
+const tools = [
+  {
+    title: isPt ? 'Calculadora de Nome Chaldeu' : 'Chaldean Name Calculator',
+    desc: isPt ? 'Descubra a vibração sonora do seu nome, planeta regente e traços de expressão.' : 'Discover your name vibration, ruling planet, destiny archetype & expression energy.',
+    emoji: '🔮',
+    badge: isPt ? 'Mais Popular' : 'Most Popular',
+    color: 'from-purple-500/20 to-indigo-500/10 border-purple-500/30 text-purple-400',
+    href: `${pfx}/name-analysis`,
+  },
+  {
+    title: isPt ? 'Calculadora do Caminho de Vida' : 'Life Path Calculator',
+    desc: isPt ? 'Calcule seu número de nascimento para revelar o propósito principal da sua vida.' : 'Calculate your core birth number to reveal your ultimate life journey & lessons.',
+    emoji: '🌱',
+    badge: isPt ? 'Essencial' : 'Essential',
+    color: 'from-emerald-500/20 to-teal-500/10 border-emerald-500/30 text-emerald-400',
+    href: `${pfx}/life-path-calculator`,
+  },
+  {
+    title: isPt ? 'Buscador de Números da Sorte' : 'Lucky Number Finder',
+    desc: isPt ? 'Encontre seus números, cores e dias mais harmônicos com base no seu aniversário.' : 'Find the numbers, colors, and lucky days that resonate harmoniously with you.',
+    emoji: '🍀',
+    badge: isPt ? 'Prático' : 'Daily Luck',
+    color: 'from-cyan-500/20 to-blue-500/10 border-cyan-500/30 text-cyan-400',
+    href: `${pfx}/lucky-number-finder`,
+  },
+  {
+    title: isPt ? 'Calculadora do Impulso da Alma' : 'Soul Urge Calculator',
+    desc: isPt ? 'Revele os desejos profundos e motivações secretas usando as vogais do seu nome.' : "Uncover your soul's deepest longings and hidden desires through your vowels.",
+    emoji: '❤️',
+    badge: isPt ? 'Profundo' : "Heart's Desire",
+    color: 'from-pink-500/20 to-rose-500/10 border-pink-500/30 text-pink-400',
+    href: `${pfx}/soul-urge-calculator`,
+  },
+  {
+    title: isPt ? 'Compatibilidade Amorosa' : 'Numerology Compatibility',
+    desc: isPt ? 'Compare dois nomes ou caminhos de vida para testar a harmonia no amor e trabalho.' : 'Compare two names or Life Path numbers to uncover relationship harmony & synergy.',
+    emoji: '✨',
+    badge: isPt ? 'Novo' : 'New',
+    color: 'from-amber-500/20 to-orange-500/10 border-amber-500/30 text-amber-400',
+    href: `${pfx}/compatibility-calculator`,
+  },
+  {
+    title: isPt ? 'Guia dos Números Mestres (11, 22, 33)' : 'Master Numbers Guide (11, 22, 33)',
+    desc: isPt ? 'Entenda os números mais poderosos da numerologia e seu potencial espiritual.' : 'Understand the rare, highest vibrational numbers and their profound spiritual calling.',
+    emoji: '👑',
+    badge: isPt ? 'Guia Místico' : 'Deep Insight',
+    color: 'from-violet-500/20 to-fuchsia-500/10 border-violet-500/30 text-violet-400',
+    href: `${pfx}/#master-numbers`,
+  },
+];
+---
+
+<section class="py-16 themed-bg-2 border-y themed-border">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-3">
+        ⚡ {isPt ? 'Central de Ferramentas Gratuitas' : 'Explore All Hub Calculators'}
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold themed-text tracking-tight">
+        {isPt ? 'Conheça Todas as Ferramentas do' : 'Complete Numerology'} <span class="gradient-text">{isPt ? 'Hub de Numerologia' : 'Tool Directory'}</span>
+      </h2>
+      <p class="mt-2 text-sm sm:text-base themed-text-2">
+        {isPt 
+          ? 'Descubra cada faceta do seu perfil numerológico — use nossas ferramentas 100% gratuitas e sem cadastro.' 
+          : 'Unlock every dimension of your life, career, and relationships with our 100% free Chaldean tools.'}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {tools.map((tool) => {
+        const isCurrent = currentPath === tool.href || currentPath === `${tool.href}/`;
+        return (
+          <a
+            href={tool.href}
+            class={`group relative rounded-2xl p-6 transition-all duration-300 border backdrop-blur-sm flex flex-col justify-between ${
+              isCurrent 
+                ? 'bg-purple-950/20 border-purple-500 ring-2 ring-purple-500/20 shadow-lg' 
+                : 'themed-card hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-xl'
+            }`}
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl bg-zinc-800/80 border border-zinc-700/50 group-hover:scale-110 transition-transform">
+                  {tool.emoji}
+                </span>
+                <span class={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border bg-zinc-800/60 ${tool.color}`}>
+                  {tool.badge}
+                </span>
+              </div>
+              <h3 class="text-lg font-bold themed-text group-hover:text-purple-400 transition-colors mb-2">
+                {tool.title}
+              </h3>
+              <p class="text-xs sm:text-sm themed-text-2 leading-relaxed mb-4">
+                {tool.desc}
+              </p>
+            </div>
+            <div class="pt-3 border-t themed-border flex items-center justify-between text-xs font-semibold text-purple-400 group-hover:text-purple-300">
+              <span>{isCurrent ? (isPt ? '• Página Atual' : '• Current Page') : (isPt ? 'Abrir Calculadora' : 'Launch Tool')}</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
+

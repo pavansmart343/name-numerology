@@ -1,0 +1,365 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HubDirectory from '../components/HubDirectory.astro';
+
+const faqs = [
+  {
+    question: "How does numerology compatibility work?",
+    answer: "Numerology compatibility compares the numerical vibrations of two people using either their full birth names (Expression Numbers) or their dates of birth (Life Path Numbers). Some numbers naturally complement and elevate each other (such as 1 and 8, or 2 and 6), while others generate dynamic friction requiring conscious compromise."
+  },
+  {
+    question: "What is more important: Name compatibility or Life Path compatibility?",
+    answer: "Life Path compatibility reflects your core soul purpose, natural life direction, and enduring temperament. Name compatibility reveals everyday social interaction, communication styles, and mutual chemistry. Ideally, partners evaluate both to gain the fullest picture."
+  },
+  {
+    question: "Can two people with a low compatibility score have a successful relationship?",
+    answer: "Absolutely. In Chaldean numerology, 'challenging' numbers do not signify incompatibility, but rather profound spiritual growth catalysts. Such pairs often experience intense magnetism and push each other to evolve beyond personal comfort zones."
+  }
+];
+---
+
+<Layout
+  title="Numerology Compatibility Calculator — Free Name & Life Path Love Match"
+  description="💞 Free numerology compatibility calculator. Compare names or birth dates to get your instant harmony percentage, planetary chemistry, and love advice."
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/compatibility-calculator" />
+    <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/compatibility-calculator" />
+    <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/compatibility-calculator" />
+  </Fragment>
+
+  <!-- JSON-LD WebApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Numerology Compatibility Calculator",
+    "url": "https://namenumerologyhub.com/compatibility-calculator",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "description": "Free love compatibility test using Chaldean name vibrations and Life Path numbers.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  })} />
+
+  <!-- JSON-LD FAQPage -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+    }))
+  })} />
+
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <div class="text-center mb-10 no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-pink-500/10 text-pink-400 border border-pink-500/20">
+        Relationship Hub
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">
+        Numerology <span class="gradient-text">Compatibility Calculator</span>
+      </h1>
+      <p class="themed-text-2 text-lg max-w-2xl mx-auto">
+        Compare your vibration with your partner, crush, or business associate. Calculate instant harmony scores using ancient Chaldean sound vibrations and Life Path alignments.
+      </p>
+    </div>
+
+    <!-- Mode Selector Tabs -->
+    <div class="flex justify-center mb-8 no-print">
+      <div class="inline-flex p-1 rounded-xl bg-zinc-800/80 border themed-border">
+        <button id="tabName" class="px-5 py-2 rounded-lg text-sm font-semibold transition-all bg-purple-600 text-white shadow-md">
+          💬 By Full Names
+        </button>
+        <button id="tabDob" class="px-5 py-2 rounded-lg text-sm font-semibold transition-all text-zinc-400 hover:text-white">
+          🎂 By Birth Dates (Life Path)
+        </button>
+      </div>
+    </div>
+
+    <!-- Name Form -->
+    <div id="nameFormContainer" class="themed-card rounded-2xl p-6 md:p-10 mb-10 no-print">
+      <form id="compatNameForm" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="person1Name" class="block text-sm font-semibold themed-text mb-2">Your Full Name <span class="text-red-400">*</span></label>
+            <input type="text" id="person1Name" required placeholder="e.g. Johnathan Smith" class="themed-input w-full rounded-xl px-4 py-3 text-base" />
+          </div>
+          <div>
+            <label for="person2Name" class="block text-sm font-semibold themed-text mb-2">Partner's Full Name <span class="text-red-400">*</span></label>
+            <input type="text" id="person2Name" required placeholder="e.g. Emily Rose Clark" class="themed-input w-full rounded-xl px-4 py-3 text-base" />
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-base font-bold px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-pink-500/25 hover:-translate-y-0.5">
+          Calculate Name Compatibility 💞
+        </button>
+      </form>
+    </div>
+
+    <!-- DOB Form -->
+    <div id="dobFormContainer" class="hidden themed-card rounded-2xl p-6 md:p-10 mb-10 no-print">
+      <form id="compatDobForm" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="person1Dob" class="block text-sm font-semibold themed-text mb-2">Your Date of Birth <span class="text-red-400">*</span></label>
+            <input type="date" id="person1Dob" required class="themed-input w-full rounded-xl px-4 py-3 text-base" />
+          </div>
+          <div>
+            <label for="person2Dob" class="block text-sm font-semibold themed-text mb-2">Partner's Date of Birth <span class="text-red-400">*</span></label>
+            <input type="date" id="person2Dob" required class="themed-input w-full rounded-xl px-4 py-3 text-base" />
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-base font-bold px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-pink-500/25 hover:-translate-y-0.5">
+          Calculate Life Path Compatibility 💞
+        </button>
+      </form>
+    </div>
+
+    <!-- Results Section -->
+    <div id="compatResults" class="hidden space-y-6">
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">Compatibility assessment ready 💫</p>
+        <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Print Report
+        </button>
+      </div>
+
+      <div class="result-card themed-card rounded-2xl p-6 md:p-8 print-section">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+          <!-- Person 1 -->
+          <div class="text-center flex-1">
+            <span class="text-xs uppercase tracking-wider themed-text-3" id="resP1Label">Person 1</span>
+            <h3 class="text-xl font-bold themed-text mt-1" id="resP1Name"></h3>
+            <div id="resP1Badge" class="w-20 h-20 rounded-2xl flex flex-col items-center justify-center text-white mx-auto my-3 shadow-xl">
+              <span id="resP1Emoji" class="text-xl"></span>
+              <span id="resP1Num" class="text-3xl font-black"></span>
+            </div>
+            <p class="text-xs themed-text-2 font-medium" id="resP1Archetype"></p>
+          </div>
+
+          <!-- Middle Meter -->
+          <div class="flex flex-col items-center justify-center shrink-0 w-full md:w-56">
+            <span class="text-xs uppercase tracking-widest text-pink-400 font-semibold mb-1">Harmony Score</span>
+            <div class="text-5xl md:text-6xl font-black gradient-text tracking-tight mb-2" id="scoreValue">0%</div>
+            <span id="scoreBadge" class="text-xs font-bold px-3 py-1 rounded-full mb-3"></span>
+            <div class="w-full bg-zinc-800 rounded-full h-3 overflow-hidden">
+              <div id="scoreBar" class="h-3 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-rose-400 transition-all duration-1000" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Person 2 -->
+          <div class="text-center flex-1">
+            <span class="text-xs uppercase tracking-wider themed-text-3" id="resP2Label">Person 2</span>
+            <h3 class="text-xl font-bold themed-text mt-1" id="resP2Name"></h3>
+            <div id="resP2Badge" class="w-20 h-20 rounded-2xl flex flex-col items-center justify-center text-white mx-auto my-3 shadow-xl">
+              <span id="resP2Emoji" class="text-xl"></span>
+              <span id="resP2Num" class="text-3xl font-black"></span>
+            </div>
+            <p class="text-xs themed-text-2 font-medium" id="resP2Archetype"></p>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-[var(--bg-secondary)] border themed-border">
+          <h4 class="text-sm font-bold themed-text mb-2 flex items-center gap-2">
+            <span>✨</span> Planetary & Elemental Synergy
+          </h4>
+          <p id="compatSummary" class="text-sm themed-text-2 leading-relaxed"></p>
+        </div>
+      </div>
+
+      <!-- Strengths & Growth Areas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="result-card themed-card rounded-2xl p-6 print-section">
+          <h3 class="text-sm font-bold themed-text mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">✓</span>
+            Natural Relationship Strengths
+          </h3>
+          <ul id="compatStrengths" class="space-y-2 text-sm themed-text-2"></ul>
+        </div>
+        <div class="result-card themed-card rounded-2xl p-6 print-section">
+          <h3 class="text-sm font-bold themed-text mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs">⚡</span>
+            Growth Opportunities & Advice
+          </h3>
+          <ul id="compatAdvice" class="space-y-2 text-sm themed-text-2"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <HubDirectory isPt={false} currentPath="/compatibility-calculator" />
+
+  <script>
+    const chaldean: Record<string, number> = {
+      a:1,i:1,j:1,q:1,y:1,
+      b:2,k:2,r:2,
+      c:3,g:3,l:3,s:3,
+      d:4,m:4,t:4,
+      e:5,h:5,n:5,x:5,
+      u:6,v:6,w:6,
+      o:7,z:7,
+      f:8,p:8
+    };
+
+    const archetypes: Record<number, { title: string; emoji: string; planet: string; element: string; color: string }> = {
+      1: { title: "The Leader", emoji: "👑", planet: "☀️ Sun", element: "Fire", color: "#f59e0b" },
+      2: { title: "The Peacemaker", emoji: "🕊️", planet: "🌙 Moon", element: "Water", color: "#06b6d4" },
+      3: { title: "The Creative", emoji: "🎨", planet: "♃ Jupiter", element: "Air", color: "#f97316" },
+      4: { title: "The Builder", emoji: "🏛️", planet: "♄ Saturn", element: "Earth", color: "#6366f1" },
+      5: { title: "The Explorer", emoji: "🌍", planet: "☿ Mercury", element: "Air", color: "#10b981" },
+      6: { title: "The Nurturer", emoji: "💗", planet: "♀ Venus", element: "Earth", color: "#ec4899" },
+      7: { title: "The Seeker", emoji: "🔮", planet: "♆ Neptune", element: "Water", color: "#8b5cf6" },
+      8: { title: "The Executive", emoji: "💎", planet: "♄ Saturn", element: "Earth", color: "#64748b" },
+      9: { title: "The Humanitarian", emoji: "🌟", planet: "♂ Mars", element: "Fire", color: "#ef4444" },
+      11: { title: "The Visionary", emoji: "✨", planet: "Sun + Moon", element: "All", color: "#f59e0b" },
+      22: { title: "The Master Builder", emoji: "🏗️", planet: "Venus + Saturn", element: "Earth", color: "#8b5cf6" },
+      33: { title: "The Master Teacher", emoji: "🕊️", planet: "Jupiter + Venus", element: "All", color: "#10b981" }
+    };
+
+    const compatScores: Record<string, number> = {
+      '1-1': 75, '1-2': 65, '1-3': 85, '1-4': 70, '1-5': 88, '1-6': 60, '1-7': 78, '1-8': 90, '1-9': 82,
+      '2-2': 80, '2-3': 70, '2-4': 85, '2-5': 55, '2-6': 95, '2-7': 80, '2-8': 65, '2-9': 75,
+      '3-3': 85, '3-4': 60, '3-5': 90, '3-6': 80, '3-7': 68, '3-8': 65, '3-9': 88,
+      '4-4': 85, '4-5': 58, '4-6': 88, '4-7': 75, '4-8': 82, '4-9': 68,
+      '5-5': 88, '5-6': 62, '5-7': 76, '5-8': 72, '5-9': 80,
+      '6-6': 90, '6-7': 70, '6-8': 78, '6-9': 92,
+      '7-7': 82, '7-8': 64, '7-9': 80,
+      '8-8': 80, '8-9': 70,
+      '9-9': 88
+    };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+        n = String(n).split('').reduce((s, d) => s + parseInt(d), 0);
+      }
+      return n;
+    }
+
+    function nameToChaldean(name: string): number {
+      const clean = name.toLowerCase().replace(/[^a-z]/g, '');
+      let sum = 0;
+      for (const char of clean) {
+        sum += chaldean[char] || 0;
+      }
+      return reduce(sum);
+    }
+
+    function dobToLifePath(dob: string): number {
+      const [y, m, d] = dob.split('-').map(Number);
+      return reduce(reduce(d) + reduce(m) + reduce(y));
+    }
+
+    // Tab switching
+    const tabName = document.getElementById('tabName');
+    const tabDob = document.getElementById('tabDob');
+    const nameForm = document.getElementById('nameFormContainer');
+    const dobForm = document.getElementById('dobFormContainer');
+
+    tabName?.addEventListener('click', () => {
+      tabName.classList.add('bg-purple-600', 'text-white', 'shadow-md');
+      tabName.classList.remove('text-zinc-400');
+      tabDob?.classList.remove('bg-purple-600', 'text-white', 'shadow-md');
+      tabDob?.classList.add('text-zinc-400');
+      nameForm?.classList.remove('hidden');
+      dobForm?.classList.add('hidden');
+    });
+
+    tabDob?.addEventListener('click', () => {
+      tabDob.classList.add('bg-purple-600', 'text-white', 'shadow-md');
+      tabDob.classList.remove('text-zinc-400');
+      tabName?.classList.remove('bg-purple-600', 'text-white', 'shadow-md');
+      tabName?.classList.add('text-zinc-400');
+      dobForm?.classList.remove('hidden');
+      nameForm?.classList.add('hidden');
+    });
+
+    function displayResults(p1Name: string, p1Num: number, p2Name: string, p2Num: number, mode: 'name' | 'dob') {
+      const p1Info = archetypes[p1Num] || archetypes[1];
+      const p2Info = archetypes[p2Num] || archetypes[1];
+
+      const p1Key = p1Num > 9 ? reduce(p1Num) : p1Num;
+      const p2Key = p2Num > 9 ? reduce(p2Num) : p2Num;
+      const key = [p1Key, p2Key].sort((a,b)=>a-b).join('-');
+      const score = compatScores[key] || 75;
+
+      // P1 UI
+      (document.getElementById('resP1Label') as HTMLElement).textContent = mode === 'name' ? 'Name Vibration' : 'Life Path Number';
+      (document.getElementById('resP1Name') as HTMLElement).textContent = p1Name;
+      (document.getElementById('resP1Num') as HTMLElement).textContent = String(p1Num);
+      (document.getElementById('resP1Emoji') as HTMLElement).textContent = p1Info.emoji;
+      (document.getElementById('resP1Archetype') as HTMLElement).textContent = `${p1Info.title} (${p1Info.planet})`;
+      const b1 = document.getElementById('resP1Badge') as HTMLElement;
+      b1.style.backgroundColor = p1Info.color;
+
+      // P2 UI
+      (document.getElementById('resP2Label') as HTMLElement).textContent = mode === 'name' ? 'Name Vibration' : 'Life Path Number';
+      (document.getElementById('resP2Name') as HTMLElement).textContent = p2Name;
+      (document.getElementById('resP2Num') as HTMLElement).textContent = String(p2Num);
+      (document.getElementById('resP2Emoji') as HTMLElement).textContent = p2Info.emoji;
+      (document.getElementById('resP2Archetype') as HTMLElement).textContent = `${p2Info.title} (${p2Info.planet})`;
+      const b2 = document.getElementById('resP2Badge') as HTMLElement;
+      b2.style.backgroundColor = p2Info.color;
+
+      // Score
+      (document.getElementById('scoreValue') as HTMLElement).textContent = `${score}%`;
+      const scoreBar = document.getElementById('scoreBar') as HTMLElement;
+      scoreBar.style.width = `${score}%`;
+
+      const badge = document.getElementById('scoreBadge') as HTMLElement;
+      if (score >= 85) {
+        badge.textContent = "Twin Flame / High Synergy";
+        badge.className = "text-xs font-bold px-3 py-1 rounded-full mb-3 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+      } else if (score >= 70) {
+        badge.textContent = "Harmonious & Supportive";
+        badge.className = "text-xs font-bold px-3 py-1 rounded-full mb-3 bg-purple-500/20 text-purple-400 border border-purple-500/30";
+      } else {
+        badge.textContent = "Growth-Oriented & Dynamic";
+        badge.className = "text-xs font-bold px-3 py-1 rounded-full mb-3 bg-amber-500/20 text-amber-400 border border-amber-500/30";
+      }
+
+      // Summary
+      (document.getElementById('compatSummary') as HTMLElement).textContent =
+        `Pairing number ${p1Num} (${p1Info.element} element) with number ${p2Num} (${p2Info.element} element) blends ${p1Info.planet} and ${p2Info.planet}. ` +
+        (score >= 80 
+          ? `This union generates profound intuitive flow, mutual encouragement, and an innate understanding of each other's aspirations.`
+          : `This combination invites each partner to master patience and appreciate contrasting communication habits, leading to deep maturity over time.`);
+
+      // Strengths
+      const strengths = [
+        `Natural energetic resonance between ${p1Info.title} and ${p2Info.title}`,
+        `Balanced distribution of initiative and supportive listening`,
+        `Shared curiosity that keeps everyday conversations engaging and dynamic`
+      ];
+      (document.getElementById('compatStrengths') as HTMLElement).innerHTML = strengths.map(s => `<li>• ${s}</li>`).join('');
+
+      // Advice
+      const advice = [
+        `Honor each other's need for personal space and individual creative expression`,
+        `Communicate expectations clearly during times of stress rather than assuming intuitive understanding`,
+        `Celebrate milestones together using lucky days (${p1Info.element} & ${p2Info.element} harmonies)`
+      ];
+      (document.getElementById('compatAdvice') as HTMLElement).innerHTML = advice.map(a => `<li>• ${a}</li>`).join('');
+
+      const results = document.getElementById('compatResults') as HTMLElement;
+      results.classList.remove('hidden');
+      setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+
+    document.getElementById('compatNameForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const n1 = (document.getElementById('person1Name') as HTMLInputElement).value.trim();
+      const n2 = (document.getElementById('person2Name') as HTMLInputElement).value.trim();
+      if (!n1 || !n2) return;
+      displayResults(n1, nameToChaldean(n1), n2, nameToChaldean(n2), 'name');
+    });
+
+    document.getElementById('compatDobForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d1 = (document.getElementById('person1Dob') as HTMLInputElement).value;
+      const d2 = (document.getElementById('person2Dob') as HTMLInputElement).value;
+      if (!d1 || !d2) return;
+      displayResults('Partner 1', dobToLifePath(d1), 'Partner 2', dobToLifePath(d2), 'dob');
+    });
+  </script>
+</Layout>
+

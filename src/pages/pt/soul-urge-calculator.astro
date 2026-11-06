@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import HubDirectory from '../../components/HubDirectory.astro';
 ---
 
 <Layout title="Calculadora do Impulso da Alma Gratuita — Numerologia Chaldeu" description="Calculadora gratuita do Impulso da Alma. Digite seu nome de batismo para descobrir o número do desejo do seu coração." lang="pt-BR" ogLocale="pt_BR">
@@ -121,6 +122,8 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  <HubDirectory isPt={true} currentPath="/pt/soul-urge-calculator" />
 
   <script>
     const chaldeanVowels: Record<string, number> = { a:1, e:5, i:1, o:7, u:6, y:1 };

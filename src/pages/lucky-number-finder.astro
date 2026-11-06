@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HubDirectory from '../components/HubDirectory.astro';
 ---
 
 <Layout title="Lucky Number Finder by Birthday — Free | Name Numerology Hub" description="🍀 Free lucky number finder. Enter your birth date → instantly discover your personal lucky numbers, colors, days & planetary ruler. Chaldean numerology.">
@@ -129,6 +130,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  <HubDirectory isPt={false} currentPath="/lucky-number-finder" />
 
   <script>
     function reduce(n: number): number {

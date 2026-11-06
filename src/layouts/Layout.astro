@@ -25,6 +25,11 @@ const cleanPath = rawPath === '/' ? '/' : rawPath.replace(/\/?$/, '/');
 const canonicalURL = canonical ?? `https://namenumerologyhub.com${cleanPath}`;
 const GA_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID || 'G-9V4EKRZ0GM';
 const hasAnalytics = /^G-[A-Z0-9]+$/i.test(GA_ID);
+
+// Avoid duplicate brand suffix in SERP titles
+const pageTitle = title.includes('Name Numerology Hub') 
+  ? title 
+  : (lang === 'pt-BR' ? `${title} — Name Numerology Hub` : `${title} | Name Numerology Hub`);
 ---
 
 <!doctype html>
@@ -35,7 +40,7 @@ const hasAnalytics = /^G-[A-Z0-9]+$/i.test(GA_ID);
 		<meta name="robots" content="index, follow" />
 		<link rel="canonical" href={canonicalURL} />
 		<meta property="og:locale" content={ogLocale} />
-		<meta property="og:title" content={`${title} | Name Numerology Hub`} />
+		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:type" content="website" />
@@ -44,7 +49,7 @@ const hasAnalytics = /^G-[A-Z0-9]+$/i.test(GA_ID);
 		<meta property="og:image:width" content="800" />
 		<meta property="og:image:height" content="800" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={`${title} | Name Numerology Hub`} />
+		<meta name="twitter:title" content={pageTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content="https://namenumerologyhub.com/numerology-wheel.png" />
 		<meta name="p:domain_verify" content="56df646e01ba7f8530635d235ba30fd4"/>
@@ -53,7 +58,7 @@ const hasAnalytics = /^G-[A-Z0-9]+$/i.test(GA_ID);
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap" rel="stylesheet" />
-		<title>{title} | Name Numerology Hub</title>
+		<title>{pageTitle}</title>
 
 		<!-- Prevent theme flash - must be inline -->
 		<script is:inline>
