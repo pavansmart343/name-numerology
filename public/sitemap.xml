@@ -17,6 +17,12 @@
 
   <!-- Core Tool Pages (EN) -->
   <url>
+    <loc>https://namenumerologyhub.com/name-analyzer</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://namenumerologyhub.com/name-analysis</loc>
     <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -48,6 +54,12 @@
   </url>
 
   <!-- Core Tool Pages (PT) -->
+  <url>
+    <loc>https://namenumerologyhub.com/pt/name-analyzer</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
   <url>
     <loc>https://namenumerologyhub.com/pt/name-analysis</loc>
     <lastmod>2026-11-06</lastmod>

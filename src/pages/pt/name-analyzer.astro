@@ -1,0 +1,374 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HubDirectory from '../../components/HubDirectory.astro';
+
+const faqs = [
+  {
+    question: "O que é um analisador de nome individual na numerologia?",
+    answer: "Um analisador de nome individual é uma ferramenta focada exclusivamente na análise de um único nome, sem necessidade de dados de parceiro. Ele decodifica a vibração sonora do nome pelo sistema babilônico Chaldeu, calculando o Número de Expressão (destino), o Impulso da Alma (vogais) e a Personalidade Exterior (consoantes)."
+  },
+  {
+    question: "Qual nome devo colocar no analisador de nome?",
+    answer: "Para conhecer o seu potencial de destino original, utilize o nome completo de registro de nascimento. Caso queira entender como sua persona pública atual atua, você também pode analisar seu nome de casado(a), nome artístico ou apelido profissional."
+  },
+  {
+    question: "Posso utilizar para nomes de bebê ou marcas de empresa?",
+    answer: "Sim! É uma das utilizações mais populares. Pais e empresários utilizam essa ferramenta para checar a harmonia sonora e numérica antes de registrar bebês ou marcas, garantindo vibrações afortunadas como 1, 3, 5, 6 ou Números Mestres (11, 22, 33)."
+  }
+];
+---
+
+<Layout
+  title="Analisador de Nome Gratuito — Numerologia Chaldeu Individual"
+  description="🔮 Analisador de nome individual gratuito. Digite qualquer nome → descubra o Número de Expressão, Impulso da Alma, Personalidade, planeta regente e dias da sorte."
+  lang="pt-BR"
+  ogLocale="pt_BR"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/name-analyzer" />
+    <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/name-analyzer" />
+    <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/name-analyzer" />
+  </Fragment>
+
+  <!-- JSON-LD WebApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Analisador de Nome Individual Chaldeu",
+    "url": "https://namenumerologyhub.com/pt/name-analyzer",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "description": "Calculadora e analisador de nome individual sem parceiro. Decodifica números de Expressão, Alma e Personalidade.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  })} />
+
+  <!-- JSON-LD FAQPage -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+    }))
+  })} />
+
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <!-- Header -->
+    <div class="mb-10 text-center no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-purple-500/10 text-purple-400 border border-purple-500/20">
+        Ferramenta Pessoal Exclusiva
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">
+        Analisador de Nome <span class="gradient-text">Individual</span>
+      </h1>
+      <p class="themed-text-2 text-lg max-w-2xl mx-auto">
+        Analise qualquer nome único com total clareza. Decodifica seu Número de Expressão, Impulso da Alma e Personalidade Exterior através da fonética Chaldeu — direto ao ponto, sem parceiro.
+      </p>
+    </div>
+
+    <!-- Input Form (Pure Single Name) -->
+    <div class="themed-card rounded-2xl p-6 md:p-10 mb-10 no-print border border-purple-500/20 bg-zinc-900/60 shadow-xl">
+      <form id="singleNameForm" class="space-y-6">
+        <div>
+          <label for="fullNameInput" class="block text-sm font-semibold themed-text mb-2">
+            Digite o Nome Completo para Analisar <span class="text-red-400">*</span>
+          </label>
+          <input
+            type="text"
+            id="fullNameInput"
+            required
+            placeholder="Ex: Gabriel Henrique Ramos"
+            class="themed-input w-full rounded-xl px-4 py-3.5 text-base md:text-lg focus:ring-2 focus:ring-purple-500"
+          />
+          <div class="mt-2.5 flex flex-wrap items-center gap-2 text-xs text-zinc-400">
+            <span class="text-zinc-500">Exemplos rápidos:</span>
+            <button type="button" class="example-btn hover:text-purple-400 px-2 py-0.5 rounded bg-zinc-800 border themed-border">Nome de Batismo</button>
+            <button type="button" class="example-btn hover:text-purple-400 px-2 py-0.5 rounded bg-zinc-800 border themed-border">Nome de Bebê</button>
+            <button type="button" class="example-btn hover:text-purple-400 px-2 py-0.5 rounded bg-zinc-800 border themed-border">Nome de Empresa</button>
+            <button type="button" class="example-btn hover:text-purple-400 px-2 py-0.5 rounded bg-zinc-800 border themed-border">Nome Artístico</button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-base font-bold px-6 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-purple-500/25 hover:-translate-y-0.5"
+        >
+          Analisar Vibração do Nome 🔮
+        </button>
+      </form>
+    </div>
+
+    <!-- Results Section -->
+    <div id="analyzerResults" class="hidden space-y-6">
+      <!-- Action Bar -->
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">Dossiê numerológico individual concluído 🌟</p>
+        <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Imprimir
+        </button>
+      </div>
+
+      <!-- Core Trinity Numbers (Expression, Soul Urge, Personality) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 print-section">
+        <!-- Expression Number -->
+        <div class="result-card themed-card rounded-2xl p-6 text-center border-t-4 border-t-purple-500">
+          <span class="text-xs uppercase font-bold text-purple-400 tracking-wider">Número de Expressão</span>
+          <div id="resExpBadge" class="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black text-white mx-auto my-3 shadow-xl"></div>
+          <h3 id="resExpTitle" class="text-lg font-bold themed-text mb-1"></h3>
+          <p class="text-xs themed-text-3">Soma total de todas as letras</p>
+        </div>
+
+        <!-- Soul Urge Number -->
+        <div class="result-card themed-card rounded-2xl p-6 text-center border-t-4 border-t-pink-500">
+          <span class="text-xs uppercase font-bold text-pink-400 tracking-wider">Impulso da Alma</span>
+          <div id="resSoulBadge" class="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black text-white mx-auto my-3 shadow-xl"></div>
+          <h3 id="resSoulTitle" class="text-lg font-bold themed-text mb-1"></h3>
+          <p class="text-xs themed-text-3">Apenas as vogais (A, E, I, O, U, Y)</p>
+        </div>
+
+        <!-- Personality Number -->
+        <div class="result-card themed-card rounded-2xl p-6 text-center border-t-4 border-t-cyan-500">
+          <span class="text-xs uppercase font-bold text-cyan-400 tracking-wider">Personalidade Exterior</span>
+          <div id="resPersonaBadge" class="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black text-white mx-auto my-3 shadow-xl"></div>
+          <h3 id="resPersonaTitle" class="text-lg font-bold themed-text mb-1"></h3>
+          <p class="text-xs themed-text-3">Apenas as consoantes</p>
+        </div>
+      </div>
+
+      <!-- Main Deep Dive Card -->
+      <div class="result-card themed-card rounded-2xl p-6 md:p-8 print-section">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span id="nameHeading" class="text-xl md:text-2xl font-extrabold themed-text"></span>
+          <span id="planetBadge" class="text-xs font-semibold px-2.5 py-1 rounded-full border themed-border"></span>
+          <span id="elementBadge" class="text-xs font-semibold px-2.5 py-1 rounded-full border themed-border"></span>
+        </div>
+        <p id="mainDescription" class="text-sm md:text-base themed-text-2 leading-relaxed mb-6"></p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t themed-border text-center">
+          <div>
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Cores da Sorte</p>
+            <p id="luckyColors" class="text-sm font-semibold themed-text"></p>
+          </div>
+          <div>
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Dias da Sorte</p>
+            <p id="luckyDays" class="text-sm font-semibold themed-text"></p>
+          </div>
+          <div>
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Números Compatíveis</p>
+            <p id="compatNumbers" class="text-sm font-semibold themed-text"></p>
+          </div>
+          <div>
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Cálculo Fonético</p>
+            <p id="totalSumFormula" class="text-sm font-mono font-semibold themed-text"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Letter Breakdown Table -->
+      <div class="result-card themed-card rounded-2xl p-6 print-section">
+        <h3 class="text-base font-bold themed-text mb-4 flex items-center gap-2">
+          <span>🔢</span> Decomposição Fonética Letra por Letra (Chaldeu)
+        </h3>
+        <div id="letterTiles" class="flex flex-wrap gap-2.5 mb-4"></div>
+        <p class="text-xs themed-text-3 leading-relaxed">
+          O método Chaldeu analisa os sons das letras em vez de sua ordem sequencial alfabética. As vogais constroem o Impulso da Alma; as consoantes refletem a Personalidade Exterior com a qual o mundo interage.
+        </p>
+      </div>
+
+      <!-- Traits & Guidance -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 print-section">
+        <div class="result-card themed-card rounded-2xl p-6">
+          <h3 class="text-sm font-bold themed-text mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs">★</span>
+            Pontos Fortes e Talentos Naturais
+          </h3>
+          <ul id="keyStrengths" class="space-y-2 text-sm themed-text-2"></ul>
+        </div>
+        <div class="result-card themed-card rounded-2xl p-6">
+          <h3 class="text-sm font-bold themed-text mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">💼</span>
+            Sinergia de Carreira e Propósito
+          </h3>
+          <ul id="careerAdvice" class="space-y-2 text-sm themed-text-2"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <HubDirectory isPt={true} currentPath="/pt/name-analyzer" />
+
+  <script>
+    const chaldean: Record<string, number> = {
+      a:1,i:1,j:1,q:1,y:1,
+      b:2,k:2,r:2,
+      c:3,g:3,l:3,s:3,
+      d:4,m:4,t:4,
+      e:5,h:5,n:5,x:5,
+      u:6,v:6,w:6,
+      o:7,z:7,
+      f:8,p:8
+    };
+
+    const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'y']);
+
+    const archetypes: Record<number, any> = {
+      1: { title: "O Líder Nato", emoji: "👑", planet: "☀️ Sol", element: "Fogo", color: "#f59e0b",
+           desc: "Você carrega a energia primordial do Sol — brilhante, pioneira e autoritária. Seu nome vibra com espírito de iniciativa, coragem e visão para abrir caminhos originais.",
+           colors: "Ouro, Laranja, Âmbar", days: "Domingo, Segunda", compat: "1, 3, 5, 8",
+           strengths: ["Liderança independente e autêntica", "Poder criativo e visão original", "Capacidade de superar adversidades", "Autonomia em decisões difíceis"],
+           careers: ["Empreendedorismo e Fundador", "Direção Executiva", "Liderança de Inovação", "Projetos Pioneiros"] },
+      2: { title: "O Diplomata Empático", emoji: "🕊️", planet: "🌙 Lua", element: "Água", color: "#06b6d4",
+           desc: "Governado pela sensibilidade da Lua, seu nome vibra com conciliação, inteligência emocional e habilidade natural de construir acordos e pontes sólidas.",
+           colors: "Prata, Branco, Creme", days: "Segunda, Sexta", compat: "2, 4, 6, 8",
+           strengths: ["Empatia profunda e escuta atenta", "Mediação e diplomacia nata", "Percepção emocional refinada", "Lealdade em parcerias"],
+           careers: ["Mediação de Conflitos", "Psicologia e Terapia", "Recursos Humanos", "Artes e Arquitetura de Interiores"] },
+      3: { title: "O Criador Expressivo", emoji: "🎨", planet: "♃ Júpiter", element: "Ar", color: "#f97316",
+           desc: "Júpiter presenteia seu nome com carisma exuberante, genialidade na comunicação e otimismo que atrai oportunidades e contagia ambientes.",
+           colors: "Amarelo, Roxo, Coral", days: "Quinta, Quarta", compat: "1, 3, 5, 9",
+           strengths: ["Expressão verbal magnética", "Imaginação artística fluida", "Bom humor e simpatia espontânea", "Facilidade em motivar pessoas"],
+           careers: ["Comunicação e Jornalismo", "Marketing e Publicidade", "Artes Cênicas e Escrita", "Palestrante e Educador"] },
+      4: { title: "O Construtor Disciplinado", emoji: "🏛️", planet: "♄ Saturno", element: "Terra", color: "#6366f1",
+           desc: "Saturno ancora seu nome com estrutura, método e confiabilidade duradoura. Você transforma ideias abstratas em sistemas concretos e sustentáveis.",
+           colors: "Azul Marinho, Verde Escuro, Marrom", days: "Sábado, Domingo", compat: "2, 4, 6, 8",
+           strengths: ["Compromisso e ética inabaláveis", "Organização e planejamento estratégico", "Confiabilidade comprovada", "Foco em resultados de longo prazo"],
+           careers: ["Engenharia e Arquitetura", "Finanças e Contabilidade", "Gestão de Operações", "Direito e Governança"] },
+      5: { title: "O Explorador Versátil", emoji: "🌍", planet: "☿ Mercúrio", element: "Ar", color: "#10b981",
+           desc: "Mercúrio confere ao seu nome agilidade mental, curiosidade insaciável e paixão pela liberdade. Você se adapta com maestria às transformações do mundo.",
+           colors: "Turquesa, Prata, Verde Esmeralda", days: "Quarta, Sexta", compat: "1, 3, 5, 7",
+           strengths: ["Adaptação ultrarrápida a mudanças", "Poder de persuasão e negociação", "Pensamento inovador e conectado", "Polivalência de talentos"],
+           careers: ["Comércio e Negócios Globais", "Turismo e Viagens", "Tecnologia e Consultoria", "Mídia e Relações Públicas"] },
+      6: { title: "O Cuidador Afetuoso", emoji: "💗", planet: "♀ Vênus", element: "Terra", color: "#ec4899",
+           desc: "Abençoado por Vênus, seu nome vibra amor incondicional, senso estético refinado e dedicação sincera ao bem-estar da família e da comunidade.",
+           colors: "Rosa, Lavanda, Turquesa Suave", days: "Sexta, Quarta", compat: "2, 4, 6, 9",
+           strengths: ["Generosidade e acolhimento autênticos", "Harmonia estética e visual", "Espírito protetor e curador", "Responsabilidade ética"],
+           careers: ["Saúde e Terapias Integrativas", "Educação e Assistência", "Design e Paisagismo", "Gastronomia e Hospitalidade"] },
+      7: { title: "O Buscador Filosófico", emoji: "🔮", planet: "♆ Netuno", element: "Água", color: "#8b5cf6",
+           desc: "Netuno direciona seu nome aos mistérios profundos da vida, ao rigor analítico e à sabedoria intuitiva. Você enxerga muito além das aparências superficiais.",
+           colors: "Roxo Escuro, Índigo, Cinza Platina", days: "Sábado, Domingo", compat: "2, 5, 7, 9",
+           strengths: ["Raciocínio analítico perspicaz", "Intuição e conexão espiritual", "Independência intelectual", "Capacidade de síntese e estudo"],
+           careers: ["Pesquisa Científica", "Tecnologia da Informação", "Filosofia e Escrita", "Investigação Estratégica"] },
+      8: { title: "O Executivo Estratégico", emoji: "💎", planet: "♄ Saturno", element: "Terra", color: "#64748b",
+           desc: "A vibração cármica de Saturno concede autoridade executiva, faro para grandes realizações materiais e disciplina para construir riqueza sólida.",
+           colors: "Preto, Azul Petróleo, Ouro Velho", days: "Sábado, Quinta", compat: "1, 2, 4, 8",
+           strengths: ["Visão estratégica para negócios", "Resiliência perante grandes metas", "Liderança firme e respeitada", "Gestão de recursos em grande escala"],
+           careers: ["Diretoria Executiva e Gestão", "Mercado Imobiliário e Financeiro", "Empreendimentos de Grande Porte", "Governança e Investimentos"] },
+      9: { title: "O Humanitário Universal", emoji: "🌟", planet: "♂ Marte", element: "Fogo", color: "#ef4444",
+           desc: "Marte dinâmico canaliza seu fogo interior em compaixão cósmica, justiça e idealismo altruísta. Você está aqui para deixar o mundo melhor.",
+           colors: "Vermelho Carmesim, Dourado, Rubi", days: "Terça, Quinta", compat: "3, 6, 9",
+           strengths: ["Compaixão ampla e desapegada", "Idealismo inspirador", "Criatividade com propósito social", "Coragem moral exemplar"],
+           careers: ["Organizações Sociais e ONGs", "Direitos Humanos e Ecologia", "Artes e Produção Cultural", "Mentoria e Liderança Espiritual"] },
+      11: { title: "O Visionário Iluminador", emoji: "✨", planet: "Sol + Lua", element: "Todos", color: "#f59e0b",
+            desc: "Portando o Número Mestre 11, seu nome atua como um canal de intuição superior e despertar de consciência para as pessoas ao seu redor.",
+            colors: "Prata, Ouro Claro, Platina", days: "Domingo, Segunda", compat: "2, 11, 22",
+            strengths: ["Intuição quase profética", "Carisma espiritual tocante", "Sensibilidade refinada", "Capacidade de inspirar coletivos"],
+            careers: ["Mentoria e Ensino Espiritual", "Inovação Artística", "Comunicação Inspiradora", "Liderança de Novos Paradigmas"] },
+      22: { title: "O Mestre Construtor", emoji: "🏗️", planet: "Vênus + Saturno", element: "Terra", color: "#8b5cf6",
+            desc: "O mais poderoso de todos os números na numerologia. Você tem a missão e a capacidade prática de materializar grandes causas e legados humanos.",
+            colors: "Púrpura, Ouro, Tons Terrosos", days: "Sábado, Sexta", compat: "4, 8, 22",
+            strengths: ["Poder incomparável de manifestação", "Organização e disciplina de ferro", "Visão de impacto global", "Pragmatismo genial"],
+            careers: ["Grandes Empreendimentos Sociais", "Engenharia de Infraestrutura", "Planejamento Estratégico Mundial", "Fundador de Instituições"] },
+      33: { title: "O Mestre Professor", emoji: "🕊️", planet: "Júpiter + Vênus", element: "Todos", color: "#10b981",
+            desc: "O Número Mestre do amor incondicional e da cura compassiva. Sua presença eleva a harmonia coletiva através da bondade e sabedoria viva.",
+            colors: "Verde Esmeralda, Branco Cristalino", days: "Quinta, Sexta", compat: "6, 11, 33",
+            strengths: ["Amor incondicional em ação", "Capacidade natural de cura emocional", "Sabedoria generosa e sem julgamentos", "Dedicação altruísta"],
+            careers: ["Mestrado e Educação Transformadora", "Liderança Humanitária Global", "Saúde Integrativa e Holística", "Filantropia"] },
+    };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+        n = String(n).split('').reduce((s, d) => s + parseInt(d), 0);
+      }
+      return n;
+    }
+
+    document.querySelectorAll('.example-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const text = (e.currentTarget as HTMLElement).textContent?.trim();
+        const input = document.getElementById('fullNameInput') as HTMLInputElement;
+        if (text === 'Nome de Batismo') input.value = 'Gabriel Henrique Ramos';
+        else if (text === 'Nome de Bebê') input.value = 'Helena Beatriz';
+        else if (text === 'Nome de Empresa') input.value = 'Vanguard Tech Soluções';
+        else if (text === 'Nome Artístico') input.value = 'Caetano Veloso';
+        input.focus();
+      });
+    });
+
+    document.getElementById('singleNameForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const rawName = (document.getElementById('fullNameInput') as HTMLInputElement).value.trim();
+      if (!rawName) return;
+
+      const clean = rawName.toLowerCase().replace(/[^a-z]/g, '');
+      let expSum = 0;
+      let soulSum = 0;
+      let personaSum = 0;
+      const tiles: string[] = [];
+
+      for (const char of clean) {
+        const val = chaldean[char] || 0;
+        expSum += val;
+        const isVowel = vowels.has(char);
+        if (isVowel) soulSum += val;
+        else personaSum += val;
+
+        tiles.push(`
+          <div class="flex flex-col items-center justify-center p-2 rounded-xl bg-[var(--bg-secondary)] border themed-border min-w-[42px]">
+            <span class="text-sm font-bold themed-text uppercase">${char}</span>
+            <span class="text-xs font-mono font-bold text-purple-400">${val}</span>
+            <span class="text-[9px] text-zinc-500">${isVowel ? 'Vogal' : 'Cons'}</span>
+          </div>
+        `);
+      }
+
+      const expNum = reduce(expSum);
+      const soulNum = reduce(soulSum);
+      const personaNum = reduce(personaSum);
+
+      const expData = archetypes[expNum] || archetypes[9];
+      const soulData = archetypes[soulNum] || archetypes[9];
+      const personaData = archetypes[personaNum] || archetypes[9];
+
+      // Badges
+      const bExp = document.getElementById('resExpBadge') as HTMLElement;
+      bExp.textContent = `${expData.emoji} ${expNum}`;
+      bExp.style.backgroundColor = expData.color;
+      (document.getElementById('resExpTitle') as HTMLElement).textContent = expData.title;
+
+      const bSoul = document.getElementById('resSoulBadge') as HTMLElement;
+      bSoul.textContent = `${soulData.emoji} ${soulNum}`;
+      bSoul.style.backgroundColor = soulData.color;
+      (document.getElementById('resSoulTitle') as HTMLElement).textContent = soulData.title;
+
+      const bPersona = document.getElementById('resPersonaBadge') as HTMLElement;
+      bPersona.textContent = `${personaData.emoji} ${personaNum}`;
+      bPersona.style.backgroundColor = personaData.color;
+      (document.getElementById('resPersonaTitle') as HTMLElement).textContent = personaData.title;
+
+      // Hero detail
+      (document.getElementById('nameHeading') as HTMLElement).textContent = rawName;
+      (document.getElementById('planetBadge') as HTMLElement).textContent = expData.planet;
+      (document.getElementById('elementBadge') as HTMLElement).textContent = `Elemento ${expData.element}`;
+      (document.getElementById('mainDescription') as HTMLElement).textContent = expData.desc;
+
+      (document.getElementById('luckyColors') as HTMLElement).textContent = expData.colors;
+      (document.getElementById('luckyDays') as HTMLElement).textContent = expData.days;
+      (document.getElementById('compatNumbers') as HTMLElement).textContent = expData.compat;
+      (document.getElementById('totalSumFormula') as HTMLElement).textContent = `${expSum} → ${expNum}`;
+
+      // Letter tiles
+      (document.getElementById('letterTiles') as HTMLElement).innerHTML = tiles.join('');
+
+      // Strengths & Careers
+      (document.getElementById('keyStrengths') as HTMLElement).innerHTML =
+        expData.strengths.map((s: string) => `<li>• ${s}</li>`).join('');
+      (document.getElementById('careerAdvice') as HTMLElement).innerHTML =
+        expData.careers.map((c: string) => `<li>• ${c}</li>`).join('');
+
+      const results = document.getElementById('analyzerResults') as HTMLElement;
+      results.classList.remove('hidden');
+      setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    });
+  </script>
+</Layout>

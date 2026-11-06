@@ -9,7 +9,15 @@ const pfx = isPt ? '/pt' : '';
 
 const tools = [
   {
-    title: isPt ? 'Calculadora de Nome Chaldeu' : 'Chaldean Name Calculator',
+    title: isPt ? 'Analisador de Nome Individual' : 'Single Name Analyzer',
+    desc: isPt ? 'Análise individual e focada do seu nome de batismo ou marca — sem parceiro.' : 'Focused solo name analysis for personal, baby, pen, or brand names — no partner needed.',
+    emoji: '📝',
+    badge: isPt ? 'Individual' : 'Solo Tool',
+    color: 'from-blue-500/20 to-indigo-500/10 border-blue-500/30 text-blue-400',
+    href: `${pfx}/name-analyzer`,
+  },
+  {
+    title: isPt ? 'Central de Análise Completa' : 'Full Name Hub',
     desc: isPt ? 'Descubra a vibração sonora do seu nome, planeta regente e traços de expressão.' : 'Discover your name vibration, ruling planet, destiny archetype & expression energy.',
     emoji: '🔮',
     badge: isPt ? 'Mais Popular' : 'Most Popular',

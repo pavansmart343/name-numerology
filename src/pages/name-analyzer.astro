@@ -1,0 +1,373 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HubDirectory from '../components/HubDirectory.astro';
+
+const faqs = [
+  {
+    question: "What is a single name analyzer in numerology?",
+    answer: "A single name analyzer focuses strictly on one individual name without requiring a partner's details. It decodes the exact phonetic sound vibration of your name using the ancient Chaldean Babylonian system to calculate your Expression Number, Soul Urge (vowels), and Personality Number (consonants)."
+  },
+  {
+    question: "Which name should I enter into the name analyzer?",
+    answer: "For your foundational destiny and life potential, use the full legal birth name given on your birth certificate (first, middle, and last). If you want to analyze how your everyday public persona functions, you can also test your current married name, pen name, or stage name."
+  },
+  {
+    question: "Can I use this name analyzer for baby names or business names?",
+    answer: "Yes! Many parents and entrepreneurs use this single name analyzer to evaluate baby names or brand names before finalizing them, checking that the name's vibration aligns with auspicious numbers like 1, 3, 5, 6, or Master Numbers 11, 22, and 33."
+  }
+];
+---
+
+<Layout
+  title="Free Name Analyzer — Chaldean Name Numerology Calculator"
+  description="✨ Free single name analyzer. Enter any name → discover your Expression Number, Soul Urge, Personality Number, ruling planet & lucky days. 100% free, no sign-up."
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="en" href="https://namenumerologyhub.com/name-analyzer" />
+    <link rel="alternate" hreflang="pt-BR" href="https://namenumerologyhub.com/pt/name-analyzer" />
+    <link rel="alternate" hreflang="x-default" href="https://namenumerologyhub.com/name-analyzer" />
+  </Fragment>
+
+  <!-- JSON-LD WebApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Single Name Numerology Analyzer",
+    "url": "https://namenumerologyhub.com/name-analyzer",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "description": "Decode any name with Chaldean numerology: Expression, Soul Urge, and Personality numbers.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  })} />
+
+  <!-- JSON-LD FAQPage -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+    }))
+  })} />
+
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <!-- Header -->
+    <div class="mb-10 text-center no-print">
+      <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4 bg-purple-500/10 text-purple-400 border border-purple-500/20">
+        Dedicated Personal Tool
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight themed-text mb-4">
+        Free Name <span class="gradient-text">Analyzer</span>
+      </h1>
+      <p class="themed-text-2 text-lg max-w-2xl mx-auto">
+        Analyze any single name with precision. Decodes your Expression Number, Soul Urge, and Outer Personality using authentic Chaldean sound vibrations — no partner required.
+      </p>
+    </div>
+
+    <!-- Input Form (Pure Single Name) -->
+    <div class="themed-card rounded-2xl p-6 md:p-10 mb-10 no-print border border-purple-500/20 bg-zinc-900/60 shadow-xl">
+      <form id="singleNameForm" class="space-y-6">
+        <div>
+          <label for="fullNameInput" class="block text-sm font-semibold themed-text mb-2">
+            Enter Full Name to Analyze <span class="text-red-400">*</span>
+          </label>
+          <input
+            type="text"
+            id="fullNameInput"
+            required
+            placeholder="e.g. Alexander James Vance"
+            class="themed-input w-full rounded-xl px-4 py-3.5 text-base md:text-lg focus:ring-2 focus:ring-purple-500"
+          />
+          <div class="mt-2.5 flex flex-wrap items-center gap-2 text-xs text-zinc-400">
+            <span class="text-zinc-500">Quick ideas:</span>
+            <button type="button" class="example-btn hover:text-purple-400 px-2 py-0.5 rounded bg-zinc-800 border themed-border">Birth Name</button>
+            <button type="button" class="example-btn hover:text-purple-400 px-2 py-0.5 rounded bg-zinc-800 border themed-border">Baby Name</button>
+            <button type="button" class="example-btn hover:text-purple-400 px-2 py-0.5 rounded bg-zinc-800 border themed-border">Business Name</button>
+            <button type="button" class="example-btn hover:text-purple-400 px-2 py-0.5 rounded bg-zinc-800 border themed-border">Pen Name</button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-base font-bold px-6 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-purple-500/25 hover:-translate-y-0.5"
+        >
+          Analyze Name Vibration 🔮
+        </button>
+      </form>
+    </div>
+
+    <!-- Results Section -->
+    <div id="analyzerResults" class="hidden space-y-6">
+      <!-- Action Bar -->
+      <div class="flex items-center justify-between no-print">
+        <p class="text-sm themed-text-2">Complete personal analysis generated 🌟</p>
+        <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-lg themed-card text-sm font-medium themed-text hover:scale-105 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Print Report
+        </button>
+      </div>
+
+      <!-- Core Trinity Numbers (Expression, Soul Urge, Personality) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 print-section">
+        <!-- Expression Number -->
+        <div class="result-card themed-card rounded-2xl p-6 text-center border-t-4 border-t-purple-500">
+          <span class="text-xs uppercase font-bold text-purple-400 tracking-wider">Expression (Destiny)</span>
+          <div id="resExpBadge" class="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black text-white mx-auto my-3 shadow-xl"></div>
+          <h3 id="resExpTitle" class="text-lg font-bold themed-text mb-1"></h3>
+          <p class="text-xs themed-text-3">All letters summed</p>
+        </div>
+
+        <!-- Soul Urge Number -->
+        <div class="result-card themed-card rounded-2xl p-6 text-center border-t-4 border-t-pink-500">
+          <span class="text-xs uppercase font-bold text-pink-400 tracking-wider">Soul Urge (Heart's Desire)</span>
+          <div id="resSoulBadge" class="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black text-white mx-auto my-3 shadow-xl"></div>
+          <h3 id="resSoulTitle" class="text-lg font-bold themed-text mb-1"></h3>
+          <p class="text-xs themed-text-3">Vowels only (A, E, I, O, U, Y)</p>
+        </div>
+
+        <!-- Personality Number -->
+        <div class="result-card themed-card rounded-2xl p-6 text-center border-t-4 border-t-cyan-500">
+          <span class="text-xs uppercase font-bold text-cyan-400 tracking-wider">Outer Personality</span>
+          <div id="resPersonaBadge" class="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black text-white mx-auto my-3 shadow-xl"></div>
+          <h3 id="resPersonaTitle" class="text-lg font-bold themed-text mb-1"></h3>
+          <p class="text-xs themed-text-3">Consonants only</p>
+        </div>
+      </div>
+
+      <!-- Main Deep Dive Card -->
+      <div class="result-card themed-card rounded-2xl p-6 md:p-8 print-section">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span id="nameHeading" class="text-xl md:text-2xl font-extrabold themed-text"></span>
+          <span id="planetBadge" class="text-xs font-semibold px-2.5 py-1 rounded-full border themed-border"></span>
+          <span id="elementBadge" class="text-xs font-semibold px-2.5 py-1 rounded-full border themed-border"></span>
+        </div>
+        <p id="mainDescription" class="text-sm md:text-base themed-text-2 leading-relaxed mb-6"></p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t themed-border text-center">
+          <div>
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Lucky Colors</p>
+            <p id="luckyColors" class="text-sm font-semibold themed-text"></p>
+          </div>
+          <div>
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Lucky Days</p>
+            <p id="luckyDays" class="text-sm font-semibold themed-text"></p>
+          </div>
+          <div>
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Compatible Numbers</p>
+            <p id="compatNumbers" class="text-sm font-semibold themed-text"></p>
+          </div>
+          <div>
+            <p class="text-xs themed-text-3 uppercase tracking-wider mb-1">Chaldean Sound Sum</p>
+            <p id="totalSumFormula" class="text-sm font-mono font-semibold themed-text"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Letter Breakdown Table -->
+      <div class="result-card themed-card rounded-2xl p-6 print-section">
+        <h3 class="text-base font-bold themed-text mb-4 flex items-center gap-2">
+          <span>🔢</span> Chaldean Letter-by-Letter Phonetic Breakdown
+        </h3>
+        <div id="letterTiles" class="flex flex-wrap gap-2.5 mb-4"></div>
+        <p class="text-xs themed-text-3 leading-relaxed">
+          The Chaldean system evaluates letters based on sound frequency rather than sequential alphabet order. Vowels supply your Soul Urge number; consonants determine your Outer Personality number.
+        </p>
+      </div>
+
+      <!-- Traits & Guidance -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 print-section">
+        <div class="result-card themed-card rounded-2xl p-6">
+          <h3 class="text-sm font-bold themed-text mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs">★</span>
+            Core Strengths & Natural Gifts
+          </h3>
+          <ul id="keyStrengths" class="space-y-2 text-sm themed-text-2"></ul>
+        </div>
+        <div class="result-card themed-card rounded-2xl p-6">
+          <h3 class="text-sm font-bold themed-text mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">💼</span>
+            Ideal Career & Life Synergy
+          </h3>
+          <ul id="careerAdvice" class="space-y-2 text-sm themed-text-2"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <HubDirectory isPt={false} currentPath="/name-analyzer" />
+
+  <script>
+    const chaldean: Record<string, number> = {
+      a:1,i:1,j:1,q:1,y:1,
+      b:2,k:2,r:2,
+      c:3,g:3,l:3,s:3,
+      d:4,m:4,t:4,
+      e:5,h:5,n:5,x:5,
+      u:6,v:6,w:6,
+      o:7,z:7,
+      f:8,p:8
+    };
+
+    const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'y']);
+
+    const archetypes: Record<number, any> = {
+      1: { title: "The Leader", emoji: "👑", planet: "☀️ Sun", element: "Fire", color: "#f59e0b",
+           desc: "You carry the primordial creative spark of the Sun. Your name vibrates with independent drive, pioneering instinct, and executive command. You are here to build your own path.",
+           colors: "Gold, Orange, Amber", days: "Sunday, Monday", compat: "1, 3, 5, 8",
+           strengths: ["Natural commanding authority", "Original creative thinking", "Resilience under pressure", "Decisive problem solving"],
+           careers: ["Entrepreneurship & Founders", "Executive Management", "Creative Directing", "Innovation & Inventions"] },
+      2: { title: "The Diplomat", emoji: "🕊️", planet: "🌙 Moon", element: "Water", color: "#06b6d4",
+           desc: "Governed by the emotional depth of the Moon, your name radiates peace, partnership, and subtle intuitive influence. You bridge differences with grace and empathy.",
+           colors: "Silver, White, Cream", days: "Monday, Friday", compat: "2, 4, 6, 8",
+           strengths: ["Deep empathy and active listening", "Masterful peacemaking", "High emotional intelligence", "Loyal and dependable"],
+           careers: ["Mediation & Diplomacy", "Psychology & Counseling", "Partnerships & HR", "Fine Arts & Design"] },
+      3: { title: "The Creative Communicator", emoji: "🎨", planet: "♃ Jupiter", element: "Air", color: "#f97316",
+           desc: "Jupiter expands your name vibration with charisma, wit, and expressive brilliance. You bring enthusiasm, storytelling, and joyful optimism wherever you direct your focus.",
+           colors: "Yellow, Purple, Coral", days: "Thursday, Wednesday", compat: "1, 3, 5, 9",
+           strengths: ["Inspiring verbal expression", "Boundless artistic imagination", "Natural magnetism and humor", "Uplifting optimism"],
+           careers: ["Writing & Journalism", "Media & Public Speaking", "Performing Arts", "Marketing & Branding"] },
+      4: { title: "The Master Builder", emoji: "🏛️", planet: "♄ Saturn", element: "Earth", color: "#6366f1",
+           desc: "Saturn provides your name with unwavering discipline, structure, and endurance. You excel at turning complex visions into rock-solid, lasting realities.",
+           colors: "Navy Blue, Dark Forest, Brown", days: "Saturday, Sunday", compat: "2, 4, 6, 8",
+           strengths: ["Uncompromising work ethic", "Systematic organization", "Loyalty and trustworthiness", "Practical problem solving"],
+           careers: ["Engineering & Architecture", "Finance & Operations", "Project Management", "Law & Administration"] },
+      5: { title: "The Dynamic Explorer", emoji: "🌍", planet: "☿ Mercury", element: "Air", color: "#10b981",
+           desc: "Mercury infuses your name with speed, versatility, and an unquenchable thirst for freedom. You thrive in times of change and learn rapidly from diverse experiences.",
+           colors: "Turquoise, Emerald, Silver", days: "Wednesday, Friday", compat: "1, 3, 5, 7",
+           strengths: ["Effortless adaptability", "Quick wit and persuasion", "Adventurous curiosity", "Multidisciplinary talent"],
+           careers: ["Travel & Hospitality", "Sales & Communications", "Consulting & Tech", "Media Production"] },
+      6: { title: "The Compassionate Nurturer", emoji: "💗", planet: "♀ Venus", element: "Earth", color: "#ec4899",
+           desc: "Blessed by Venus, your name carries the vibration of balance, family harmony, and aesthetic beauty. You are the emotional anchor and caregiver in your community.",
+           colors: "Rose, Soft Turquoise, Lavender", days: "Friday, Wednesday", compat: "2, 4, 6, 9",
+           strengths: ["Profound compassion and generosity", "Eye for aesthetic harmony", "Protective guidance", "Integrity and warmth"],
+           careers: ["Healthcare & Healing", "Interior Architecture", "Teaching & Social Care", "Community Leadership"] },
+      7: { title: "The Spiritual Seeker", emoji: "🔮", planet: "♆ Neptune", element: "Water", color: "#8b5cf6",
+           desc: "Neptune draws your name toward esoteric mysteries, analytical research, and profound inner truth. You look deep beneath surface appearances and demand authentic substance.",
+           colors: "Deep Violet, Indigo, Slate", days: "Saturday, Sunday", compat: "2, 5, 7, 9",
+           strengths: ["Exceptional analytical rigor", "Intuitive spiritual perception", "Independent contemplation", "Original philosophical thought"],
+           careers: ["Scientific Research", "Data Science & Philosophy", "Psychology & Astrological Arts", "Strategic Investigation"] },
+      8: { title: "The High Executive", emoji: "💎", planet: "♄ Saturn", element: "Earth", color: "#64748b",
+           desc: "Saturn gives your name immense karmic authority, financial acumen, and strategic endurance. You understand that true power is built with integrity, patience, and vision.",
+           colors: "Black, Royal Navy, Deep Gold", days: "Saturday, Thursday", compat: "1, 2, 4, 8",
+           strengths: ["Visionary business judgment", "Natural leadership in crises", "Financial stewardship", "High organizational grit"],
+           careers: ["Corporate Leadership & CEO", "Investment Banking", "Real Estate Development", "Large Scale Enterprises"] },
+      9: { title: "The Global Humanitarian", emoji: "🌟", planet: "♂ Mars", element: "Fire", color: "#ef4444",
+           desc: "Mars provides your name with fiery conviction channeled into universal love, justice, and philanthropic vision. You inspire collective transformation.",
+           colors: "Crimson, Pure Gold, Ruby", days: "Tuesday, Thursday", compat: "3, 6, 9",
+           strengths: ["Selfless humanitarian ideals", "Broad global perspective", "Artistic and expressive mastery", "Inspiring moral courage"],
+           careers: ["Non-Profit & International Aid", "Environmental Policy", "Creative Arts & Cinema", "Education & Spiritual Advocacy"] },
+      11: { title: "The Master Visionary", emoji: "✨", planet: "Sun + Moon", element: "All", color: "#f59e0b",
+            desc: "Carrying Master Number 11, your name bridges the physical and metaphysical realms with intense intuition and illumination. You are here to inspire humanity.",
+            colors: "Silver, Platinum, Pale Gold", days: "Sunday, Monday", compat: "2, 11, 22",
+            strengths: ["Prophetic intuition", "Charismatic spiritual presence", "High creative inspiration", "Transformational guidance"],
+            careers: ["Visionary Writing & Media", "Spiritual Teaching", "Creative Innovator", "Transformative Leadership"] },
+      22: { title: "The Master Architect", emoji: "🏗️", planet: "Venus + Saturn", element: "Earth", color: "#8b5cf6",
+            desc: "The most potent number in numerology, 22 merges grand humanitarian ideals with practical mastery to build enduring global institutions.",
+            colors: "Imperial Purple, Earth Gold", days: "Saturday, Friday", compat: "4, 8, 22",
+            strengths: ["Monumental manifestation ability", "Flawless organizational genius", "Pragmatic global vision", "Unshakable purpose"],
+            careers: ["Global Enterprise Building", "Civil Engineering & Infrastructure", "Foundations & Public Policy", "Architectural Masterplanning"] },
+      33: { title: "The Master Teacher", emoji: "🕊️", planet: "Jupiter + Venus", element: "All", color: "#10b981",
+            desc: "The Master Number of Christ Consciousness and unconditional healing love. Your vibration elevates human consciousness through selflessness and profound empathy.",
+            colors: "Emerald Green, Diamond White", days: "Thursday, Friday", compat: "6, 11, 33",
+            strengths: ["Pure compassion and healing energy", "Selfless devotion to humanity", "Higher wisdom transmission", "Healing artistry"],
+            careers: ["Master Teacher & Healer", "Humanitarian Philanthropy", "Holistic Health Leader", "Artistic Inspiration"] },
+    };
+
+    function reduce(n: number): number {
+      while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+        n = String(n).split('').reduce((s, d) => s + parseInt(d), 0);
+      }
+      return n;
+    }
+
+    // Quick example chips
+    document.querySelectorAll('.example-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const text = (e.currentTarget as HTMLElement).textContent?.trim();
+        const input = document.getElementById('fullNameInput') as HTMLInputElement;
+        if (text === 'Birth Name') input.value = 'Oliver James Vance';
+        else if (text === 'Baby Name') input.value = 'Aurelia Rose';
+        else if (text === 'Business Name') input.value = 'Quantum Apex Media';
+        else if (text === 'Pen Name') input.value = 'George Orwell';
+        input.focus();
+      });
+    });
+
+    document.getElementById('singleNameForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const rawName = (document.getElementById('fullNameInput') as HTMLInputElement).value.trim();
+      if (!rawName) return;
+
+      const clean = rawName.toLowerCase().replace(/[^a-z]/g, '');
+      let expSum = 0;
+      let soulSum = 0;
+      let personaSum = 0;
+      const tiles: string[] = [];
+
+      for (const char of clean) {
+        const val = chaldean[char] || 0;
+        expSum += val;
+        const isVowel = vowels.has(char);
+        if (isVowel) soulSum += val;
+        else personaSum += val;
+
+        tiles.push(`
+          <div class="flex flex-col items-center justify-center p-2 rounded-xl bg-[var(--bg-secondary)] border themed-border min-w-[42px]">
+            <span class="text-sm font-bold themed-text uppercase">${char}</span>
+            <span class="text-xs font-mono font-bold text-purple-400">${val}</span>
+            <span class="text-[9px] text-zinc-500">${isVowel ? 'V' : 'C'}</span>
+          </div>
+        `);
+      }
+
+      const expNum = reduce(expSum);
+      const soulNum = reduce(soulSum);
+      const personaNum = reduce(personaSum);
+
+      const expData = archetypes[expNum] || archetypes[9];
+      const soulData = archetypes[soulNum] || archetypes[9];
+      const personaData = archetypes[personaNum] || archetypes[9];
+
+      // Badges
+      const bExp = document.getElementById('resExpBadge') as HTMLElement;
+      bExp.textContent = `${expData.emoji} ${expNum}`;
+      bExp.style.backgroundColor = expData.color;
+      (document.getElementById('resExpTitle') as HTMLElement).textContent = expData.title;
+
+      const bSoul = document.getElementById('resSoulBadge') as HTMLElement;
+      bSoul.textContent = `${soulData.emoji} ${soulNum}`;
+      bSoul.style.backgroundColor = soulData.color;
+      (document.getElementById('resSoulTitle') as HTMLElement).textContent = soulData.title;
+
+      const bPersona = document.getElementById('resPersonaBadge') as HTMLElement;
+      bPersona.textContent = `${personaData.emoji} ${personaNum}`;
+      bPersona.style.backgroundColor = personaData.color;
+      (document.getElementById('resPersonaTitle') as HTMLElement).textContent = personaData.title;
+
+      // Hero detail
+      (document.getElementById('nameHeading') as HTMLElement).textContent = rawName;
+      (document.getElementById('planetBadge') as HTMLElement).textContent = expData.planet;
+      (document.getElementById('elementBadge') as HTMLElement).textContent = `${expData.element} Element`;
+      (document.getElementById('mainDescription') as HTMLElement).textContent = expData.desc;
+
+      (document.getElementById('luckyColors') as HTMLElement).textContent = expData.colors;
+      (document.getElementById('luckyDays') as HTMLElement).textContent = expData.days;
+      (document.getElementById('compatNumbers') as HTMLElement).textContent = expData.compat;
+      (document.getElementById('totalSumFormula') as HTMLElement).textContent = `${expSum} → ${expNum}`;
+
+      // Letter tiles
+      (document.getElementById('letterTiles') as HTMLElement).innerHTML = tiles.join('');
+
+      // Strengths & Careers
+      (document.getElementById('keyStrengths') as HTMLElement).innerHTML =
+        expData.strengths.map((s: string) => `<li>• ${s}</li>`).join('');
+      (document.getElementById('careerAdvice') as HTMLElement).innerHTML =
+        expData.careers.map((c: string) => `<li>• ${c}</li>`).join('');
+
+      const results = document.getElementById('analyzerResults') as HTMLElement;
+      results.classList.remove('hidden');
+      setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    });
+  </script>
+</Layout>

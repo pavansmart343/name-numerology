@@ -17,6 +17,8 @@ if (isPt) {
     '/',
     '/name-analysis',
     '/name-analysis/',
+    '/name-analyzer',
+    '/name-analyzer/',
     '/life-path-calculator',
     '/life-path-calculator/',
     '/lucky-number-finder',
@@ -36,7 +38,8 @@ if (isPt) {
 const navLinks = isPt
   ? [
       { name: 'Início', href: '/pt/' },
-      { name: 'Análise de Nome', href: '/pt/name-analysis' },
+      { name: 'Analisador Solo', href: '/pt/name-analyzer' },
+      { name: 'Central de Nomes', href: '/pt/name-analysis' },
       { name: 'Caminho de Vida', href: '/pt/life-path-calculator' },
       { name: 'Números da Sorte', href: '/pt/lucky-number-finder' },
       { name: 'Compatibilidade', href: '/pt/compatibility-calculator' },
@@ -44,12 +47,12 @@ const navLinks = isPt
     ]
   : [
       { name: 'Home', href: '/' },
+      { name: 'Name Analyzer', href: '/name-analyzer' },
       { name: 'Name Hub', href: '/name-analysis' },
       { name: 'Life Path', href: '/life-path-calculator' },
       { name: 'Lucky Numbers', href: '/lucky-number-finder' },
       { name: 'Compatibility', href: '/compatibility-calculator' },
       { name: 'Soul Urge', href: '/soul-urge-calculator' },
-      { name: 'Articles', href: '/#articles' },
     ];
 ---
 <header class="sticky top-0 z-50 w-full border-b themed-border bg-[var(--bg-primary)]/80 backdrop-blur-xl">

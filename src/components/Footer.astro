@@ -26,6 +26,7 @@ const pfx = isPt ? '/pt' : '';
           {isPt ? 'Calculadoras' : 'Calculators & Hub'}
         </h3>
         <ul class="space-y-2.5">
+          <li><a href={`${pfx}/name-analyzer`} class="text-sm themed-text-2 hover:themed-text transition-colors">{isPt ? 'Analisador de Nome (Solo)' : 'Solo Name Analyzer'}</a></li>
           <li><a href={`${pfx}/name-analysis`} class="text-sm themed-text-2 hover:themed-text transition-colors">{isPt ? 'Análise do Nome Chaldeu' : 'Chaldean Name Hub'}</a></li>
           <li><a href={`${pfx}/life-path-calculator`} class="text-sm themed-text-2 hover:themed-text transition-colors">{isPt ? 'Caminho de Vida' : 'Life Path Calculator'}</a></li>
           <li><a href={`${pfx}/lucky-number-finder`} class="text-sm themed-text-2 hover:themed-text transition-colors">{isPt ? 'Números da Sorte' : 'Lucky Number Finder'}</a></li>
